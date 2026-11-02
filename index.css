@@ -1,0 +1,1385 @@
+/* ═══════════════════════════════════════════════════════════
+   LootStar — Кейсы
+   Концепция: витрина оружейной. Тёмный графит, тёплый янтарь,
+   каждый кейс стоит на подсвеченном пьедестале цвета своего тира.
+   Всё, что зависит от JS (размеры рулетки, имена классов), сохранено.
+   ═══════════════════════════════════════════════════════════ */
+
+* { margin: 0; padding: 0; box-sizing: border-box }
+
+:root {
+    --ink: #07080C;
+    --panel: #11141C;
+    --panel-2: #181C27;
+    --panel-3: #222736;
+    --hairline: rgba(255, 255, 255, .07);
+    --hairline-strong: rgba(255, 255, 255, .15);
+    --text: #F6F3EC;
+    --text-2: #959AAB;
+    --text-3: #5A5F70;
+    --amber: #E8944A;
+    --amber-2: #FFB46B;
+    --amber-deep: #B5602A;
+    --jade: #4FBE8D;
+    --jade-2: #2F9C6B;
+    --violet: #9B86F0;
+    --violet-2: #7C5FE0;
+    --ruby: #E4536B;
+    --ice: #7CCBF5;
+
+    --primary: var(--amber);
+    --accent: var(--amber-2);
+    --star: var(--amber);
+    --bg: var(--ink);
+    --surface: var(--panel);
+    --surface-2: var(--panel-2);
+    --border: var(--hairline);
+
+    --font-display: 'Unbounded', 'Manrope', sans-serif;
+    --font-body: 'Manrope', 'Inter', -apple-system, sans-serif;
+
+    --r-card: 22px;
+    --r-ctl: 14px;
+    --ease: cubic-bezier(.32, .72, 0, 1);
+}
+
+html, body {
+    font-family: var(--font-body);
+    background: var(--ink);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+body {
+    padding-bottom: calc(104px + env(safe-area-inset-bottom, 0px));
+    background-image:
+        radial-gradient(120% 55% at 50% -10%, rgba(232, 148, 74, .13) 0%, transparent 60%),
+        radial-gradient(70% 40% at 100% 18%, rgba(155, 134, 240, .09) 0%, transparent 70%),
+        radial-gradient(60% 40% at 0% 60%, rgba(124, 203, 245, .045) 0%, transparent 70%);
+    background-attachment: fixed;
+}
+
+:focus-visible {
+    outline: 2px solid var(--amber-2);
+    outline-offset: 2px;
+}
+
+/* ═══════════ ШАПКА ═══════════ */
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 540px;
+    margin: 0 auto;
+    padding: 10px 14px;
+    margin-top: env(safe-area-inset-top, 0px);
+    background: linear-gradient(180deg, rgba(7, 8, 12, .94) 60%, rgba(7, 8, 12, 0));
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+.logo { display: flex; align-items: center; gap: 9px }
+.logo img { width: 34px; height: 34px; border-radius: 10px; object-fit: contain }
+.logo h1 {
+    font-family: var(--font-display);
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: -.3px;
+}
+
+.user-info { display: flex; align-items: center; gap: 6px }
+.user-balances {
+    display: flex;
+    align-items: center;
+    padding: 3px;
+    border-radius: 20px;
+    background: var(--panel);
+    border: 1px solid var(--hairline);
+}
+
+.user-balance {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px 10px 5px 6px;
+    border-radius: 16px;
+    font-size: 12px;
+    font-weight: 800;
+    color: var(--amber-2);
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+}
+.user-balance.silver { color: #B5E2FA }
+.user-balance.silver + .user-balance,
+.user-balance + .user-balance.silver { box-shadow: -1px 0 0 var(--hairline) }
+.user-balance img { width: 18px; height: 18px; object-fit: contain; display: block }
+.user-balance p { font-size: 12px; line-height: 1 }
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 3px 10px 3px 3px;
+    border-radius: 20px;
+    background: var(--panel);
+    border: 1px solid var(--hairline);
+    cursor: pointer;
+    transition: background .2s, border-color .2s;
+}
+.user-profile:hover { background: var(--panel-2); border-color: var(--hairline-strong) }
+.user-profile img {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    object-fit: contain;
+    background: rgba(232, 148, 74, .16);
+    padding: 3px;
+}
+.user-profile p {
+    font-size: 12px;
+    font-weight: 700;
+    max-width: 62px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* ═══════════ КОНТЕНТ ═══════════ */
+.main {
+    max-width: 540px;
+    margin: 0 auto;
+    padding: 8px 14px 20px;
+}
+
+.cases-section { margin-bottom: 30px }
+
+.section-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 14px;
+    padding: 0 2px;
+}
+.section-header::before {
+    content: '';
+    width: 4px;
+    height: 18px;
+    border-radius: 3px;
+    background: linear-gradient(180deg, var(--amber-2), var(--amber-deep));
+    box-shadow: 0 0 14px rgba(232, 148, 74, .55);
+    flex-shrink: 0;
+}
+.section-title {
+    font-family: var(--font-display);
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: -.2px;
+    text-transform: capitalize;
+    color: var(--text);
+    white-space: nowrap;
+}
+
+.cases-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+/* ═══════════ КАРТОЧКА КЕЙСА ═══════════ */
+.case-card {
+    --tier: rgba(232, 148, 74, .9);
+    position: relative;
+    background:
+        radial-gradient(90% 62% at 50% 38%, color-mix(in srgb, var(--tier) 26%, transparent) 0%, transparent 72%),
+        linear-gradient(180deg, var(--panel-2) 0%, var(--panel) 100%);
+    border-radius: var(--r-card);
+    padding: 12px 10px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    overflow: hidden;
+    border: 1px solid var(--hairline);
+    transition: transform .3s var(--ease), border-color .3s, box-shadow .3s;
+    animation: caseIn .5s cubic-bezier(.3, 0, .2, 1) both;
+    isolation: isolate;
+    -webkit-tap-highlight-color: transparent;
+}
+@keyframes caseIn {
+    from { opacity: 0; transform: translateY(12px) }
+    to { opacity: 1; transform: translateY(0) }
+}
+
+/* пьедестал: цветной эллипс под кейсом */
+.case-card::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 61%;
+    width: 78%;
+    height: 14%;
+    transform: translateX(-50%);
+    background: radial-gradient(ellipse at center, color-mix(in srgb, var(--tier) 70%, transparent) 0%, transparent 70%);
+    filter: blur(8px);
+    opacity: .75;
+    z-index: 0;
+    pointer-events: none;
+    transition: opacity .3s, transform .3s var(--ease);
+}
+/* верхний блик на кромке */
+.case-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: var(--r-card);
+    background: linear-gradient(180deg, rgba(255, 255, 255, .07) 0%, transparent 28%);
+    pointer-events: none;
+    z-index: 2;
+}
+.case-card:hover {
+    transform: translateY(-3px);
+    border-color: color-mix(in srgb, var(--tier) 55%, transparent);
+    box-shadow: 0 16px 34px rgba(0, 0, 0, .5), 0 0 0 1px color-mix(in srgb, var(--tier) 18%, transparent);
+}
+.case-card:hover::before { opacity: 1; transform: translateX(-50%) scale(1.12) }
+.case-card:active { transform: scale(.975) }
+.case-card.is-free { border-color: rgba(74, 222, 128, .22) }
+
+.case-image {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 6px;
+    z-index: 1;
+}
+.case-image img {
+    width: 90%;
+    height: 90%;
+    object-fit: contain;
+    filter: drop-shadow(0 14px 18px rgba(0, 0, 0, .65));
+    transition: transform .4s var(--ease);
+}
+.case-card:hover .case-image > img { transform: scale(1.07) translateY(-4px) }
+
+.case-name {
+    font-size: 13.5px;
+    font-weight: 800;
+    text-align: center;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 8px;
+    padding: 0 2px;
+    position: relative;
+    z-index: 1;
+    letter-spacing: -.1px;
+}
+
+/* цена — плашка во всю ширину, читается как кнопка */
+.case-price {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    width: 100%;
+    min-height: 32px;
+    padding: 0 8px;
+    border-radius: 11px;
+    background: rgba(255, 255, 255, .05);
+    border: 1px solid var(--hairline);
+    font-size: 13px;
+    font-weight: 900;
+    color: var(--amber-2);
+    font-variant-numeric: tabular-nums;
+    position: relative;
+    z-index: 1;
+}
+.case-price img { width: 14px; height: 14px; object-fit: contain }
+.case-price.free {
+    color: #6EF0A0;
+    background: rgba(74, 222, 128, .10);
+    border-color: rgba(74, 222, 128, .24);
+    font-size: 12.5px;
+    letter-spacing: .6px;
+}
+.case-price.cooldown { color: var(--text-2); font-weight: 700; font-size: 12px; background: rgba(255, 255, 255, .03) }
+.case-price.locked { color: var(--violet); font-weight: 800; font-size: 11.5px }
+.case-price .free-count {
+    letter-spacing: 0;
+    font-size: 10.5px;
+    font-weight: 800;
+    padding: 2px 6px;
+    border-radius: 6px;
+    background: rgba(74, 222, 128, .16);
+    color: #A5F5C4;
+    font-variant-numeric: tabular-nums;
+}
+
+.case-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 4px 8px;
+    border-radius: 8px;
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: .4px;
+    z-index: 3;
+    line-height: 1;
+}
+.case-badge.new {
+    background: linear-gradient(135deg, #5BE890, #22C55E);
+    color: #05150C;
+    box-shadow: 0 4px 14px rgba(74, 222, 128, .4);
+}
+.case-badge.free {
+    background: linear-gradient(135deg, #F0629A, #B53A6B);
+    color: #fff;
+    box-shadow: 0 4px 14px rgba(232, 84, 138, .4);
+}
+
+.case-demo-btn {
+    position: absolute;
+    top: 9px;
+    left: 9px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    padding: 0;
+    border-radius: 50%;
+    background: rgba(7, 8, 12, .55);
+    border: 1px solid var(--hairline-strong);
+    color: rgba(255, 255, 255, .85);
+    cursor: pointer;
+    z-index: 3;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transition: background .2s, transform .2s;
+}
+.case-demo-btn:hover { background: rgba(7, 8, 12, .85); color: #fff }
+.case-demo-btn:active { transform: scale(.9) }
+.case-demo-btn svg { width: 11px; height: 11px; margin-left: 1px }
+
+/* ═══════════ НИЖНЯЯ НАВИГАЦИЯ — плавающая капсула ═══════════ */
+.bnav {
+    position: fixed;
+    bottom: calc(env(safe-area-inset-bottom, 0px) + 10px);
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+    width: calc(100% - 20px);
+    max-width: 520px;
+    height: 64px;
+    padding: 6px;
+    background: rgba(17, 20, 28, .86);
+    backdrop-filter: blur(24px) saturate(1.4);
+    -webkit-backdrop-filter: blur(24px) saturate(1.4);
+    border: 1px solid var(--hairline-strong);
+    border-radius: 24px;
+    box-shadow: 0 14px 40px rgba(0, 0, 0, .55);
+    display: flex;
+    align-items: stretch;
+    gap: 2px;
+}
+.bnav button {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    padding: 0 2px;
+    border-radius: 18px;
+    border: none;
+    background: transparent;
+    color: var(--text-2);
+    font-family: inherit;
+    cursor: pointer;
+    transition: color .2s, background .2s, transform .15s;
+    -webkit-tap-highlight-color: transparent;
+}
+.bnav button:active { transform: scale(.93) }
+.bnav button.active {
+    color: #1A0F06;
+    background: linear-gradient(160deg, var(--amber-2), var(--amber));
+    box-shadow: 0 6px 16px rgba(232, 148, 74, .35);
+}
+.bnav button svg { width: 21px; height: 21px }
+.bnav button span { font-size: 9.5px; font-weight: 800 }
+
+/* ═══════════ МОДАЛКА ═══════════ */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(3, 4, 6, .8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    z-index: 200;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .3s, visibility .3s;
+}
+.modal-overlay.open { opacity: 1; visibility: visible }
+.modal {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%) translateY(100%);
+    z-index: 201;
+    width: 100%;
+    max-width: 540px;
+    max-height: 92vh;
+    background:
+        radial-gradient(80% 30% at 50% 0%, rgba(232, 148, 74, .10), transparent 70%),
+        var(--panel);
+    border-radius: 28px 28px 0 0;
+    border-top: 1px solid var(--hairline-strong);
+    overflow: hidden;
+    transition: transform .42s var(--ease);
+}
+.modal-overlay.open .modal { transform: translateX(-50%) translateY(0) }
+.modal-scroll {
+    max-height: 92vh;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding: 10px 16px calc(env(safe-area-inset-bottom, 0px) + 24px);
+}
+.modal-handle {
+    width: 40px;
+    height: 4px;
+    background: var(--hairline-strong);
+    border-radius: 2px;
+    margin: 0 auto 16px;
+}
+.modal-hdr {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+    gap: 10px;
+}
+.modal-name {
+    font-family: var(--font-display);
+    font-size: 17px;
+    font-weight: 600;
+    letter-spacing: -.3px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.modal-price {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 13px 7px 9px;
+    border-radius: 999px;
+    background: rgba(232, 148, 74, .12);
+    border: 1px solid rgba(232, 148, 74, .28);
+    font-size: 14px;
+    font-weight: 900;
+    color: var(--amber-2);
+    font-variant-numeric: tabular-nums;
+    flex-shrink: 0;
+}
+.modal-price img { width: 18px; height: 18px; object-fit: contain }
+
+/* ═══════════ РУЛЕТКА ═══════════ */
+.roulette-wrap {
+    position: relative;
+    margin: 0 -16px 10px;
+    background:
+        linear-gradient(180deg, rgba(0, 0, 0, .35), rgba(0, 0, 0, 0) 30%, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, .35)),
+        var(--ink);
+    border-top: 1px solid var(--hairline);
+    border-bottom: 1px solid var(--hairline);
+    overflow: hidden;
+    padding: 6px 0;
+}
+/* затухание по краям */
+.roulette-wrap::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 4;
+    pointer-events: none;
+    background: linear-gradient(90deg, var(--ink) 0%, transparent 22%, transparent 78%, var(--ink) 100%);
+}
+/* центральная линия выигрыша */
+.roulette-wrap::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    transform: translateX(-50%);
+    z-index: 4;
+    pointer-events: none;
+    background: linear-gradient(180deg, var(--amber-2), rgba(255, 180, 107, .35) 50%, var(--amber-2));
+    box-shadow: 0 0 14px rgba(255, 180, 107, .7);
+    transition: box-shadow .3s, background .3s;
+}
+.roulette-wrap.won::after { box-shadow: 0 0 22px var(--amber-2), 0 0 2px #fff }
+
+.roulette-track {
+    display: flex;
+    gap: 8px;
+    padding: 0 0 0 6px;
+    will-change: transform;
+}
+.roulette-track.idle { animation: idleScroll 24s linear infinite }
+.roulette-track.spinning { animation: none }
+@keyframes idleScroll {
+    0% { transform: translateX(0) }
+    100% { transform: translateX(-50%) }
+}
+
+/* размеры карточки рулетки (108×116, зазор 8) используются JS — не менять */
+.roulette-item {
+    flex-shrink: 0;
+    width: 108px;
+    height: 116px;
+    background:
+        radial-gradient(80% 60% at 50% 55%, rgba(255, 255, 255, .06), transparent 70%),
+        var(--panel-2);
+    border: 1px solid var(--hairline);
+    border-radius: 16px;
+    padding: 8px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.roulette-item .ri-price {
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    padding: 4px 8px 4px 5px;
+    border-radius: 8px;
+    background: rgba(0, 0, 0, .55);
+    font-size: 10px;
+    font-weight: 900;
+    color: var(--amber-2);
+    font-variant-numeric: tabular-nums;
+}
+.roulette-item .ri-price img { width: 12px; height: 12px }
+.roulette-item .ri-img {
+    width: 64px;
+    height: 64px;
+    margin-top: 10px;
+    object-fit: contain;
+    filter: drop-shadow(0 6px 10px rgba(0, 0, 0, .55));
+}
+
+/* треугольные указатели сверху и снизу */
+.roulette-pointer {
+    position: absolute;
+    left: 50%;
+    width: 0;
+    height: 0;
+    pointer-events: none;
+    z-index: 5;
+    transition: border-color .3s;
+}
+.roulette-pointer.ptr-top {
+    top: 0;
+    transform: translateX(-50%);
+    border-left: 9px solid transparent;
+    border-right: 9px solid transparent;
+    border-top: 11px solid var(--amber-2);
+    filter: drop-shadow(0 2px 6px rgba(255, 180, 107, .6));
+}
+.roulette-pointer.ptr-bottom {
+    bottom: 0;
+    transform: translateX(-50%);
+    border-left: 9px solid transparent;
+    border-right: 9px solid transparent;
+    border-bottom: 11px solid var(--amber-2);
+    filter: drop-shadow(0 -2px 6px rgba(255, 180, 107, .6));
+}
+.multi-roulette-row { position: relative; overflow: hidden; padding: 4px 0 }
+
+/* ═══════════ КОЛИЧЕСТВО ═══════════ */
+.qty-row {
+    display: flex;
+    gap: 6px;
+    padding: 12px 0 4px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+}
+.qty-row::-webkit-scrollbar { display: none }
+
+.qty-btn {
+    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
+    border-radius: var(--r-ctl);
+    border: 1px solid var(--hairline);
+    background: var(--panel-2);
+    color: var(--text-2);
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 800;
+    font-variant-numeric: tabular-nums;
+    cursor: pointer;
+    transition: background .2s, color .2s, border-color .2s, transform .15s;
+}
+.qty-btn:hover { color: var(--text); border-color: var(--hairline-strong) }
+.qty-btn.active {
+    background: linear-gradient(160deg, var(--amber-2), var(--amber));
+    border-color: transparent;
+    color: #1A0F06;
+    box-shadow: 0 6px 16px rgba(232, 148, 74, .32);
+}
+.qty-btn:active { transform: scale(.92) }
+.qty-btn.qty-disabled { opacity: .3; cursor: not-allowed; filter: grayscale(1) }
+
+/* ═══════════ КНОПКА ОТКРЫТИЯ ═══════════ */
+.open-btn-wrap { margin: 18px 0 8px }
+.open-btn {
+    width: 100%;
+    height: 58px;
+    border-radius: 20px;
+    border: none;
+    background: linear-gradient(180deg, var(--amber-2) 0%, var(--amber) 55%, var(--amber-deep) 100%);
+    color: #1A0F06;
+    font-family: var(--font-display);
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: -.2px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, .45),
+        inset 0 -3px 0 rgba(0, 0, 0, .14),
+        0 12px 28px rgba(232, 148, 74, .32);
+    transition: transform .15s, filter .2s;
+}
+.open-btn:hover { filter: brightness(1.06) }
+.open-btn:active { transform: translateY(2px) scale(.99) }
+.open-btn.insufficient {
+    background: linear-gradient(180deg, #F0687E, var(--ruby) 55%, #A93347 100%);
+    color: #fff;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .3), 0 12px 28px rgba(228, 83, 107, .28);
+}
+.open-btn:disabled { opacity: .55; cursor: not-allowed; filter: saturate(.6) }
+.open-btn svg { width: 20px; height: 20px }
+
+/* ═══════════ СОДЕРЖИМОЕ КЕЙСА ═══════════ */
+.contents { margin-top: 24px }
+.contents-title {
+    font-family: var(--font-display);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 12px;
+}
+.contents-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+.content-item {
+    background:
+        radial-gradient(80% 55% at 50% 52%, rgba(255, 255, 255, .05), transparent 72%),
+        var(--panel-2);
+    border: 1px solid var(--hairline);
+    border-radius: 18px;
+    padding: 12px 10px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.content-item-name {
+    font-size: 12px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 6px;
+    line-height: 1.3;
+    min-height: 32px;
+    display: flex;
+    align-items: center;
+}
+.content-item-media {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.content-item-media img { width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 6px 10px rgba(0, 0, 0, .5)) }
+.content-price {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 5px 11px 5px 8px;
+    background: rgba(232, 148, 74, .12);
+    border-radius: 999px;
+    font-size: 12.5px;
+    font-weight: 900;
+    color: var(--amber-2);
+    font-variant-numeric: tabular-nums;
+}
+.content-price img { width: 14px; height: 14px }
+
+/* ═══════════ РЕЗУЛЬТАТ ВЫИГРЫША ═══════════ */
+.modal-win { text-align: center; padding: 14px 0 }
+.modal-win-demo-badge {
+    display: inline-block;
+    margin-bottom: 12px;
+    padding: 6px 12px;
+    border-radius: 999px;
+    background: rgba(155, 134, 240, .14);
+    border: 1px solid rgba(155, 134, 240, .3);
+    color: #C9BDFB;
+    font-size: 11.5px;
+    font-weight: 800;
+}
+.modal-win-badge {
+    display: inline-block;
+    padding: 7px 18px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, var(--amber-2), var(--amber-deep));
+    color: #1A0F06;
+    font-family: var(--font-display);
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+.modal-win-media {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 6px;
+}
+.modal-win-media::before {
+    content: '';
+    position: absolute;
+    width: 220px;
+    height: 220px;
+    background: radial-gradient(circle, rgba(255, 180, 107, .38) 0%, rgba(155, 134, 240, .12) 45%, transparent 70%);
+    z-index: 0;
+    pointer-events: none;
+}
+.modal-win-img {
+    position: relative;
+    z-index: 1;
+    width: 132px;
+    height: 132px;
+    object-fit: contain;
+    margin: 0 auto;
+    display: block;
+    filter: drop-shadow(0 12px 22px rgba(0, 0, 0, .5));
+    animation: winPop .55s var(--ease) both;
+}
+@keyframes winPop {
+    from { opacity: 0; transform: scale(.6) translateY(14px) }
+    to { opacity: 1; transform: scale(1) translateY(0) }
+}
+.modal-win-name { font-size: 18px; font-weight: 800; margin-bottom: 10px; letter-spacing: -.2px }
+.modal-win-value {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px 8px 12px;
+    border-radius: 999px;
+    background: rgba(232, 148, 74, .13);
+    border: 1px solid rgba(232, 148, 74, .26);
+    font-size: 16px;
+    font-weight: 900;
+    color: var(--amber-2);
+    font-variant-numeric: tabular-nums;
+}
+.modal-win-value img { width: 20px; height: 20px }
+.modal-win-btns { display: flex; gap: 8px; margin-top: 20px }
+.modal-win-btn {
+    flex: 1;
+    min-height: 50px;
+    padding: 12px 8px;
+    border-radius: 16px;
+    border: 1px solid var(--hairline-strong);
+    background: var(--panel-2);
+    color: var(--text);
+    font-family: inherit;
+    font-size: 13.5px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: transform .15s, filter .2s;
+}
+.modal-win-btn:hover { filter: brightness(1.12) }
+.modal-win-btn:active { transform: scale(.96) }
+.modal-win-btn.sell {
+    background: linear-gradient(160deg, #62D9A5, var(--jade-2));
+    border-color: transparent;
+    color: #05150C;
+}
+.modal-win-btn.upgrade {
+    background: linear-gradient(160deg, #B09DFA, var(--violet-2));
+    border-color: transparent;
+    color: #fff;
+}
+
+/* список выигранных предметов */
+.win-items-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    max-height: 40vh;
+    overflow-y: auto;
+    margin-bottom: 10px;
+    padding-right: 4px;
+}
+.win-item-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--panel-2);
+    border: 1px solid var(--hairline);
+    border-radius: 14px;
+    padding: 10px 12px;
+}
+.win-item-row img {
+    width: 44px;
+    height: 44px;
+    object-fit: contain;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, .4));
+}
+.win-item-info { flex: 1; min-width: 0; text-align: left }
+.win-item-name {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 2px;
+}
+.win-item-price {
+    font-size: 12px;
+    font-weight: 800;
+    color: var(--amber-2);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-variant-numeric: tabular-nums;
+}
+.win-item-price img { width: 12px; height: 12px }
+.win-item-sell {
+    background: rgba(228, 83, 107, .14);
+    color: #FFB0BC;
+    border: 1px solid rgba(228, 83, 107, .3);
+    padding: 8px 12px;
+    border-radius: 10px;
+    font-family: inherit;
+    font-size: 11px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: background .2s, transform .15s;
+    flex-shrink: 0;
+}
+.win-item-sell:hover { background: rgba(228, 83, 107, .25) }
+.win-item-sell:active { transform: scale(.94) }
+
+/* ═══════════ ТОСТ ═══════════ */
+.toast {
+    position: fixed;
+    top: calc(env(safe-area-inset-top, 0px) + 72px);
+    left: 50%;
+    transform: translateX(-50%) translateY(-16px);
+    padding: 12px 20px;
+    border-radius: 999px;
+    background: rgba(24, 28, 39, .94);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid var(--hairline-strong);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, .5);
+    font-size: 13px;
+    font-weight: 700;
+    z-index: 9999;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .3s, transform .35s var(--ease), visibility .3s;
+    pointer-events: none;
+    max-width: 90vw;
+    text-align: center;
+}
+.toast.show { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0) }
+.toast.ok { color: var(--jade); border-color: rgba(79, 190, 141, .35) }
+.toast.err { color: var(--ruby); border-color: rgba(228, 83, 107, .35) }
+
+/* ═══════════ БАННЕР HALLOWEEN ═══════════ */
+.event-banner {
+    position: relative;
+    margin-bottom: 26px;
+    border-radius: 26px;
+    overflow: hidden;
+    min-height: 140px;
+    background: #14080F url('/images/halloweenevent.png') right center / cover no-repeat;
+    border: 1px solid rgba(255, 122, 47, .28);
+    isolation: isolate;
+    cursor: pointer;
+    animation: eventIn .6s cubic-bezier(.3, 0, .2, 1) both;
+    box-shadow: 0 16px 38px rgba(0, 0, 0, .5), 0 0 40px rgba(255, 122, 47, .10);
+    transition: transform .25s var(--ease);
+}
+.event-banner:active { transform: scale(.985) }
+@keyframes eventIn {
+    from { opacity: 0; transform: translateY(-10px) }
+    to { opacity: 1; transform: translateY(0) }
+}
+
+.event-banner-shade {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background:
+        linear-gradient(90deg, rgba(20, 8, 15, .97) 0%, rgba(20, 8, 15, .84) 40%, rgba(20, 8, 15, .25) 72%, rgba(20, 8, 15, 0) 100%),
+        radial-gradient(circle at 82% 50%, rgba(255, 122, 47, .22) 0%, transparent 60%);
+}
+.event-banner-inner {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 18px 20px;
+    min-height: 140px;
+}
+.event-banner-text { min-width: 0; max-width: 64% }
+
+.event-banner-kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 9px;
+    margin-bottom: 8px;
+    border-radius: 999px;
+    background: rgba(255, 122, 47, .14);
+    border: 1px solid rgba(255, 122, 47, .3);
+    font-size: 10.5px;
+    font-weight: 800;
+    color: #FFB988;
+}
+.event-banner-kicker::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #FF7A2F;
+    box-shadow: 0 0 8px #FF7A2F;
+}
+.event-banner-title {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1.08;
+    letter-spacing: -.5px;
+    color: #FFEBD6;
+    margin-bottom: 12px;
+    text-shadow: 0 2px 20px rgba(0, 0, 0, .7);
+}
+.event-banner-timer {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 6px 12px;
+    border-radius: 999px;
+    background: rgba(7, 8, 12, .6);
+    border: 1px solid rgba(255, 122, 47, .28);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--text-2);
+    white-space: nowrap;
+}
+.event-banner-timer strong {
+    color: #FF8A42;
+    font-weight: 900;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: .3px;
+}
+.event-banner-timer.highlight {
+    color: #fff4dc;
+    background: rgba(255, 91, 24, .82);
+    border-color: rgba(255, 221, 151, .95);
+    box-shadow: 0 0 18px rgba(255, 105, 35, .85), 0 0 38px rgba(255, 181, 74, .55);
+    animation: eventTimerHighlight 5s ease-in-out both;
+}
+.event-banner-timer.highlight strong {
+    color: #fffbe8;
+    text-shadow: 0 0 10px rgba(255, 255, 210, .95), 0 0 22px rgba(255, 214, 107, .9);
+}
+@keyframes eventTimerHighlight {
+    0%, 100% { transform: scale(1); filter: brightness(1) }
+    12%, 36%, 60%, 84% { transform: scale(1.08); filter: brightness(1.65) }
+    24%, 48%, 72%, 96% { transform: scale(1.02); filter: brightness(1.2) }
+}
+
+/* орб остаётся единственным постоянно движущимся элементом страницы */
+.event-banner-orb {
+    flex-shrink: 0;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, rgba(255, 180, 107, .6) 0%, rgba(255, 122, 47, .2) 45%, transparent 70%);
+    border: 1px solid rgba(255, 122, 47, .35);
+    box-shadow: 0 0 24px rgba(255, 122, 47, .32), inset 0 0 18px rgba(255, 122, 47, .2);
+    animation: eventOrbPulse 3.2s ease-in-out infinite;
+    pointer-events: none;
+}
+@keyframes eventOrbPulse {
+    0%, 100% { transform: scale(1); opacity: .9 }
+    50% { transform: scale(1.1); opacity: 1 }
+}
+
+/* ═══════════ СЕРЕБРЯНЫЕ КЕЙСЫ ═══════════ */
+.case-image .silver-case-stack {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.case-image .silver-case-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    pointer-events: none;
+    z-index: 0;
+    filter: drop-shadow(0 14px 18px rgba(0, 0, 0, .65));
+    transition: transform .4s var(--ease);
+}
+.case-card:hover .case-image .silver-case-bg { transform: scale(1.05) translateY(-3px) }
+
+.case-image .silver-case-items {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.case-image .silver-case-slot {
+    position: absolute;
+    top: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform-origin: center center;
+    will-change: transform;
+    transition: transform .4s var(--ease);
+}
+.case-image .silver-case-slot.left { left: 4%; width: 42%; height: 42%; transform: translateY(-50%) rotate(-14deg) }
+.case-image .silver-case-slot.center { left: 50%; width: 48%; height: 48%; transform: translate(-50%, -50%) rotate(0deg); z-index: 2 }
+.case-image .silver-case-slot.right { right: 4%; width: 42%; height: 42%; transform: translateY(-50%) rotate(14deg) }
+.case-image .silver-case-item {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 6px 12px rgba(0, 0, 0, .65));
+}
+
+/* ═══════════ ЛЕНТА LIVE-ВЫИГРЫШЕЙ ═══════════ */
+.live-wins {
+    position: relative;
+    max-width: 540px;
+    margin: 2px auto 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0 14px;
+    overflow: hidden;
+    animation: liveWinsIn .5s var(--ease) both;
+}
+@keyframes liveWinsIn {
+    from { opacity: 0; transform: translateY(-6px) }
+    to { opacity: 1; transform: translateY(0) }
+}
+.live-wins-label {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 6px 10px;
+    border-radius: 999px;
+    background: rgba(228, 83, 107, .14);
+    border: 1px solid rgba(228, 83, 107, .3);
+    color: #FFB0BC;
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: .3px;
+    z-index: 2;
+}
+.live-wins-track {
+    position: relative;
+    flex: 1;
+    display: flex;
+    gap: 10px;
+    overflow: hidden;
+    mask-image: linear-gradient(90deg, transparent 0, #000 6%, #000 94%, transparent 100%);
+    -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 6%, #000 94%, transparent 100%);
+}
+.live-wins-inner {
+    display: flex;
+    gap: 10px;
+    animation: liveWinsScroll 26s linear infinite;
+    will-change: transform;
+}
+.live-wins-track:hover .live-wins-inner { animation-play-state: paused }
+@keyframes liveWinsScroll {
+    from { transform: translateX(0) }
+    to { transform: translateX(-50%) }
+}
+.live-win-chip {
+    position: relative;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 48px;
+    padding: 5px;
+    border-radius: 14px;
+    background: var(--panel-2);
+    border: 1px solid var(--hairline);
+    animation: liveChipPop .4s var(--ease) both;
+    cursor: help;
+}
+@keyframes liveChipPop {
+    from { opacity: 0; transform: scale(.85) }
+    to { opacity: 1; transform: scale(1) }
+}
+.live-win-chip img.lw-item {
+    width: 34px; height: 34px; object-fit: contain; flex-shrink: 0;
+    filter: drop-shadow(0 3px 6px rgba(0,0,0,.5));
+}
+.live-win-chip .lw-count {
+    position: absolute;
+    right: -5px;
+    bottom: -5px;
+    min-width: 23px;
+    padding: 3px 5px;
+    border: 1px solid rgba(255,180,107,.35);
+    border-radius: 999px;
+    background: linear-gradient(135deg, var(--amber-2), var(--amber));
+    color: #1A0F06;
+    font-size: 9px;
+    font-weight: 900;
+    line-height: 1;
+    text-align: center;
+    font-variant-numeric: tabular-nums;
+}
+
+.live-win-chip:focus-visible {
+    outline: 2px solid var(--amber-2);
+    outline-offset: 3px;
+}
+
+/* ═══════════ ДОПОЛНИТЕЛЬНЫЕ ПЛАВНЫЕ АНИМАЦИИ ═══════════ */
+.case-card .case-image img { transition: transform .45s var(--ease), filter .45s var(--ease) }
+
+.modal-win-badge { animation: winPop .5s var(--ease) both, winBadgeGlow 1.8s ease-in-out .5s infinite }
+@keyframes winBadgeGlow {
+    0%, 100% { box-shadow: 0 0 0 rgba(255, 180, 107, 0) }
+    50% { box-shadow: 0 0 22px rgba(255, 180, 107, .55) }
+}
+.modal-win-value { animation: winValueIn .5s var(--ease) .1s both }
+@keyframes winValueIn {
+    from { opacity: 0; transform: translateY(8px) }
+    to { opacity: 1; transform: translateY(0) }
+}
+.modal-win-name { animation: winValueIn .45s var(--ease) .05s both }
+.modal-win-btns .modal-win-btn { animation: winValueIn .4s var(--ease) both }
+.modal-win-btns .modal-win-btn:nth-child(1) { animation-delay: .15s }
+.modal-win-btns .modal-win-btn:nth-child(2) { animation-delay: .22s }
+.modal-win-btns .modal-win-btn:nth-child(3) { animation-delay: .29s }
+
+.content-item { animation: caseIn .4s var(--ease) both }
+.content-item:hover .content-item-media img { transform: scale(1.1) translateY(-2px); transition: transform .3s var(--ease) }
+
+@media (max-width: 380px) {
+    .live-wins-label { font-size: 10px; padding: 5px 8px }
+}
+
+/* ═══════════ АДАПТИВ ═══════════ */
+@media (max-width: 380px) {
+    .case-card { padding: 10px 8px 8px; border-radius: 20px }
+    .case-name { font-size: 12.5px }
+    .case-price { font-size: 12px; min-height: 30px }
+    .section-title { font-size: 14px }
+    .event-banner-title { font-size: 18px }
+    .event-banner-text { max-width: 68% }
+    .event-banner-orb { width: 44px; height: 44px }
+    .event-banner-inner { padding: 14px }
+    .bnav button span { font-size: 9px }
+    .user-profile p { display: none }
+    .user-profile { padding-right: 3px }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: .001ms !important;
+        animation-iteration-count: 1 !important;
+    }
+    .roulette-track.idle { animation: none !important }
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   ПРЕМИУМ-СЛОЙ: плавность и глубина
+   Правила ниже сознательно идут в конце файла и дополняют/заменяют блок
+   «дополнительные плавные анимации». Принцип: двигаем только transform и
+   opacity (композитор), will-change — только на время анимации, тяжёлые
+   секции рисуются лениво (content-visibility).
+   ═══════════════════════════════════════════════════════════════════ */
+:root { --spring: cubic-bezier(.34, 1.56, .64, 1); --out-expo: cubic-bezier(.16, 1, .3, 1) }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100% }
+header { backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px) }
+
+/* страница появляется мягко */
+.main { animation: pageIn .6s var(--out-expo) both }
+@keyframes pageIn { from { opacity: 0; transform: translateY(10px) } to { opacity: 1; transform: none } }
+
+/* секции вне экрана не рисуем — прокрутка легче */
+.cases-section { content-visibility: auto; contain-intrinsic-size: auto 540px }
+
+/* заголовок секции «выезжает» по мере прокрутки (Chromium: Telegram Android/Desktop) */
+@supports (animation-timeline: view()) {
+    .cases-section .section-header { animation: headerReveal linear both; animation-timeline: view(); animation-range: entry 0% entry 70% }
+    @keyframes headerReveal { from { opacity: 0; transform: translateX(-14px) } to { opacity: 1; transform: none } }
+}
+
+/* ── карточки кейсов ── */
+.case-card { will-change: auto; contain: layout style; transition: transform .45s var(--out-expo), border-color .3s, box-shadow .45s var(--out-expo) }
+.case-card .case-image img { transition: transform .6s var(--out-expo), filter .5s var(--out-expo) }
+.case-card .case-image { overflow: visible }
+/* диагональный блик, пробегающий по карточке */
+.case-card .case-image::after {
+    content: ''; position: absolute; top: -30%; bottom: -30%; left: -30%; width: 40%; z-index: 3; pointer-events: none;
+    background: linear-gradient(100deg, transparent, rgba(255, 255, 255, .16), transparent);
+    transform: translateX(-120%) skewX(-18deg); transition: transform .9s var(--out-expo);
+}
+.case-price { transition: background .3s, border-color .3s, transform .3s var(--out-expo) }
+@media (hover: hover) {
+    .case-card:hover { will-change: transform; transform: translateY(-5px) scale(1.012) }
+    .case-card:hover .case-image::after { transform: translateX(520%) skewX(-18deg) }
+    .case-card:hover .case-price { background: color-mix(in srgb, var(--tier) 16%, transparent); border-color: color-mix(in srgb, var(--tier) 42%, transparent) }
+}
+/* на тач-экранах «залипший» hover не нужен */
+@media (hover: none) {
+    .case-card:hover { transform: none; border-color: var(--hairline); box-shadow: none }
+    .case-card:hover::before { opacity: .75; transform: translateX(-50%) }
+    .case-card:hover .case-image > img { transform: none }
+}
+.case-card:active { transform: scale(.96); transition-duration: .12s }
+
+/* ── лента live-выигрышей ── */
+.live-wins { contain: layout paint }
+.live-win-chip { transition: transform .3s var(--out-expo), border-color .3s }
+.live-win-chip:hover { transform: translateY(-2px); border-color: var(--hairline-strong) }
+
+/* ── шторка кейса ── */
+.modal-overlay { transition: opacity .4s var(--out-expo), visibility .4s }
+.modal { transition: transform .6s var(--out-expo); will-change: auto }
+.modal-overlay.open .modal { will-change: transform }
+.modal-overlay:not(.open) .modal { transition-duration: .4s }
+/* содержимое выезжает по очереди при каждом открытии */
+.modal-overlay.open .modal-hdr,
+.modal-overlay.open .roulette-wrap,
+.modal-overlay.open .qty-row,
+.modal-overlay.open .open-btn-wrap,
+.modal-overlay.open .contents { animation: modalItemIn .6s var(--out-expo) both }
+.modal-overlay.open .modal-hdr { animation-delay: .08s }
+.modal-overlay.open .roulette-wrap { animation-delay: .14s }
+.modal-overlay.open .qty-row { animation-delay: .2s }
+.modal-overlay.open .open-btn-wrap { animation-delay: .26s }
+.modal-overlay.open .contents { animation-delay: .32s }
+@keyframes modalItemIn { from { opacity: 0; transform: translateY(18px) } to { opacity: 1; transform: none } }
+
+/* рулетка: слой композитора только на время вращения */
+.roulette-track { backface-visibility: hidden }
+.roulette-track.spinning { will-change: transform }
+.roulette-item { contain: layout paint style }
+.roulette-wrap::after { transition: box-shadow .4s, opacity .4s }
+.roulette-pointer.ptr-top, .roulette-pointer.ptr-bottom { animation: pointerBob 1.8s ease-in-out infinite alternate }
+.roulette-pointer.ptr-bottom { animation-direction: alternate-reverse }
+@keyframes pointerBob { from { translate: 0 0 } to { translate: 0 2px } }
+.roulette-track.spinning ~ .roulette-pointer { animation: none }
+
+/* количество */
+.qty-btn { transition: background .25s, color .25s, border-color .25s, transform .25s var(--spring), box-shadow .3s }
+.qty-btn.active { transform: translateY(-2px) }
+
+/* кнопка открытия: блик на композиторе вместо анимации background-position */
+.open-btn { animation: none; background-size: 100% 100%; position: relative; overflow: hidden; transition: transform .2s var(--out-expo), filter .25s, box-shadow .35s }
+.open-btn::after {
+    content: ''; position: absolute; top: 0; bottom: 0; left: 0; width: 38%; pointer-events: none;
+    background: linear-gradient(100deg, transparent, rgba(255, 255, 255, .45), transparent);
+    transform: translateX(-160%) skewX(-20deg); animation: openSheen 3.8s ease-in-out infinite;
+}
+@keyframes openSheen { 0%, 62% { transform: translateX(-160%) skewX(-20deg) } 100% { transform: translateX(420%) skewX(-20deg) } }
+.open-btn:disabled::after { display: none }
+.open-btn:hover:not(:disabled) { box-shadow: inset 0 1px 0 rgba(255, 255, 255, .45), inset 0 -3px 0 rgba(0, 0, 0, .14), 0 16px 36px rgba(232, 148, 74, .45) }
+
+/* ── результат выигрыша ── */
+.modal-win-media { animation: winMediaIn .8s var(--spring) both }
+@keyframes winMediaIn { from { opacity: 0; transform: scale(.55) translateY(20px) } to { opacity: 1; transform: none } }
+.modal-win-media::before { animation: haloIn 1s var(--out-expo) both, haloBreath 3.4s ease-in-out 1s infinite alternate }
+@keyframes haloIn { from { opacity: 0; transform: scale(.4) } to { opacity: 1; transform: none } }
+@keyframes haloBreath { from { opacity: .75; transform: scale(.95) } to { opacity: 1; transform: scale(1.06) } }
+/* искры вокруг приза */
+.modal-win-media::after {
+    content: ''; position: absolute; inset: -14px; pointer-events: none; z-index: 2;
+    background:
+        radial-gradient(circle 2px at 14% 22%, #fff 0 99%, transparent),
+        radial-gradient(circle 3px at 86% 18%, var(--amber-2) 0 99%, transparent),
+        radial-gradient(circle 2px at 8% 70%, var(--amber-2) 0 99%, transparent),
+        radial-gradient(circle 3px at 92% 66%, #fff 0 99%, transparent),
+        radial-gradient(circle 2px at 50% 6%, #C4A0FF 0 99%, transparent),
+        radial-gradient(circle 2px at 62% 96%, #fff 0 99%, transparent);
+    animation: sparkle 2.4s ease-in-out infinite alternate;
+}
+@keyframes sparkle { 0% { opacity: .25; transform: scale(.94) } 100% { opacity: 1; transform: scale(1.04) } }
+.modal-win-img { animation: winItemFloat 3.2s ease-in-out .8s infinite alternate }
+@keyframes winItemFloat { from { transform: translateY(0) } to { transform: translateY(-6px) } }
+.modal-win-name, .modal-win-value, .modal-win-btns .modal-win-btn { animation-timing-function: var(--out-expo) }
+.modal-win-btn { transition: transform .2s var(--out-expo), filter .25s }
+
+/* ── нижняя навигация и баланс ── */
+.bnav button { transition: color .3s var(--out-expo), background .3s var(--out-expo), transform .2s var(--out-expo), box-shadow .3s }
+.bnav button svg { transition: transform .4s var(--spring) }
+.bnav button.active svg { transform: translateY(-1px) scale(1.12) }
+.user-balance { transition: transform .3s var(--out-expo) }
+.user-balance:active { transform: scale(.95) }
+
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto }
+    .open-btn::after, .roulette-pointer, .modal-win-media::after, .modal-win-img { animation: none !important }
+}

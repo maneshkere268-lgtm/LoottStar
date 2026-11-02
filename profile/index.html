@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+    <meta name="theme-color" content="#08090D">
+    <title>LootStar — Профиль</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;600;700&family=Manrope:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="profile.css">
+    <link rel="stylesheet" href="phone.css">
+    <link rel="stylesheet" href="/shared/common.css">
+
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js"></script>
+
+    <script src="/shared/loading.js"></script>
+    <script src="/shared/config.js"></script>
+    <script src="/shared/auth.js"></script>
+    <script src="/shared/api.js"></script>
+    <script src="/shared/ban_check.js"></script>
+    <script src="/shared/currency.js"></script>
+    <script src="/shared/events.js"></script>
+    <script src="/shared/gifts.js"></script>
+    <script src="/shared/rates.js"></script>
+    <script src="/shared/ropeko.js"></script>
+    <script src="/shared/trade_notifier.js"></script>
+    <script src="/shared/referral.js"></script>
+    <script src="/shared/staking.js"></script>
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">
+            <img src="/shared/logo.png" alt="LootStar" onerror="this.style.display='none'">
+            <h1>LootStar</h1>
+        </div>
+        <div class="user-info">
+            <div class="user-balance star">
+                <img src="/shared/star.png" alt="⭐">
+                <p id="balanceDisplay">0</p>
+            </div>
+            <div class="user-balance silver">
+                <img src="/shared/silver-star.svg" alt="💎">
+                <p id="silverDisplay">0</p>
+            </div>
+        </div>
+    </header>
+
+    <main class="main">
+
+        <!-- ═══ 1. ПРОФИЛЬ ═══ -->
+        <section class="block profile-block">
+            <div class="hero-avatar" id="profileAvatar">U</div>
+            <div class="hero-name" id="profileName">Username</div>
+            <div class="hero-uid" id="profileId">ID: guest</div>
+            <button class="hero-phone" id="heroPhone" type="button">+7 000 000 00 00</button>
+
+            <div class="hero-balance">
+                <div class="hero-balance-label">Баланс</div>
+                <div class="hero-balance-value">
+                    <img src="/shared/star.png" alt="⭐">
+                    <span id="heroBalance">0</span>
+                </div>
+            </div>
+
+            <div class="balance-pool" id="balancePool">
+                <div class="balance-pool-heading">
+                    <span>Balance Pool</span>
+                    <button class="balance-pool-help" id="balancePoolHelp" type="button"
+                        aria-label="Что такое Balance Pool?" aria-expanded="false">!</button>
+                </div>
+                <div class="balance-pool-amount">
+                    <img src="/shared/star.png" alt="">
+                    <span id="balancePoolAmount">500 000 000</span>
+                </div>
+                <div class="balance-pool-status" id="balancePoolStatus">Доступно к получению за день</div>
+                <p class="balance-pool-explanation" id="balancePoolExplanation" hidden>
+                    Balance Pool — сумма, доступная к получению за день. Balance Pool обновляется каждые 24 часа.
+                </p>
+            </div>
+
+            <button class="hero-withdraw-btn" id="withdrawBtn" onclick="openWithdrawModal()">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <path d="M12 19V5"></path>
+                    <path d="M5 12l7-7 7 7"></path>
+                </svg>
+                Вывести Telegram Stars
+            </button>
+        </section>
+
+        <!-- ═══ 1.5. НОМЕР ТЕЛЕФОНА ═══ -->
+        <section class="block phone-block" id="phoneBlock">
+            <div class="block-title">PHONE NUMBER</div>
+
+            <div class="phone-card t-start" id="phoneCard">
+                <div class="phone-card-top">
+                    <span class="phone-tier" id="phoneTier">Стартовый</span>
+                    <span class="phone-rolls" id="phoneRolls"></span>
+                </div>
+                <div class="phone-num" id="phoneNum">+7 000 000 00 00</div>
+                <div class="phone-country" id="phoneCountry">🇷🇺 Россия</div>
+                <div class="phone-price">
+                    <span>Цена номера</span>
+                    <span class="phone-price-val"><img src="/shared/star.png" alt="⭐"><b id="phonePriceVal">0</b></span>
+                </div>
+            </div>
+
+            <button class="phone-roll-btn" id="phoneRollBtn" type="button">
+                <span>Крутить рулетку номеров</span>
+                <span class="prb-cost"><img src="/shared/star.png" alt="⭐"><b id="phoneRollCost">5 000</b></span>
+            </button>
+
+            <div class="phone-sub-row">
+                <button class="phone-link" id="phoneSellBtn" type="button" hidden>Продать номер</button>
+                <button class="phone-link" id="phoneOddsToggle" type="button">Шансы и цены</button>
+            </div>
+
+            <div class="phone-odds" id="phoneOdds" hidden></div>
+        </section>
+
+        <!-- ═══ 2. REFERRAL ═══ -->
+        <section class="block referral-block">
+            <div class="block-title">REFERRAL</div>
+
+            <div class="ref-reward">
+                <div class="ref-reward-title">За каждого рефералла</div>
+                <div class="ref-reward-values">
+                    <div class="ref-reward-item star">
+                        <img src="/shared/star.png" alt="⭐">
+                        <span>250 000</span>
+                    </div>
+                    <div class="ref-reward-item silver">
+                        <img src="/shared/silver-star.svg" alt="💎">
+                        <span>1 000</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ref-link-row">
+                <input type="text" id="refLinkInput" class="ref-link-input"
+                    value="https://t.me/NFT_Battle_Webot/startapp" readonly>
+                <button class="ref-copy-btn" onclick="copyRefLink()">Copy</button>
+            </div>
+
+            <button class="ref-share-btn" onclick="shareRefLink()">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 12v7a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7"></path>
+                    <path d="M16 6l-4-4-4 4"></path>
+                    <path d="M12 2v13"></path>
+                </svg>
+                Пригласить
+            </button>
+
+            <button class="ref-terms-toggle" id="refTermsToggle" onclick="toggleRefTerms()">
+                <span>Условия начисления</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M6 9l6 6 6-6"></path>
+                </svg>
+            </button>
+
+            <div class="ref-terms" id="refTerms">
+                <div class="ref-term-row">
+                    <div class="ref-term-icon">✅</div>
+                    <div class="ref-term-text">Ник из русских или английских букв (или их комбинация)</div>
+                </div>
+                <div class="ref-term-row">
+                    <div class="ref-term-icon">✅</div>
+                    <div class="ref-term-text">Оборот звёзд от 100 000 ⭐</div>
+                </div>
+                <div class="ref-term-note">
+                    Награда начисляется после выполнения всех условий
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ 4. PROMOCODE ═══ -->
+        <section class="block">
+            <div class="block-title">PROMOCODE</div>
+            <div class="promo-row">
+                <input type="text" id="promoInput" class="promo-input" placeholder="RELEASE" maxlength="24"
+                    autocomplete="off">
+                <button class="promo-btn" onclick="redeemPromo()">Redeem</button>
+            </div>
+        </section>
+
+        <!-- ═══ 5. ИНВЕНТАРЬ ═══ -->
+        <section class="block inv-block">
+            <div class="inv-header">
+                <div class="block-title no-margin">INVENTORY</div>
+                <button class="sell-all-btn" id="sellAllBtn" onclick="openSellAllModal()">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"
+                        stroke-linejoin="round" aria-hidden="true">
+                        <path d="M20 12v10H4V12"></path>
+                        <path d="M2 7h20v5H2z"></path>
+                        <path d="M12 22V7"></path>
+                    </svg>
+                    <span class="sa-label">Sell all</span>
+                    <span class="sa-total"><img src="/shared/star.png" alt=""><b id="sellAllTotal">0</b></span>
+                </button>
+            </div>
+
+            <div class="inv-tabs-row">
+                <button class="inv-tab active" data-sort="time" onclick="setSort('time')">Time</button>
+                <button class="inv-tab" data-sort="default" onclick="setSort('default')">Default</button>
+                <button class="inv-tab" data-sort="unique" onclick="setSort('unique')">Unique</button>
+            </div>
+
+            <div class="search-wrap">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                    <circle cx="11" cy="11" r="7"></circle>
+                    <path d="M21 21l-4.35-4.35"></path>
+                </svg>
+                <input type="text" id="invSearch" class="search-input" placeholder="Search">
+            </div>
+
+            <div id="inventoryContainer"></div>
+        </section>
+
+    </main>
+
+    <!-- ═══ МОДАЛКА РУЛЕТКИ НОМЕРОВ ═══ -->
+    <div class="modal-overlay" id="phoneRollModal">
+        <div class="modal">
+            <div class="modal-scroll phone-roll-sheet" id="phoneRollSheet">
+                <div class="modal-handle"></div>
+                <div class="confirm-title" id="prTitle">Рулетка номеров</div>
+                <div class="pr-screen" id="prScreen">
+                    <div class="pr-num" id="prNum"></div>
+                </div>
+                <div class="pr-status" id="prStatus">Крутим номер…</div>
+                <div class="pr-result" id="prResult" hidden>
+                    <div class="pr-country" id="prCountry"></div>
+                    <div class="pr-tier" id="prTier">—</div>
+                    <div class="pr-value"><img src="/shared/star.png" alt="⭐"><b id="prValue">0</b></div>
+                    <div class="pr-reasons" id="prReasons"></div>
+                    <div class="pr-compare" id="prCompare"></div>
+                    <div class="pr-btns">
+                        <button class="pr-btn" id="prKeepNew" type="button">Оставить новый<small></small></button>
+                        <button class="pr-btn" id="prKeepOld" type="button">Оставить текущий<small></small></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══ МОДАЛКА ПРЕДМЕТА ═══ -->
+    <div class="modal-overlay" id="itemModal">
+        <div class="modal">
+            <div class="modal-scroll">
+                <div class="modal-handle"></div>
+                <div class="item-preview">
+                    <img id="itemModalImg" src="/shared/star.png" alt="">
+                    <div class="item-preview-lottie" id="itemModalLottie" hidden></div>
+                </div>
+                <div class="item-name" id="itemModalName">—</div>
+                <div class="item-price" id="itemModalPrice"><img src="/shared/star.png" alt=""><span>0</span></div>
+                <div class="item-btns"></div>
+                <button class="item-btn-close" onclick="closeItemModal()">Закрыть</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="promoRewardModal">
+        <div class="modal">
+            <div class="modal-scroll promo-reward-content">
+                <div class="modal-handle"></div>
+                <div class="item-preview promo-reward-preview">
+                    <img id="promoRewardImg" src="/shared/star.png" alt="" hidden>
+                    <div class="item-preview-lottie" id="promoRewardLottie"></div>
+                </div>
+                <div class="item-name" id="promoRewardName">Предмет получен</div>
+                <div class="promo-reward-caption">Анимация предмета</div>
+                <button class="item-btn-close" onclick="closePromoRewardModal()">Закрыть</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══ МОДАЛКА ДОХОДА ═══ -->
+    <div class="modal-overlay" id="incomeModal">
+        <div class="modal">
+            <div class="modal-scroll">
+                <div class="modal-handle"></div>
+                <div class="confirm-title">Доход с подарка</div>
+                <div class="stake-preview">
+                    <img id="incomeItemImg" src="/shared/star.png" alt="">
+                    <div id="incomeItemName" class="stake-preview-name"></div>
+                </div>
+                <div class="wd-hint">
+                    <div class="wd-hint-row">
+                        <span class="wd-hint-label">Заработано</span>
+                        <span class="wd-hint-value" id="incomeTotal">0 ⭐</span>
+                    </div>
+                    <div class="wd-hint-row">
+                        <span class="wd-hint-label">В запасе</span>
+                        <span class="wd-hint-value" id="incomePoolLeft">0 ⭐</span>
+                    </div>
+                    <div class="wd-hint-row">
+                        <span class="wd-hint-label">Ставка</span>
+                        <span class="wd-hint-value" id="incomeRate">+0 ⭐/сек</span>
+                    </div>
+                    <div class="wd-hint-row">
+                        <span class="wd-hint-label">Статус</span>
+                        <span class="wd-hint-value" id="incomeStatus">Активен</span>
+                    </div>
+                </div>
+                <div class="confirm-btns stake-actions">
+                    <button class="confirm-btn confirm-btn-cancel" id="incomeTopUpBtn">Пополнить</button>
+                    <button class="confirm-btn confirm-btn-ok" id="incomeStopBtn">Остановить</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══ МОДАЛКА ПОПОЛНЕНИЯ ═══ -->
+    <div class="modal-overlay" id="topUpModal">
+        <div class="modal">
+            <div class="modal-scroll">
+                <div class="modal-handle"></div>
+                <div class="confirm-title">Пополнить запас</div>
+                <div class="topup-info">
+                    <b id="topUpItemName"></b><br>
+                    Текущий запас: <b id="topUpCurrentPool">0 ⭐</b>
+                </div>
+                <div class="wd-input-block">
+                    <div class="wd-input-wrap">
+                        <img src="/shared/star.png" alt="⭐">
+                        <input type="number" id="topUpAmount" class="wd-input" placeholder="Сумма в ⭐" min="1"
+                            autocomplete="off">
+                    </div>
+                </div>
+                <div class="confirm-btns">
+                    <button class="confirm-btn confirm-btn-cancel" onclick="closeTopUpModal()">Отмена</button>
+                    <button class="confirm-btn confirm-btn-ok" id="topUpConfirmBtn">Внести</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══ МОДАЛКА SELL ALL ═══ -->
+    <div class="modal-overlay" id="sellAllModal">
+        <div class="modal">
+            <div class="modal-scroll">
+                <div class="modal-handle"></div>
+                <div class="sellall-icon" aria-hidden="true">💰</div>
+                <div class="confirm-title">Продать всё?</div>
+                <div class="confirm-text">Будет продано <span id="sellAllCount">0</span> предм. — вы получите
+                    <span class="sellall-sum"><img src="/shared/star.png" alt=""><span id="sellAllValue">0</span></span>
+                </div>
+                <div class="sellall-skip" id="sellAllSkip" hidden></div>
+                <div class="confirm-btns">
+                    <button class="confirm-btn confirm-btn-cancel" onclick="closeSellAllModal()">Отмена</button>
+                    <button class="confirm-btn confirm-btn-ok" id="sellAllConfirmBtn" onclick="confirmSellAll()">Продать</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══ МОДАЛКА ВЫВОДА TELEGRAM STARS ═══ -->
+    <div class="modal-overlay" id="withdrawModal">
+        <div class="modal">
+            <div class="modal-scroll">
+                <div class="modal-handle"></div>
+                <div class="wd-title">Вывод Telegram Stars</div>
+
+                <div class="wd-balance">
+                    <div class="wd-balance-label">Доступно для вывода</div>
+                    <div class="wd-balance-value">
+                        <img src="/shared/star.png" alt="⭐">
+                        <span id="wdBalanceValue">0</span>
+                    </div>
+                </div>
+
+                <div class="wd-input-block">
+                    <label for="withdrawAmount" class="wd-label">Сумма в LootStar ⭐</label>
+                    <div class="wd-input-wrap">
+                        <img src="/shared/star.png" alt="⭐">
+                        <input type="number" id="withdrawAmount" class="wd-input" placeholder="10000000"
+                            min="10000000" step="1000000" autocomplete="off">
+                        <button class="wd-max-btn" onclick="setMaxWithdraw()">MAX</button>
+                    </div>
+                    <div class="wd-t-preview" id="wdTPreview">≈ 0 ⭐ Telegram</div>
+                </div>
+
+                <div class="wd-hint">
+                    <div class="wd-hint-row">
+                        <span class="wd-hint-label">Курс</span>
+                        <span class="wd-hint-value" id="wdRateLabel">2 000 000 ⭐ = 1 ⭐ Telegram</span>
+                    </div>
+                    <div class="wd-hint-row">
+                        <span class="wd-hint-label">Минимум вывода</span>
+                        <span class="wd-hint-value" id="wdMinLabel">10 000 000 ⭐ (5 ⭐ TG)</span>
+                    </div>
+                    <div class="wd-hint-row">
+                        <span class="wd-hint-label">Максимум за раз</span>
+                        <span class="wd-hint-value">100 000 ⭐ TG</span>
+                    </div>
+                    <div class="wd-hint-row">
+                        <span class="wd-hint-label">Выплата</span>
+                        <span class="wd-hint-value">Telegram Stars</span>
+                    </div>
+                </div>
+
+                <button class="wd-submit-btn" onclick="submitWithdraw()">Вывести</button>
+                <button class="wd-close-btn" onclick="closeWithdrawModal()">Закрыть</button>
+            </div>
+        </div>
+    </div>
+
+    <nav class="bnav">
+        <button data-page="games" onclick="location.href='../games/index.html'">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <rect x="2" y="6" width="20" height="12" rx="3"></rect>
+                <line x1="6" y1="12" x2="10" y2="12"></line>
+                <line x1="8" y1="10" x2="8" y2="14"></line>
+                <circle cx="15" cy="10" r="1" fill="currentColor" stroke="none"></circle>
+                <circle cx="18" cy="12" r="1" fill="currentColor" stroke="none"></circle>
+            </svg>
+            <span>Игры</span>
+        </button>
+        <button data-page="cases" onclick="location.href='../index.html'">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path
+                    d="M20 12v10H4V12M2 7h20v5H2zM12 22V7M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7zM12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z">
+                </path>
+            </svg>
+            <span>Кейсы</span>
+        </button>
+        <button data-page="index" onclick="location.href='../index/index.html'">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="3" width="7" height="7" rx="1.5"></rect>
+                <rect x="14" y="3" width="7" height="7" rx="1.5"></rect>
+                <rect x="3" y="14" width="7" height="7" rx="1.5"></rect>
+                <rect x="14" y="14" width="7" height="7" rx="1.5"></rect>
+            </svg>
+            <span>Индекс</span>
+        </button>
+        <button data-page="upgrades" onclick="location.href='../upgrades/index.html'">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M12 19V5"></path>
+                <path d="M5 12l7-7 7 7"></path>
+            </svg>
+            <span>Апгрейд</span>
+        </button>
+        <button data-page="profile" class="active" onclick="location.href='../profile/index.html'">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+            <span>Профиль</span>
+        </button>
+        <button data-page="leaderboard" onclick="location.href='../leaderboard/index.html'">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M8 21h8M12 17v4M7 4h10v4a5 5 0 0 1-10 0V4z"></path>
+                <path d="M7 6H4a1 1 0 0 0-1 1v1a4 4 0 0 0 4 4M17 6h3a1 1 0 0 1 1 1v1a4 4 0 0 1-4 4"></path>
+            </svg>
+            <span>Лидеры</span>
+        </button>
+        <button data-page="tasks" onclick="location.href='../tasks/index.html'">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <rect x="4" y="3" width="16" height="18" rx="2"></rect>
+                <path d="M8 8h8M8 12l2 2 4-4M8 17h5"></path>
+            </svg>
+            <span>Задания</span>
+        </button>
+    </nav>
+
+    <div class="toast" id="toast"></div>
+    <script src="profile.js"></script>
+    <script src="/shared/sounds.js"></script>
+    <script src="/shared/navigation.js"></script>
+</body>
+
+</html>

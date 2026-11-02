@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128" fill="none">
+  <defs>
+    <linearGradient id="ticket" x1="29" y1="24" x2="99" y2="102" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#7DE0B1"/>
+      <stop offset="1" stop-color="#328B73"/>
+    </linearGradient>
+  </defs>
+  <path d="M25 35a9 9 0 0 1 9-9h60a9 9 0 0 1 9 9v12a15 15 0 0 0 0 30v12a9 9 0 0 1-9 9H34a9 9 0 0 1-9-9V76a15 15 0 0 0 0-30V35Z" fill="url(#ticket)"/>
+  <path d="M64 33v10m0 9v9m0 9v9m0 9v9" stroke="#D3FFE9" stroke-opacity=".72" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="2 3"/>
+  <path d="m44 57 7 7-7 7m13 0h13" stroke="#143C37" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="m86 17 3.4 7 7.6 1.1-5.5 5.4 1.3 7.6-6.8-3.6-6.8 3.6 1.3-7.6-5.5-5.4 7.6-1.1 3.4-7Z" fill="#BDA9FF"/>
+  <circle cx="39" cy="96" r="5" fill="#FFB067"/>
+  <circle cx="89" cy="44" r="4" fill="#FFE5A0"/>
+</svg>

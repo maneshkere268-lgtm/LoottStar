@@ -1,0 +1,25 @@
+body { background-color: #07080C; color: var(--text, #F6F3EC); }
+.checker-main { width: calc(100% - 28px); max-width: 760px; margin: 0 auto; padding: 24px 0 100px; }
+.checker-back { color: var(--amber-2, #FFB46B); font-size: 13px; font-weight: 800; text-decoration: none; }
+.checker-header { margin: 28px 0 18px; }
+.checker-header h1 { margin: 8px 0; font: 700 clamp(24px, 6vw, 34px) var(--font-display, 'Unbounded', sans-serif); }
+.checker-header p, .checker-notice { color: var(--text-2, #959AAB); font-size: 12px; line-height: 1.65; }
+.checker-balances { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.checker-balances div { display: grid; grid-template-columns: 22px 1fr; gap: 4px 8px; align-items: center; padding: 13px; border: 1px solid var(--hairline-strong, rgba(255,255,255,.15)); border-radius: 16px; background: var(--surface, #11141C); }
+.checker-balances img { width: 20px; height: 20px; grid-row: span 2; }
+.checker-balances span { color: var(--text-2, #959AAB); font-size: 11px; }
+.checker-balances strong { font-size: 14px; overflow-wrap: anywhere; }
+.checker-history { margin-top: 24px; }
+.checker-history-heading { display: flex; justify-content: space-between; align-items: center; }
+.checker-history-heading h2 { font: 700 17px var(--font-display, 'Unbounded', sans-serif); }
+.checker-history-heading button { padding: 9px 13px; border: 1px solid var(--hairline-strong, rgba(255,255,255,.15)); border-radius: 10px; background: var(--surface, #11141C); color: var(--text, #F6F3EC); font-weight: 700; }
+.checker-notice { padding: 12px 14px; border: 1px solid rgba(124,203,245,.2); border-radius: 14px; background: rgba(124,203,245,.05); }
+.checker-entries { display: grid; gap: 9px; }
+.checker-entry { display: grid; grid-template-columns: auto 1fr auto; gap: 4px 12px; align-items: center; padding: 13px; border: 1px solid var(--hairline, rgba(255,255,255,.08)); border-radius: 14px; background: var(--surface, #11141C); }
+.checker-entry.in strong { color: #4FBE8D; }
+.checker-entry.out strong { color: #E4536B; }
+.checker-entry img { width: 18px; height: 18px; }
+.checker-entry strong { text-align: right; font-size: 13px; }
+.checker-entry time, .checker-entry small { grid-column: 1 / -1; color: var(--text-2, #959AAB); font-size: 10px; line-height: 1.5; overflow-wrap: anywhere; }
+.checker-empty { padding: 24px 12px; color: var(--text-2, #959AAB); text-align: center; }
+@media (max-width: 520px) { .checker-balances { grid-template-columns: 1fr; } }

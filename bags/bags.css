@@ -1,0 +1,156 @@
+/* ═══════════════════════════════════════════════════════════
+   LootStar — Сумки
+   Единая система с остальными страницами: графит, янтарь, Unbounded
+   для заголовков, плавающая навигация. Файл самодостаточный.
+   ═══════════════════════════════════════════════════════════ */
+
+/* Базовые стили (шапка, навигация, тосты, токены) берутся из ../games/games.css */
+
+.bags-info {
+    width: fit-content;
+    max-width: 100%;
+    margin: 0 auto 18px;
+    padding: 10px 16px;
+    text-align: center;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-2);
+    background: var(--panel);
+    border: 1px solid var(--hairline);
+    border-radius: 18px;
+}
+
+.bags-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    max-width: 280px;
+    margin: 0 auto 22px;
+}
+.bags-grid .bag-slot:nth-child(1) { grid-column: 1 / 3; justify-self: center; width: 50% }
+
+.bag-slot {
+    position: relative;
+    aspect-ratio: 1;
+    border-radius: 26px;
+    background:
+        radial-gradient(90% 62% at 50% 40%, rgba(232, 148, 74, .16), transparent 72%),
+        linear-gradient(180deg, var(--panel-2), var(--panel));
+    border: 1.5px solid var(--hairline-strong);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: border-color .25s, transform .25s var(--ease), opacity .3s;
+    overflow: hidden;
+    -webkit-tap-highlight-color: transparent;
+}
+.bag-closed { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; padding: 14%; transition: opacity .2s }
+.bag-img { width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 10px 14px rgba(0, 0, 0, .55)) }
+
+.bag-reveal { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; padding: 10%; opacity: 0; transition: opacity .25s }
+.bag-reveal-img { width: 58%; height: 58%; object-fit: contain; filter: drop-shadow(0 8px 12px rgba(0, 0, 0, .55)) }
+.bag-reveal-price {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    padding: 2px 9px 2px 6px;
+    border-radius: 999px;
+    background: rgba(7, 8, 12, .6);
+    font-size: 11.5px;
+    font-weight: 900;
+    color: var(--amber-2);
+    font-variant-numeric: tabular-nums;
+}
+.bag-reveal-cur { width: 12px; height: 12px; object-fit: contain }
+
+/* ждёт выбора игрока */
+.bag-slot.active { border-color: var(--amber-2); box-shadow: 0 0 24px rgba(232, 148, 74, .28); animation: bagPulse 1s ease-in-out infinite alternate }
+@keyframes bagPulse { 0% { transform: scale(1) } 100% { transform: scale(1.04) } }
+
+.bag-slot.opened .bag-closed { opacity: 0 }
+.bag-slot.opened .bag-reveal { opacity: 1 }
+.bag-slot.opened { animation: none; border-color: var(--jade); background: radial-gradient(90% 62% at 50% 40%, rgba(79, 190, 141, .2), transparent 72%), linear-gradient(180deg, var(--panel-2), var(--panel)) }
+.bag-slot.opened.cosmetic { opacity: .6; border-color: var(--hairline-strong); background: linear-gradient(180deg, var(--panel-2), var(--panel)) }
+.bag-slot.faded { opacity: .4; pointer-events: none }
+
+/* ═══════════ ПАНЕЛЬ СТАВКИ ═══════════ */
+.bet-panel {
+    background: linear-gradient(180deg, var(--panel-2), var(--panel));
+    border-radius: 26px;
+    padding: 14px;
+    border: 1px solid var(--hairline);
+}
+#curSwitch, .cur-switch { margin-bottom: 12px }
+.bet-input-wrap { display: flex; align-items: center; gap: 6px; margin-bottom: 12px; flex-wrap: wrap }
+.bet-input-wrap input {
+    flex: 1;
+    min-width: 80px;
+    height: 46px;
+    background: var(--ink);
+    border: 1px solid var(--hairline-strong);
+    border-radius: 16px;
+    padding: 0 14px;
+    color: var(--text);
+    font-size: 17px;
+    font-weight: 800;
+    font-family: inherit;
+    text-align: center;
+    outline: none;
+    font-variant-numeric: tabular-nums;
+    transition: border-color .2s, box-shadow .2s;
+}
+.bet-input-wrap input:focus { border-color: var(--amber); box-shadow: 0 0 0 3px rgba(232, 148, 74, .18) }
+.bet-input-wrap button {
+    height: 46px;
+    padding: 0 14px;
+    background: var(--panel-3);
+    border: 1px solid var(--hairline);
+    color: var(--text);
+    font-weight: 800;
+    border-radius: 14px;
+    font-size: 13px;
+    cursor: pointer;
+    font-family: inherit;
+    transition: background .2s, color .2s, transform .15s;
+}
+.bet-input-wrap button:hover { background: rgba(232, 148, 74, .16); color: var(--amber-2) }
+.bet-input-wrap button:active { transform: scale(.94) }
+
+.place-btn {
+    width: 100%;
+    height: 58px;
+    border-radius: 20px;
+    border: none;
+    background: linear-gradient(180deg, var(--amber-2) 0%, var(--amber) 55%, var(--amber-deep) 100%);
+    color: #1A0F06;
+    font-family: var(--font-display);
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: -.2px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .45), inset 0 -3px 0 rgba(0, 0, 0, .14), 0 12px 28px rgba(232, 148, 74, .3);
+    transition: transform .15s, filter .2s, background .3s;
+}
+.place-btn:hover:not(:disabled) { filter: brightness(1.06) }
+.place-btn:active:not(:disabled) { transform: translateY(2px) scale(.99) }
+.place-btn:disabled { background: var(--panel-2); color: var(--text-3); cursor: not-allowed; box-shadow: inset 0 0 0 1px var(--hairline); filter: none }
+.place-btn.cashout {
+    background: linear-gradient(180deg, #62D9A5, var(--jade-2));
+    color: #05150C;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .4), inset 0 -3px 0 rgba(0, 0, 0, .14), 0 12px 28px rgba(79, 190, 141, .3);
+}
+.place-btn.cashout:disabled { background: var(--panel-2); color: var(--text-3) }
+.place-btn.lost {
+    background: linear-gradient(180deg, #F0687E, var(--ruby) 55%, #A93347 100%);
+    color: #fff;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .3), 0 12px 28px rgba(228, 83, 107, .28);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .bag-slot.active { animation: none }
+}

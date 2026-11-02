@@ -1,0 +1,146 @@
+/* slots.css — стили страницы «Слоты» */
+
+.slots-info {
+    text-align: center;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-2);
+    padding: 10px 14px;
+    margin-bottom: 16px;
+    background: rgba(255,255,255,.03);
+    border-radius: 12px;
+    border: 1px solid rgba(245,197,24,.18);
+    line-height: 1.4;
+}
+
+.slots-machine {
+    position: relative;
+    display: flex;
+    gap: 8px;
+    padding: 14px 10px;
+    margin-bottom: 16px;
+    background: linear-gradient(160deg, #17171b, #0e0e11);
+    border: 1px solid rgba(245,197,24,.22);
+    border-radius: 18px;
+    box-shadow: inset 0 0 40px rgba(0,0,0,.6), 0 10px 30px rgba(0,0,0,.4);
+}
+
+.slot-reel-wrap {
+    flex: 1;
+    height: 252px; /* 3 x 84px */
+    overflow: hidden;
+    border-radius: 12px;
+    background: rgba(255,255,255,.03);
+    border: 1px solid rgba(245,197,24,.12);
+    position: relative;
+    -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 18%, #000 82%, transparent 100%);
+    mask-image: linear-gradient(180deg, transparent 0%, #000 18%, #000 82%, transparent 100%);
+}
+
+.slot-reel {
+    display: flex;
+    flex-direction: column;
+    will-change: transform;
+}
+
+.slot-item {
+    height: 84px;
+    min-height: 84px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+.slot-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 4px 10px rgba(0,0,0,.4));
+}
+.slot-item.empty-slot span {
+    font-size: 22px;
+    color: var(--text-2);
+    opacity: .3;
+}
+
+.slot-center-line {
+    position: absolute;
+    left: 6px;
+    right: 6px;
+    top: 50%;
+    height: 84px;
+    transform: translateY(-50%);
+    border-top: 1px solid rgba(245,197,24,.35);
+    border-bottom: 1px solid rgba(245,197,24,.35);
+    background: rgba(245,197,24,.05);
+    pointer-events: none;
+    border-radius: 8px;
+}
+
+/* ─── Панель ставки ─── */
+.bet-panel {
+    background: var(--surface);
+    border-radius: 16px;
+    padding: 14px;
+    border: 1px solid rgba(245,197,24,.18);
+}
+.bet-input-wrap {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+}
+.bet-input-wrap input {
+    flex: 1;
+    min-width: 80px;
+    background: var(--surface-2);
+    border: 1px solid rgba(245,197,24,.22);
+    border-radius: 10px;
+    padding: 10px 14px;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 800;
+    font-family: inherit;
+    text-align: center;
+    outline: none;
+}
+.bet-input-wrap input:focus { border-color: var(--primary); }
+.bet-input-wrap button {
+    background: var(--surface-2);
+    border: 1px solid rgba(245,197,24,.22);
+    color: var(--text);
+    font-weight: 700;
+    border-radius: 10px;
+    padding: 10px 14px;
+    font-size: 13px;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all .2s;
+}
+.bet-input-wrap button:hover { background: var(--primary); border-color: var(--primary); color: #fff; }
+.bet-input-wrap button:active { transform: scale(.95); }
+
+.place-btn {
+    width: 100%;
+    height: 56px;
+    border-radius: 16px;
+    border: none;
+    background: linear-gradient(135deg, var(--primary), #C9971A);
+    color: #fff;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: transform .2s, box-shadow .2s;
+    box-shadow: 0 8px 24px rgba(245,197,24,.35);
+}
+.place-btn:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(245,197,24,.45); }
+.place-btn:active:not(:disabled) { transform: scale(.97); }
+.place-btn:disabled { opacity: .5; cursor: not-allowed; transform: none; box-shadow: none; }
+
+@media (max-width: 360px) {
+    .slot-reel-wrap { height: 210px; }
+    .slot-item { height: 70px; min-height: 70px; }
+    .slot-center-line { height: 70px; }
+}

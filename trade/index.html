@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Трейд | LootStar</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../index.css">
+    <link rel="stylesheet" href="../shared/common.css">
+    
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+
+    <!-- Подключаем ядро проекта -->
+    <script src="../shared/config.js"></script>
+    <script src="../shared/auth.js"></script>
+    <script src="../shared/api.js"></script>
+    <script src="../shared/currency.js"></script>
+    <script src="../shared/gifts.js"></script>
+    <script src="../shared/ban_check.js"></script>
+
+    <style>
+        .trade-page { max-width: 540px; margin: 0 auto; padding: 20px 14px 100px; min-height: 100vh; }
+        .trade-title { font-size: 20px; font-weight: 800; margin-bottom: 16px; }
+        
+        .search-box { display: flex; gap: 8px; margin-bottom: 20px; position: sticky; top: 10px; z-index: 10; background: var(--bg); padding: 4px 0; }
+        .search-input { flex: 1; background: var(--panel-2); border: 1px solid var(--hairline-strong); border-radius: 12px; padding: 14px; color: var(--text); font-family: inherit; font-size: 14px; font-weight: 600; outline: none; }
+        .search-input:focus { border-color: var(--amber); }
+        
+        .user-card { display: flex; align-items: center; justify-content: space-between; background: var(--panel); border: 1px solid var(--hairline); border-radius: 14px; padding: 12px; margin-bottom: 8px; cursor: pointer; transition: 0.2s; }
+        .user-card:hover { border-color: var(--amber); background: var(--panel-2); }
+        .user-avatar { width: 42px; height: 42px; border-radius: 50%; background: var(--panel-3); display: flex; align-items: center; justify-content: center; font-weight: 800; color: var(--text-2); object-fit: cover; }
+        .user-info { flex: 1; margin-left: 12px; }
+        .user-name { font-size: 14px; font-weight: 800; color: var(--text); }
+        .user-username { font-size: 12px; color: var(--text-2); }
+        .btn-trade { background: linear-gradient(135deg, var(--jade), var(--jade-2)); color: #fff; padding: 8px 16px; border-radius: 10px; font-weight: 800; font-size: 12px; border: none; cursor: pointer; }
+        
+        .inventory-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+        .inv-item { width: 100%; color: var(--text); font: inherit; background: var(--panel-2); border: 2px solid transparent; border-radius: 12px; padding: 8px; text-align: center; cursor: pointer; transition: 0.2s; position: relative; }
+        .inv-item.selected { border-color: var(--amber); background: rgba(232,148,74,0.1); }
+        .inv-item img { width: 100%; aspect-ratio: 1; object-fit: contain; margin-bottom: 4px; }
+        .inv-item .name { font-size: 10px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .inv-item .price { font-size: 10px; font-weight: 800; color: var(--amber-2); margin-top: 2px; }
+        .inv-item .check { position: absolute; top: 4px; right: 4px; color: var(--jade); font-weight: 900; display: none; }
+        .inv-item.selected .check { display: block; }
+
+        .section-title { font-size: 12px; font-weight: 800; color: var(--text-2); margin: 20px 0 10px; text-transform: uppercase; letter-spacing: 1px; }
+        
+        .slider-container { background: var(--panel-2); padding: 16px; border-radius: 14px; margin-bottom: 20px; border: 1px solid var(--hairline); }
+        .slider-row { display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 13px; font-weight: 700; }
+        .slider-val { color: var(--amber-2); }
+        input[type=range] { width: 100%; accent-color: var(--amber); }
+        .stars-input { width: 130px; padding: 8px 10px; border: 1px solid var(--hairline-strong); border-radius: 10px; background: var(--panel); color: var(--text); font: inherit; font-size: 13px; text-align: right; }
+        .trade-notice { position: fixed; left: 50%; bottom: 96px; z-index: 1200; width: min(460px, calc(100% - 28px)); padding: 12px 16px; border: 1px solid var(--hairline-strong); border-radius: 12px; background: var(--panel-2); color: var(--text); font-size: 13px; font-weight: 700; text-align: center; transform: translate(-50%, 12px); opacity: 0; pointer-events: none; transition: .2s; }
+        .trade-notice.show { transform: translate(-50%, 0); opacity: 1; }
+
+        .btn-primary { width: 100%; padding: 16px; border-radius: 14px; border: none; background: linear-gradient(135deg, var(--amber), var(--amber-deep)); color: #fff; font-weight: 900; font-size: 16px; cursor: pointer; margin-top: 20px; font-family: inherit; }
+        .btn-primary:disabled { opacity: 0.5; }
+        
+        .offer-item { display: flex; align-items: center; gap: 10px; background: var(--panel-2); padding: 8px; border-radius: 10px; margin-bottom: 6px; }
+        .offer-item img { width: 40px; height: 40px; object-fit: contain; }
+        .offer-item-info { flex: 1; }
+        .offer-item-name { font-size: 12px; font-weight: 700; }
+        .offer-item-price { font-size: 11px; color: var(--amber-2); font-weight: 800; }
+        .offer-stars { font-size: 14px; font-weight: 800; color: var(--amber-2); text-align: center; margin: 10px 0; }
+    </style>
+</head>
+<body>
+
+    <div class="trade-page" id="app">
+        <!-- ШАГ 1: Выбор игрока -->
+        <div id="stepSelectUser" style="display:none;">
+            <div class="trade-title">Кому отправить трейд?</div>
+            <div class="search-box">
+                <input type="text" id="searchUser" class="search-input" placeholder="Поиск по имени или @юзернейму...">
+            </div>
+            <div id="usersList"></div>
+        </div>
+
+        <!-- ШАГ 2: Создание предложения -->
+        <div id="stepCreateTrade" style="display:none;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+                <div class="trade-title" style="margin:0;">Трейд с <span id="targetName" style="color:var(--amber-2)"></span></div>
+                <button id="resetTradeBtn" style="background:none; border:none; color:var(--text-2); font-size:14px; cursor:pointer;">Отмена</button>
+            </div>
+            
+            <div class="section-title">Ваш инвентарь</div>
+            <div class="inventory-grid" id="myInventory"></div>
+
+            <div class="slider-container">
+                <div class="slider-row">
+                    <span>⭐ Добавить звёзд</span>
+                    <span class="slider-val" id="starsValue">0</span>
+                </div>
+                <input type="number" id="starsInput" class="stars-input" min="0" step="1" value="0" aria-label="Количество звёзд">
+                <input type="range" id="starsSlider" min="0" max="0" step="1" value="0" aria-label="Количество звёзд">
+            </div>
+
+            <button class="btn-primary" id="btnSendTrade" disabled>Отправить запрос</button>
+        </div>
+
+        <!-- ШАГ 3: Просмотр трейда -->
+        <div id="stepViewTrade" style="display:none;">
+            <div class="trade-title" style="text-align:center;">Детали трейда</div>
+            <p class="trade-commission-note" style="margin:-8px 0 14px;color:var(--text-2);font-size:12px;">Комиссия 10% удерживается только со звёзд; предметы передаются без комиссии.</p>
+            
+            <div class="section-title">Предлагает <span id="viewFromName"></span></div>
+            <div id="viewFromItems"></div>
+            <div class="offer-stars" id="viewFromStars"></div>
+
+            <div id="viewToBlock" style="display:none;">
+                <div class="section-title">Вы предлагаете в ответ</div>
+                <div id="viewToItems"></div>
+                <div class="offer-stars" id="viewToStars"></div>
+            </div>
+
+            <div id="addMyItemsBlock" style="display:none;">
+                <div class="section-title">Добавить от себя (опционально)</div>
+                <div class="inventory-grid" id="myInventoryForCounter"></div>
+                <div class="slider-container">
+                    <div class="slider-row">
+                        <span>⭐ Добавить звёзд</span>
+                        <input type="number" id="counterStarsInput" class="stars-input" min="0" step="1" value="0" aria-label="Количество звёзд в ответном предложении">
+                    </div>
+                    <input type="range" id="counterStarsSlider" min="0" max="0" step="1" value="0" aria-label="Количество звёзд в ответном предложении">
+                </div>
+            </div>
+
+            <div id="viewStatus" style="text-align:center; margin: 20px 0; font-weight:800; color:var(--text-2);"></div>
+            <div id="viewActions" style="display:flex; gap:10px; flex-direction: column;"></div>
+        </div>
+    </div>
+
+
+    <div class="trade-notice" id="tradeNotice" role="status" aria-live="polite"></div>
+    <script src="../shared/trade_service.js"></script>
+    <script src="trade.js"></script>
+    <script src="/shared/sounds.js"></script>
+    <script src="/shared/navigation.js"></script>
+</body>
+</html>

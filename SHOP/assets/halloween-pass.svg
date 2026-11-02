@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128" fill="none">
+  <defs>
+    <linearGradient id="pass" x1="25" y1="13" x2="105" y2="115" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFB067"/>
+      <stop offset="1" stop-color="#C9533E"/>
+    </linearGradient>
+    <linearGradient id="night" x1="64" y1="22" x2="64" y2="105" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#25243A"/>
+      <stop offset="1" stop-color="#12131D"/>
+    </linearGradient>
+  </defs>
+  <path d="M37 12h54a9 9 0 0 1 9 9v20a13 13 0 0 0 0 26v20a9 9 0 0 1-9 9H37a9 9 0 0 1-9-9V67a13 13 0 0 0 0-26V21a9 9 0 0 1 9-9Z" fill="url(#pass)"/>
+  <path d="M39 19h50a5 5 0 0 1 5 5v13a19 19 0 0 0 0 34v13a5 5 0 0 1-5 5H39a5 5 0 0 1-5-5V71a19 19 0 0 0 0-34V24a5 5 0 0 1 5-5Z" fill="url(#night)"/>
+  <path d="m64 30 4.7 9.5 10.5 1.5-7.6 7.4 1.8 10.5-9.4-5-9.4 5 1.8-10.5-7.6-7.4 10.5-1.5L64 30Z" fill="#FFB067"/>
+  <path d="M49 73c2.8-9 9.2-13.5 15-13.5S76.2 64 79 73l-4 3-5-3-6 4-6-4-5 3-4-3Z" fill="#F0A14F"/>
+  <path d="M55 72v5m18-5v5" stroke="#26202C" stroke-width="4" stroke-linecap="round"/>
+  <path d="m61 84 3-4 3 4-3 3-3-3Z" fill="#542C36"/>
+  <path d="M64 101v9m0 0 9-5m-9 5-9-5" stroke="#FFB067" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

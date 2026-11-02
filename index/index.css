@@ -1,0 +1,216 @@
+/* Стили для Index */
+.index-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.85);
+    z-index: 9999;
+    backdrop-filter: blur(8px);
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-family: inherit;
+}
+.index-modal.open { display: flex; }
+.index-content {
+    width: 95vw;
+    max-width: 1400px;
+    height: 90vh;
+    background: #1a1a24;
+    border-radius: 16px;
+    border: 1px solid #333;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+.index-header {
+    padding: 15px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #333;
+    background: #22222e;
+}
+.index-header h2 { margin: 0; font-size: 24px; }
+.close-index { background: none; border: none; color: #888; font-size: 20px; cursor: pointer; }
+.close-index:hover { color: #fff; }
+
+.index-controls {
+    padding: 10px 25px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background: #1f1f2a;
+    border-bottom: 1px solid #333;
+}
+.index-toggle { display: flex; align-items: center; gap: 8px; cursor: pointer; font-weight: bold; }
+.index-progress { font-weight: bold; margin-left: auto; }
+#indexSearch {
+    background: #111;
+    border: 1px solid #444;
+    color: #fff;
+    padding: 8px 12px;
+    border-radius: 8px;
+    width: 200px;
+}
+
+.index-body {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+}
+.index-sidebar {
+    width: 220px;
+    background: #15151c;
+    overflow-y: auto;
+    border-right: 1px solid #333;
+    padding: 10px;
+}
+.sidebar-btn {
+    display: block;
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: none;
+    color: #aaa;
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-bottom: 4px;
+    display: flex;
+    justify-content: space-between;
+}
+.sidebar-btn:hover { background: #222233; color: #fff; }
+.sidebar-btn.active { background: #2a2a3b; color: #fff; border-left: 3px solid #4FBE8D; }
+.sidebar-btn .count { font-size: 12px; color: #666; }
+
+.index-grid {
+    flex: 1;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 15px;
+    overflow-y: auto;
+    align-content: start;
+}
+
+/* Карточка предмета */
+.idx-card {
+    background: #22222e;
+    border: 1px solid #333;
+    border-radius: 12px;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    transition: transform 0.2s;
+}
+.idx-card:hover { transform: translateY(-3px); border-color: #4FBE8D; }
+.idx-card.missing { filter: grayscale(1); opacity: 0.6; }
+
+.idx-img-box {
+    width: 100px;
+    height: 100px;
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+.idx-img-box img { max-width: 100%; max-height: 100%; object-fit: contain; }
+
+/* Замок для отсутствующих предметов */
+.idx-lock {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 8px;
+}
+.idx-lock img { width: 48px; height: 48px; }
+
+.idx-name {
+    font-size: 13px;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 6px;
+    min-height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.idx-price {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-weight: 900;
+    font-size: 14px;
+    color: #eab308;
+}
+.idx-price img { width: 14px; height: 14px; }
+.idx-count {
+    font-size: 12px;
+    color: #888;
+    margin-top: 4px;
+    font-weight: bold;
+}
+
+/* Плашка "Only from case" */
+.idx-tag {
+    font-size: 10px;
+    color: #e8548a;
+    font-style: italic;
+    margin-top: 4px;
+    text-align: center;
+}
+
+/* ═══════════ НИЖНЯЯ НАВИГАЦИЯ — плавающая капсула ═══════════ */
+.bnav {
+    position: fixed;
+    bottom: calc(env(safe-area-inset-bottom, 0px) + 10px);
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+    width: calc(100% - 20px);
+    max-width: 520px;
+    height: 64px;
+    padding: 6px;
+    background: rgba(17, 20, 28, .86);
+    backdrop-filter: blur(24px) saturate(1.4);
+    -webkit-backdrop-filter: blur(24px) saturate(1.4);
+    border: 1px solid var(--hairline-strong);
+    border-radius: 24px;
+    box-shadow: 0 14px 40px rgba(0, 0, 0, .55);
+    display: flex;
+    align-items: stretch;
+    gap: 2px;
+}
+.bnav button {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    padding: 0 2px;
+    border-radius: 18px;
+    border: none;
+    background: transparent;
+    color: var(--text-2);
+    font-family: inherit;
+    cursor: pointer;
+    transition: color .2s, background .2s, transform .15s;
+    -webkit-tap-highlight-color: transparent;
+}
+.bnav button:active { transform: scale(.93) }
+.bnav button.active {
+    color: #1A0F06;
+    background: linear-gradient(160deg, var(--amber-2), var(--amber));
+    box-shadow: 0 6px 16px rgba(232, 148, 74, .35);
+}
+.bnav button svg { width: 21px; height: 21px }
+.bnav button span { font-size: 9.5px; font-weight: 800 }

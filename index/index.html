@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="theme-color" content="#07080C">
+    <title>Index — Коллекция</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800;900&family=Unbounded:wght@500;700&display=swap" rel="stylesheet">
+
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+
+    <script src="/shared/config.js"></script>
+    <script src="/shared/auth.js"></script>
+    <script src="/shared/api.js"></script>
+    <script src="/shared/events.js"></script>
+    <script src="/shared/ban_check.js"></script>
+    <script src="/shared/currency.js"></script>
+    <script src="/shared/gifts.js"></script>
+    <script src="/shared/ropeko.js"></script>
+    <script src="/shared/tasks.js"></script>
+
+    <style>
+        /* ═══════════════ ТОКЕНЫ (графит + янтарь, как на остальных страницах) ═══════════════ */
+        :root {
+            --ink: #07080C;
+            --panel: #11141C;
+            --panel-2: #181C27;
+            --panel-3: #222736;
+            --hairline: rgba(255, 255, 255, .08);
+            --hairline-strong: rgba(255, 255, 255, .16);
+            --amber: #E8944A;
+            --amber-2: #FFB46B;
+            --amber-deep: #B5602A;
+            --jade: #4FBE8D;
+            --jade-2: #8EE6BE;
+            --text: #F6F3EC;
+            --text-2: #959AAB;
+            --text-3: #5A5F70;
+            --disp: 'Unbounded', 'Manrope', sans-serif;
+            --ease: cubic-bezier(.22, .8, .24, 1);
+            --spring: cubic-bezier(.34, 1.4, .5, 1);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+        html { background: var(--ink); scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+        body {
+            background: var(--ink);
+            color: var(--text);
+            font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            min-height: 100vh;
+            padding-bottom: calc(96px + env(safe-area-inset-bottom, 0px));
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+        /* мягкое янтарное свечение сверху */
+        body::before {
+            content: ''; position: fixed; inset: 0 0 auto 0; height: 340px; z-index: 0; pointer-events: none;
+            background: radial-gradient(70% 100% at 50% 0%, rgba(232, 148, 74, .13), transparent 70%);
+        }
+        button, input { font-family: inherit; }
+        button { touch-action: manipulation; }
+        * { scrollbar-width: thin; scrollbar-color: #2a2f3f transparent; }
+        *::-webkit-scrollbar { width: 6px; height: 6px; }
+        *::-webkit-scrollbar-thumb { background: #2a2f3f; border-radius: 6px; }
+
+        /* ═══════════════ ШАПКА ═══════════════ */
+        .idx-header {
+            position: sticky; top: 0; z-index: 100;
+            padding: calc(10px + env(safe-area-inset-top, 0px)) 14px 12px;
+            background: rgba(7, 8, 12, .78);
+            -webkit-backdrop-filter: blur(22px) saturate(1.5); backdrop-filter: blur(22px) saturate(1.5);
+            border-bottom: 1px solid var(--hairline);
+            display: flex; flex-direction: column; gap: 12px;
+        }
+        .idx-header-inner { width: 100%; max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; }
+        .idx-header-top { display: flex; align-items: center; gap: 12px; }
+
+        .idx-back-btn {
+            flex-shrink: 0; width: 42px; height: 42px; display: flex; align-items: center; justify-content: center;
+            background: var(--panel); border: 1px solid var(--hairline-strong); border-radius: 14px;
+            color: var(--text); cursor: pointer;
+            transition: transform .2s var(--ease), background .2s;
+        }
+        .idx-back-btn svg { width: 18px; height: 18px; }
+        .idx-back-btn:hover { background: var(--panel-2); }
+        .idx-back-btn:active { transform: scale(.92); }
+
+        .idx-title-wrap { flex: 1; min-width: 0; }
+        .idx-title { font-family: var(--disp); font-size: 1.15rem; font-weight: 700; letter-spacing: -.4px; line-height: 1.1; }
+        .idx-subtitle { font-size: .72rem; font-weight: 800; color: var(--text-2); margin-top: 3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+        .idx-progress {
+            flex-shrink: 0; display: inline-flex; align-items: baseline; gap: 2px;
+            padding: 8px 14px; border-radius: 99px;
+            background: var(--panel); border: 1px solid rgba(232, 148, 74, .35);
+            font-family: var(--disp); font-weight: 700; font-size: .9rem; color: var(--amber-2);
+            font-variant-numeric: tabular-nums; white-space: nowrap;
+        }
+        .idx-progress em { font-style: normal; font-size: .7rem; color: var(--text-2); }
+
+        .idx-bar { position: relative; height: 8px; border-radius: 99px; background: #0b0d13; border: 1px solid var(--hairline); overflow: hidden; box-shadow: inset 0 2px 5px rgba(0, 0, 0, .5); }
+        .idx-bar i {
+            position: relative; display: block; height: 100%; width: 0%; border-radius: 99px; overflow: hidden;
+            background: linear-gradient(90deg, var(--amber-deep), var(--amber) 55%, var(--amber-2));
+            box-shadow: 0 0 14px rgba(232, 148, 74, .55);
+            transition: width .7s var(--ease);
+        }
+        .idx-bar i::after { content: ''; position: absolute; inset: 0; background: linear-gradient(100deg, transparent 30%, rgba(255, 255, 255, .4) 50%, transparent 70%); transform: translateX(-100%); animation: shimmer 2.6s linear infinite; }
+        @keyframes shimmer { to { transform: translateX(100%); } }
+
+        .idx-controls { display: flex; align-items: center; gap: 10px; }
+        .idx-filters { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 8px; }
+        .idx-filter {
+            min-width: 0; height: 38px; padding: 0 10px;
+            background: var(--panel); border: 1px solid var(--hairline-strong); border-radius: 12px;
+            color: var(--text-2); font-size: .75rem; font-weight: 800; outline: none;
+        }
+        .idx-filter:focus { border-color: rgba(232, 148, 74, .6); color: var(--text); }
+        .idx-filter option { background: var(--panel); color: var(--text); }
+        .idx-search-wrap { position: relative; flex: 1; min-width: 0; }
+        .idx-search-wrap svg { position: absolute; left: 13px; top: 50%; transform: translateY(-50%); width: 16px; height: 16px; color: var(--text-3); pointer-events: none; transition: color .2s; }
+        .idx-search {
+            width: 100%; height: 42px; padding: 0 14px 0 38px;
+            background: var(--panel); border: 1px solid var(--hairline-strong); border-radius: 14px;
+            color: var(--text); font-size: .88rem; font-weight: 700; outline: none;
+            transition: border-color .25s, box-shadow .25s;
+        }
+        .idx-search::placeholder { color: var(--text-3); }
+        .idx-search:focus { border-color: rgba(232, 148, 74, .6); box-shadow: 0 0 0 4px rgba(232, 148, 74, .1); }
+        .idx-search-wrap:focus-within svg { color: var(--amber-2); }
+
+        .idx-toggle {
+            flex-shrink: 0; height: 42px; display: inline-flex; align-items: center; gap: 9px; padding: 0 12px 0 10px;
+            background: var(--panel); border: 1px solid var(--hairline-strong); border-radius: 14px;
+            cursor: pointer; user-select: none; font-size: .76rem; font-weight: 800; color: var(--text-2); white-space: nowrap;
+            transition: border-color .25s, color .25s, background .25s;
+        }
+        .idx-toggle input { position: absolute; opacity: 0; width: 0; height: 0; }
+        .idx-switch { position: relative; width: 34px; height: 20px; border-radius: 20px; background: var(--panel-3); transition: background .3s; flex-shrink: 0; }
+        .idx-switch::before { content: ''; position: absolute; top: 3px; left: 3px; width: 14px; height: 14px; border-radius: 50%; background: #fff; box-shadow: 0 2px 5px rgba(0, 0, 0, .5); transition: transform .35s var(--spring); }
+        .idx-toggle:has(input:checked) { border-color: rgba(232, 148, 74, .5); color: var(--amber-2); background: rgba(232, 148, 74, .07); }
+        .idx-toggle input:checked + .idx-switch { background: var(--amber); }
+        .idx-toggle input:checked + .idx-switch::before { transform: translateX(14px); }
+        .idx-toggle input:focus-visible + .idx-switch { outline: 2px solid var(--amber-2); outline-offset: 2px; }
+
+        /* ═══════════════ КОНТЕНТ ═══════════════ */
+        .idx-body {
+            position: relative; z-index: 1;
+            display: flex; align-items: flex-start; gap: 16px;
+            width: 100%; max-width: 1200px; margin: 0 auto; padding: 16px 14px 0;
+        }
+
+        /* Категории */
+        .idx-sidebar { width: 220px; flex-shrink: 0; display: flex; flex-direction: column; gap: 6px; position: sticky; top: calc(var(--hdr-h, 150px) + 14px); }
+        .sidebar-btn {
+            display: flex; justify-content: space-between; align-items: center; gap: 10px; width: 100%; text-align: left;
+            background: var(--panel); border: 1px solid var(--hairline); border-radius: 16px;
+            color: var(--text-2); padding: 12px 14px; cursor: pointer; font-weight: 800; font-size: .85rem;
+            transition: transform .2s var(--ease), background .25s, color .25s, border-color .25s, box-shadow .25s;
+        }
+        .sidebar-btn:active { transform: scale(.96); }
+        @media (hover: hover) { .sidebar-btn:hover { background: var(--panel-2); color: var(--text); } }
+        .sidebar-btn .count { font-size: .72rem; font-weight: 900; color: var(--text-3); font-variant-numeric: tabular-nums; transition: color .25s; }
+        .sidebar-btn.active {
+            color: #1A0F06; border-color: transparent;
+            background: linear-gradient(160deg, var(--amber-2), var(--amber));
+            box-shadow: 0 8px 22px rgba(232, 148, 74, .3), inset 0 1px 0 rgba(255, 255, 255, .4);
+        }
+        .sidebar-btn.active .count { color: rgba(26, 15, 6, .65); }
+
+        /* Сетка */
+        .idx-grid {
+            flex: 1; min-width: 0;
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(168px, 1fr)); gap: 14px; align-content: start;
+        }
+
+        /* Карточка предмета */
+        .idx-card {
+            position: relative; overflow: hidden;
+            display: flex; flex-direction: column; align-items: center;
+            padding: 10px 10px 13px;
+            background: linear-gradient(180deg, var(--panel-2), var(--panel));
+            border: 1px solid var(--hairline); border-radius: 22px;
+            box-shadow: 0 10px 26px rgba(0, 0, 0, .35), inset 0 1px 0 rgba(255, 255, 255, .04);
+            transition: transform .35s var(--ease), border-color .3s, box-shadow .35s var(--ease);
+            animation: cardIn .5s var(--ease) both;
+            animation-delay: calc(min(var(--i, 0), 14) * 28ms);
+        }
+        @keyframes cardIn { from { opacity: 0; transform: translateY(16px) scale(.96); } to { opacity: 1; transform: none; } }
+        .idx-card::before { content: ''; position: absolute; left: 0; right: 0; top: 0; height: 3px; background: var(--hairline-strong); }
+        .idx-card:not(.missing) { border-color: rgba(79, 190, 141, .32); }
+        .idx-card:not(.missing)::before { background: linear-gradient(90deg, #2F9C6B, #62D9A5); }
+        .idx-card:active { transform: scale(.97); }
+        @media (hover: hover) {
+            .idx-card:not(.missing):hover { transform: translateY(-4px); border-color: rgba(79, 190, 141, .6); box-shadow: 0 18px 38px rgba(0, 0, 0, .55), 0 0 26px -8px rgba(79, 190, 141, .4); }
+            .idx-card.missing:hover { transform: translateY(-2px); }
+        }
+        .idx-card.missing { filter: grayscale(1) brightness(.9); opacity: .68; }
+
+        .idx-img-box {
+            position: relative; width: 100%; aspect-ratio: 1 / 1; margin-bottom: 10px; padding: 14px;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 16px;
+            background: radial-gradient(circle at 50% 40%, rgba(232, 148, 74, .14), transparent 66%), #0a0c12;
+            border: 1px solid var(--hairline);
+        }
+        .idx-card:not(.missing) .idx-img-box { background: radial-gradient(circle at 50% 40%, rgba(79, 190, 141, .18), transparent 66%), #0a0c12; }
+        .idx-img-box img { max-width: 100%; max-height: 100%; object-fit: contain; filter: drop-shadow(0 6px 12px rgba(0, 0, 0, .6)); transition: transform .5s var(--ease); }
+        @media (hover: hover) { .idx-card:hover .idx-img-box img { transform: scale(1.08) rotate(-2deg); } }
+
+        .idx-lock { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; border-radius: 16px; background: rgba(7, 8, 12, .5); -webkit-backdrop-filter: blur(2px); backdrop-filter: blur(2px); }
+        .idx-lock svg { width: 34px; height: 34px; color: var(--amber-2); filter: drop-shadow(0 0 10px rgba(232, 148, 74, .5)); }
+
+        .idx-name {
+            width: 100%; min-height: 2.4em; margin-bottom: 8px; text-align: center;
+            font-size: .8rem; font-weight: 800; line-height: 1.2; letter-spacing: -.1px;
+            display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+        }
+        .idx-price {
+            display: inline-flex; align-items: center; gap: 5px; margin-top: auto;
+            padding: 5px 11px; border-radius: 99px;
+            background: rgba(232, 148, 74, .1); border: 1px solid rgba(232, 148, 74, .28);
+            font-weight: 900; font-size: .82rem; color: var(--amber-2); font-variant-numeric: tabular-nums;
+        }
+        .idx-price img { width: 14px; height: 14px; object-fit: contain; }
+        .idx-buy {
+            width: 100%; min-height: 36px; margin-top: 9px; padding: 6px 8px;
+            border: 1px solid color-mix(in srgb, var(--amber) 45%, transparent); border-radius: 11px;
+            background: color-mix(in srgb, var(--amber) 18%, var(--panel)); color: var(--amber-2);
+            font: inherit; font-size: .72rem; font-weight: 900; cursor: pointer;
+        }
+        .idx-buy:disabled { opacity: .55; cursor: wait; }
+
+        .idx-count {
+            position: absolute; top: 14px; right: 14px; z-index: 2;
+            padding: 3px 9px; border-radius: 99px;
+            background: rgba(7, 8, 12, .78); border: 1px solid rgba(79, 190, 141, .5);
+            -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+            font-size: .68rem; font-weight: 900; color: var(--jade-2); font-variant-numeric: tabular-nums;
+        }
+        .idx-count::before { content: '×'; margin-right: 1px; opacity: .7; }
+
+        .idx-tag {
+            margin-top: 8px; padding: 3px 9px; border-radius: 99px; text-align: center;
+            font-size: .6rem; font-weight: 900; font-style: normal; letter-spacing: .3px; text-transform: uppercase;
+            background: rgba(255, 255, 255, .04); border: 1px solid color-mix(in srgb, currentColor 40%, transparent);
+        }
+
+        .idx-empty { grid-column: 1 / -1; text-align: center; color: var(--text-2); padding: 56px 20px; font-size: .95rem; font-weight: 800; }
+        .idx-empty::before { content: '🔎'; display: block; font-size: 2.4rem; margin-bottom: 10px; filter: grayscale(.3); }
+
+        /* Скелетоны до загрузки */
+        .idx-skel { height: 236px; border-radius: 22px; border: 1px solid var(--hairline); background: linear-gradient(100deg, var(--panel) 30%, var(--panel-2) 50%, var(--panel) 70%); background-size: 200% 100%; animation: skel 1.4s linear infinite; }
+        @keyframes skel { to { background-position: -200% 0; } }
+
+        /* ═══════════════ НИЖНЯЯ НАВИГАЦИЯ — плавающая капсула (как на остальных страницах) ═══════════════ */
+        .bnav {
+            position: fixed; bottom: calc(env(safe-area-inset-bottom, 0px) + 10px); left: 50%; transform: translateX(-50%); z-index: 100;
+            width: calc(100% - 20px); max-width: 520px; height: 64px; padding: 6px;
+            background: rgba(17, 20, 28, .86);
+            backdrop-filter: blur(24px) saturate(1.4); -webkit-backdrop-filter: blur(24px) saturate(1.4);
+            border: 1px solid var(--hairline-strong); border-radius: 24px;
+            box-shadow: 0 14px 40px rgba(0, 0, 0, .55);
+            display: flex; align-items: stretch; gap: 2px;
+        }
+        .bnav button {
+            flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px;
+            padding: 0 2px; border-radius: 18px; border: none; background: transparent; color: var(--text-2);
+            font-family: inherit; cursor: pointer; transition: color .2s, background .2s, transform .15s;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .bnav button:active { transform: scale(.93); }
+        .bnav button.active { color: #1A0F06; background: linear-gradient(160deg, var(--amber-2), var(--amber)); box-shadow: 0 6px 16px rgba(232, 148, 74, .35); }
+        .bnav button svg { width: 21px; height: 21px; }
+        .bnav button span { font-size: 9.5px; font-weight: 800; }
+
+        /* ═══════════════ АДАПТИВ ═══════════════ */
+        @media (max-width: 768px) {
+            .idx-body { flex-direction: column; gap: 12px; padding: 12px 12px 0; }
+            .idx-sidebar {
+                position: static; width: 100%; flex-direction: row; gap: 8px; overflow-x: auto; padding: 2px 12px 6px; margin: 0 -12px; width: calc(100% + 24px);
+                scrollbar-width: none; -webkit-overflow-scrolling: touch;
+            }
+            .idx-sidebar::-webkit-scrollbar { display: none; }
+            .sidebar-btn { width: auto; flex-shrink: 0; white-space: nowrap; border-radius: 99px; padding: 9px 14px; gap: 8px; }
+            .idx-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+            .idx-card { padding: 8px 8px 12px; border-radius: 20px; }
+            .idx-img-box { padding: 10px; }
+            .idx-toggle .idx-toggle-label { display: none; }
+            .idx-toggle { padding: 0 10px; }
+            .idx-filters { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .idx-skel { height: 200px; }
+        }
+        @media (max-width: 360px) {
+            .idx-title { font-size: 1rem; }
+            .bnav button span { font-size: 9px; }
+        }
+        button:focus-visible, input:focus-visible { outline: 2px solid var(--amber-2); outline-offset: 2px; }
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+        }
+    </style>
+    <link rel="stylesheet" href="../shared/common.css">
+</head>
+<body>
+
+    <!-- Шапка -->
+    <header class="idx-header" id="idxHeader">
+        <div class="idx-header-inner">
+            <div class="idx-header-top">
+                <button class="idx-back-btn" onclick="goBack()" aria-label="Назад">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"></path></svg>
+                </button>
+                <div class="idx-title-wrap">
+                    <h1 class="idx-title">Index</h1>
+                    <div class="idx-subtitle" id="indexSubtitle">Коллекция NFT</div>
+                </div>
+                <div class="idx-progress" id="indexProgress">0<em>/0</em></div>
+            </div>
+            <div class="idx-bar" aria-hidden="true"><i id="indexBar"></i></div>
+            <div class="idx-controls">
+                <div class="idx-search-wrap">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.5-3.5"></path></svg>
+                    <input type="text" class="idx-search" id="indexSearch" placeholder="Search NFT..." autocomplete="off" oninput="onIndexSearch()">
+                </div>
+                <label class="idx-toggle">
+                    <input type="checkbox" id="missingOnlyToggle" onchange="renderIndexGrid()">
+                    <span class="idx-switch"></span>
+                    <span class="idx-toggle-label">Missing only</span>
+                </label>
+            </div>
+            <div class="idx-filters" aria-label="Фильтры предметов">
+                <select class="idx-filter" id="indexCollectionFilter" aria-label="Коллекция" onchange="renderIndexGrid()">
+                    <option value="">Все коллекции</option>
+                </select>
+                <select class="idx-filter" id="indexRarityFilter" aria-label="Редкость" onchange="renderIndexGrid()">
+                    <option value="">Любая редкость</option>
+                    <option value="common">Обычная</option>
+                    <option value="uncommon">Необычная</option>
+                    <option value="rare">Редкая</option>
+                    <option value="epic">Эпическая</option>
+                    <option value="legendary">Легендарная</option>
+                    <option value="mythic">Мифическая</option>
+                </select>
+                <select class="idx-filter" id="indexSort" aria-label="Сортировка" onchange="renderIndexGrid()">
+                    <option value="price-desc">Цена: сначала дороже</option>
+                    <option value="price-asc">Цена: сначала дешевле</option>
+                    <option value="name-asc">Название: А—Я</option>
+                    <option value="name-desc">Название: Я—А</option>
+                </select>
+                <input class="idx-filter" id="indexPriceMin" type="number" min="0" inputmode="numeric" placeholder="Цена от" aria-label="Минимальная цена" oninput="renderIndexGrid()">
+                <input class="idx-filter" id="indexPriceMax" type="number" min="0" inputmode="numeric" placeholder="Цена до" aria-label="Максимальная цена" oninput="renderIndexGrid()">
+            </div>
+        </div>
+    </header>
+
+    <!-- Контент -->
+    <div class="idx-body">
+        <aside class="idx-sidebar" id="indexSidebar"></aside>
+        <main class="idx-grid" id="indexGrid">
+            <div class="idx-skel"></div><div class="idx-skel"></div><div class="idx-skel"></div><div class="idx-skel"></div>
+        </main>
+    </div>
+
+    <!-- Навигация (пути относительно папки index/, активная вкладка — «Индекс») -->
+    <nav class="bnav">
+        <button data-page="games" onclick="location.href='../games/index.html'">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="6" width="20" height="12" rx="3"></rect>
+                <line x1="6" y1="12" x2="10" y2="12"></line>
+                <line x1="8" y1="10" x2="8" y2="14"></line>
+                <circle cx="15" cy="10" r="1" fill="currentColor" stroke="none"></circle>
+                <circle cx="18" cy="12" r="1" fill="currentColor" stroke="none"></circle>
+            </svg>
+            <span>Игры</span>
+        </button>
+        <button data-page="cases" onclick="location.href='../index.html'">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20 12v10H4V12M2 7h20v5H2zM12 22V7M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7zM12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"></path>
+            </svg>
+            <span>Кейсы</span>
+        </button>
+        <button data-page="index" class="active" aria-current="page" onclick="location.href='index.html'">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="3" width="7" height="7" rx="1.5"></rect>
+                <rect x="14" y="3" width="7" height="7" rx="1.5"></rect>
+                <rect x="3" y="14" width="7" height="7" rx="1.5"></rect>
+                <rect x="14" y="14" width="7" height="7" rx="1.5"></rect>
+            </svg>
+            <span>Индекс</span>
+        </button>
+        <button data-page="upgrades" onclick="location.href='../upgrades/index.html'">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 19V5"></path>
+                <path d="M5 12l7-7 7 7"></path>
+            </svg>
+            <span>Апгрейд</span>
+        </button>
+        <button data-page="profile" onclick="location.href='../profile/index.html'">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+            <span>Профиль</span>
+        </button>
+        <button data-page="leaderboard" onclick="location.href='../leaderboard/index.html'">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M8 21h8M12 17v4M7 4h10v4a5 5 0 0 1-10 0V4z"></path>
+                <path d="M7 6H4a1 1 0 0 0-1 1v1a4 4 0 0 0 4 4M17 6h3a1 1 0 0 1 1 1v1a4 4 0 0 1-4 4"></path>
+            </svg>
+            <span>Лидеры</span>
+        </button>
+        <button data-page="tasks" onclick="location.href='../tasks/index.html'">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="4" y="3" width="16" height="18" rx="2"></rect>
+                <path d="M8 8h8M8 12l2 2 4-4M8 17h5"></path>
+            </svg>
+            <span>Задания</span>
+        </button>
+    </nav>
+
+    <!-- ═══════════════ ПОДКЛЮЧЕНИЕ ЛОГИКИ ═══════════════ -->
+    <!-- Основной index.js даёт CASES, getInventory и т.д. (файл лежит в папке index/) -->
+    <script src="../index.js"></script>
+
+    <script>
+        /* ═══════════════ ЛОГИКА INDEX (КОЛЛЕКЦИЯ) ═══════════════ */
+
+        let currentIndexCategory = 'Все';
+        let indexCatalog = {};
+
+        // 1. Каталог из CASES + кастомные разделы
+        function buildIndexCatalog() {
+            const catalog = {};
+            const rarityByTier = {
+                '#7b8089': 'common',
+                '#4fbe8d': 'uncommon',
+                '#e8b84f': 'rare',
+                '#4fb8c4': 'epic',
+                '#9b86f0': 'legendary',
+                '#e8548a': 'mythic',
+                '#e8607a': 'mythic',
+                '#e2793d': 'mythic'
+            };
+
+            catalog['Treasure Hunt'] = [
+                { name: 'Durov Figure (Mamont)', price: 100000000, image: '/images/DurovFigureMamont.png', tier: '#e2793d', collections: ['treasure'] },
+                { name: 'Durov Figure (Mummy)', price: 10000000, image: '/images/DurovFigureMummy.png', tier: '#9b86f0', collections: ['treasure'] },
+                { name: 'Durov Figure (T-Rex)', price: 5641999, image: '/images/DurovFigureT-Rex.png', tier: '#e8b84f', collections: ['treasure'] },
+            ];
+
+            const allUnique = new Map();
+            CASES.forEach(c => {
+                c.items.forEach(it => {
+                    let entry = allUnique.get(it.name);
+                    if (!entry) {
+                        entry = {
+                            name: it.name,
+                            price: it.price,
+                            image: it.image || getGiftImageByName(it.name, it.price, it.image),
+                            tier: it.tier || c.tier,
+                            tiers: [],
+                            collections: [],
+                            cases: []
+                        };
+                        allUnique.set(it.name, entry);
+                    }
+                    const tier = String(it.tier || c.tier || '').toLowerCase();
+                    if (tier && !entry.tiers.includes(tier)) entry.tiers.push(tier);
+                    if (c.category && !entry.collections.includes(c.category)) entry.collections.push(c.category);
+                    if (c.name && !entry.cases.includes(c.name)) entry.cases.push(c.name);
+                });
+            });
+            catalog['Все'] = Array.from(allUnique.values()).sort((a, b) => b.price - a.price);
+            catalog['Все'].forEach(item => {
+                item.rarities = [...new Set(item.tiers.map(tier => rarityByTier[tier]).filter(Boolean))];
+                if (!item.rarities.length) item.rarities = ['common'];
+            });
+            catalog['Treasure Hunt'].forEach(item => {
+                item.rarities = [rarityByTier[String(item.tier).toLowerCase()] || 'common'];
+            });
+            return catalog;
+        }
+
+        function renderIndexCollectionOptions() {
+            const select = document.getElementById('indexCollectionFilter');
+            const categoryLabels = new Map(
+                (typeof CATEGORIES !== 'undefined' ? CATEGORIES : []).map(category => [category.key, category.label])
+            );
+            const options = new Map();
+            CASES.forEach(caseInfo => {
+                if (caseInfo.category) options.set(caseInfo.category, categoryLabels.get(caseInfo.category) || caseInfo.category);
+            });
+            options.set('treasure', 'Treasure Hunt');
+            select.innerHTML = '<option value="">Все коллекции</option>' +
+                Array.from(options, ([value, label]) =>
+                    `<option value="${window.escapeHtml ? window.escapeHtml(value) : value}">${window.escapeHtml ? window.escapeHtml(label) : label}</option>`
+                ).join('');
+        }
+
+        function getCollectionHistory() {
+            const collected = new Set();
+            const addItem = item => {
+                const name = typeof item === 'string' ? item : item?.name;
+                if (typeof name === 'string' && name.trim()) {
+                    collected.add(name.trim().toLocaleLowerCase());
+                }
+            };
+
+            try {
+                const history = JSON.parse(localStorage.getItem('userCollectionItems') || '[]');
+                if (Array.isArray(history)) history.forEach(addItem);
+            } catch (error) {
+                console.warn('[index] collection history cache is invalid:', error);
+            }
+
+            getInventory().forEach(addItem);
+            return collected;
+        }
+
+        function rememberCollectionItems(items) {
+            try {
+                const history = JSON.parse(localStorage.getItem('userCollectionItems') || '[]');
+                const collected = new Map();
+                const addItem = item => {
+                    const name = typeof item === 'string' ? item : item?.name;
+                    if (typeof name !== 'string' || !name.trim()) return;
+                    const normalized = name.trim();
+                    const key = normalized.toLocaleLowerCase();
+                    if (!collected.has(key)) collected.set(key, normalized);
+                };
+                if (Array.isArray(history)) history.forEach(addItem);
+                items.forEach(addItem);
+                localStorage.setItem('userCollectionItems', JSON.stringify([...collected.values()]));
+            } catch (error) {
+                console.error('[index] collection history save failed:', error);
+            }
+        }
+
+        // 2. Боковое меню / чипы категорий
+        function renderIndexSidebar() {
+            const sidebar = document.getElementById('indexSidebar');
+            const collectionHistory = getCollectionHistory();
+            let html = '';
+
+            const order = ['Все', 'Treasure Hunt'];
+            const keys = Object.keys(indexCatalog).sort((a, b) => {
+                const ia = order.indexOf(a);
+                const ib = order.indexOf(b);
+                return (ia === -1 ? 999 : ia) - (ib === -1 ? 999 : ib);
+            });
+
+            keys.forEach(catName => {
+                const items = indexCatalog[catName];
+                const ownedCount = items.filter(it => collectionHistory.has(it.name.trim().toLocaleLowerCase())).length;
+
+                html += `
+                    <button class="sidebar-btn ${currentIndexCategory === catName ? 'active' : ''}"
+                            onclick="setIndexCategory('${catName.replace(/'/g, "\\'")}')">
+                        <span>${catName}</span>
+                        <span class="count">${ownedCount}/${items.length}</span>
+                    </button>
+                `;
+            });
+
+            sidebar.innerHTML = html;
+
+            // на мобильном: подкрутить активный чип в видимую область
+            const active = sidebar.querySelector('.sidebar-btn.active');
+            if (active && active.scrollIntoView && sidebar.scrollWidth > sidebar.clientWidth) {
+                active.scrollIntoView({ block: 'nearest', inline: 'center', behavior: 'smooth' });
+            }
+        }
+
+        // 3. Переключение категории
+        function setIndexCategory(cat) {
+            currentIndexCategory = cat;
+            renderIndexSidebar();
+            renderIndexGrid();
+        }
+
+        // Поиск с небольшой задержкой — плавнее при наборе
+        let _searchTimer = null;
+        function onIndexSearch() {
+            clearTimeout(_searchTimer);
+            _searchTimer = setTimeout(renderIndexGrid, 120);
+        }
+
+        // 4. Сетка предметов
+        function renderIndexGrid() {
+            const grid = document.getElementById('indexGrid');
+            const collectionHistory = getCollectionHistory();
+            const missingOnly = document.getElementById('missingOnlyToggle').checked;
+            const searchQ = document.getElementById('indexSearch').value.toLowerCase().trim();
+            const collectionFilter = document.getElementById('indexCollectionFilter').value;
+            const rarityFilter = document.getElementById('indexRarityFilter').value;
+            const priceMin = Number(document.getElementById('indexPriceMin').value);
+            const priceMax = Number(document.getElementById('indexPriceMax').value);
+
+            let items = [...(indexCatalog[currentIndexCategory] || [])];
+
+            if (searchQ) {
+                items = items.filter(it => it.name.toLowerCase().includes(searchQ));
+            }
+            if (missingOnly) {
+                items = items.filter(it => !collectionHistory.has(it.name.trim().toLocaleLowerCase()));
+            }
+            if (collectionFilter) {
+                items = items.filter(it => it.collections?.includes(collectionFilter));
+            }
+            if (rarityFilter) {
+                items = items.filter(it => it.rarities?.includes(rarityFilter));
+            }
+            if (document.getElementById('indexPriceMin').value !== '') {
+                items = items.filter(it => Number(it.price) >= priceMin);
+            }
+            if (document.getElementById('indexPriceMax').value !== '') {
+                items = items.filter(it => Number(it.price) <= priceMax);
+            }
+            const sortOrder = document.getElementById('indexSort').value;
+            items.sort((a, b) => sortOrder === 'price-asc' ? a.price - b.price
+                : sortOrder === 'name-asc' ? a.name.localeCompare(b.name, 'ru')
+                    : sortOrder === 'name-desc' ? b.name.localeCompare(a.name, 'ru')
+                        : b.price - a.price);
+
+            // Прогресс категории (до фильтров)
+            const catItems = indexCatalog[currentIndexCategory] || [];
+            const totalInCat = catItems.length;
+            const ownedInCat = catItems.filter(it => collectionHistory.has(it.name.trim().toLocaleLowerCase())).length;
+            const percent = totalInCat > 0 ? Math.round((ownedInCat / totalInCat) * 100) : 0;
+            document.getElementById('indexProgress').innerHTML = `${ownedInCat}<em>/${totalInCat}</em>`;
+            document.getElementById('indexSubtitle').textContent = `${currentIndexCategory} · ${percent}% коллекции`;
+            document.getElementById('indexBar').style.width = percent + '%';
+
+            if (items.length === 0) {
+                grid.innerHTML = '<div class="idx-empty">Ничего не найдено</div>';
+                return;
+            }
+
+            const starIcon = window.STAR_ICON || '../shared/star.png';
+            const fallbackImg = window.GIFT_FALLBACK || '../shared/star.png';
+
+            const lockSvg = `
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="4" y="11" width="16" height="10" rx="2.5" fill="currentColor" fill-opacity=".18"></rect>
+                    <path d="M8 11V7a4 4 0 0 1 8 0v4"></path>
+                    <circle cx="12" cy="16" r="1.2" fill="currentColor" stroke="none"></circle>
+                </svg>`;
+
+            grid.innerHTML = items.map((it, idx) => {
+                const isCollected = collectionHistory.has(it.name.trim().toLocaleLowerCase());
+                const isTreasure = currentIndexCategory === 'Treasure Hunt';
+
+                let tagHtml = '';
+                if (isTreasure) {
+                    tagHtml = '<div class="idx-tag" style="color:#e8548a;">only from the case</div>';
+                }
+                const buyPrice = Math.round(Number(it.price) * 1.25);
+
+                return `
+                    <div class="idx-card ${isCollected ? '' : 'missing'}" style="--i:${idx}">
+                        ${isCollected ? `<div class="idx-count" aria-label="Предмет когда-либо был у вас">✓</div>` : ''}
+                        <div class="idx-img-box">
+                            <img src="${it.image}" alt="" loading="lazy" onerror="this.onerror=null;this.src='${fallbackImg}'">
+                            ${!isCollected ? `<div class="idx-lock">${lockSvg}</div>` : ''}
+                        </div>
+                        <div class="idx-name">${window.escapeHtml ? window.escapeHtml(it.name) : it.name}</div>
+                        <div class="idx-price"><img src="${starIcon}" alt="">${window.formatStars ? window.formatStars(it.price) : it.price}</div>
+                        <button type="button" class="idx-buy" data-buy-name="${encodeURIComponent(it.name)}">Купить за ${window.formatStars ? window.formatStars(buyPrice) : buyPrice} ⭐</button>
+                        ${tagHtml}
+                    </div>
+                `;
+            }).join('');
+        }
+
+        async function buyIndexItem(encodedName, button) {
+            if (button.disabled) return;
+            let itemName;
+            try {
+                itemName = decodeURIComponent(encodedName);
+            } catch (error) {
+                console.error('[index] Invalid item name:', error);
+                return;
+            }
+            const item = Object.values(indexCatalog).flat().find(entry => entry.name === itemName);
+            if (!item || !Number.isSafeInteger(Number(item.price)) || Number(item.price) <= 0) {
+                console.error('[index] Item is unavailable for purchase:', itemName);
+                window.showToast?.('Не удалось найти предмет для покупки.', 'err');
+                return;
+            }
+
+            button.disabled = true;
+            try {
+                if (!window.TG?.isTelegram || !window.LootStarAPI?.buyIndexItem) {
+                    throw new Error('TELEGRAM_AUTH_REQUIRED');
+                }
+                const pendingKey = 'pendingIndexPurchase';
+                let pending;
+                try {
+                    pending = JSON.parse(sessionStorage.getItem(pendingKey) || 'null');
+                } catch (error) {
+                    console.warn('[index] Invalid pending purchase cache:', error);
+                }
+                if (!pending || pending.itemName !== item.name) {
+                    pending = { itemName: item.name, requestId: window.LootStarAPI.createRequestId() };
+                    sessionStorage.setItem(pendingKey, JSON.stringify(pending));
+                }
+                const requestId = pending.requestId;
+                const result = await window.LootStarAPI.buyIndexItem(item.name, requestId);
+                sessionStorage.removeItem(pendingKey);
+                window.LootStarAPI.applyInventoryResult(result);
+                rememberCollectionItems([result.item]);
+                window.refreshCurrencyUI?.();
+                renderIndexSidebar();
+                renderIndexGrid();
+                window.showToast?.(`Куплено: ${item.name}`, 'ok');
+            } catch (error) {
+                console.error('[index] Purchase failed:', error);
+                if (error.status && error.status < 500) sessionStorage.removeItem('pendingIndexPurchase');
+                window.showToast?.(error.code === 'INSUFFICIENT_FUNDS'
+                    ? 'Недостаточно звёзд для покупки.'
+                    : 'Не удалось купить предмет. Баланс не изменён.', 'err');
+                button.disabled = false;
+            }
+        }
+
+        document.getElementById('indexGrid').addEventListener('click', event => {
+            const button = event.target.closest('[data-buy-name]');
+            if (button) buyIndexItem(button.dataset.buyName, button);
+        });
+
+        // 5. «Назад»
+        function goBack() {
+            if (history.length > 1) {
+                history.back();
+            } else {
+                location.href = '../index.html';
+            }
+        }
+
+        // Высота шапки → для липкого бокового меню на десктопе
+        function syncHeaderHeight() {
+            const h = document.getElementById('idxHeader');
+            if (h) document.documentElement.style.setProperty('--hdr-h', h.offsetHeight + 'px');
+        }
+        window.addEventListener('resize', syncHeaderHeight);
+
+        // ═══════════════ ИНИЦИАЛИЗАЦИЯ ═══════════════
+        window.addEventListener('load', () => {
+            syncHeaderHeight();
+            if (window.TG?.isTelegram && window.LootStarAPI) {
+                window.LootStarAPI.loadProfile().catch(error =>
+                    console.error('[index] API profile load failed:', error)
+                );
+            }
+            setTimeout(() => {
+                if (typeof CASES === 'undefined') {
+                    console.error('CASES не найдены. Проверьте путь к ../index.js');
+                    document.getElementById('indexGrid').innerHTML =
+                        '<div class="idx-empty" style="color:#E4536B;">Ошибка: не удалось загрузить базу кейсов. Проверьте ../index.js</div>';
+                    return;
+                }
+                indexCatalog = buildIndexCatalog();
+                renderIndexCollectionOptions();
+                renderIndexSidebar();
+                renderIndexGrid();
+            }, 100);
+        });
+
+        window.addEventListener('profileDataLoaded', () => {
+            if (Object.keys(indexCatalog).length) {
+                renderIndexSidebar();
+                renderIndexGrid();
+            }
+        });
+
+        window.setIndexCategory = setIndexCategory;
+        window.renderIndexGrid = renderIndexGrid;
+        window.onIndexSearch = onIndexSearch;
+    </script>
+    <script src="/shared/sounds.js"></script>
+    <script src="/shared/navigation.js"></script>
+</body>
+</html>

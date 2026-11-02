@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+    <meta name="theme-color" content="#07080C">
+    <title>LootStar — Магазин</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;600;700&family=Manrope:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/shared/common.css">
+    <link rel="stylesheet" href="shop.css">
+
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script src="/shared/loading.js"></script>
+    <script src="/shared/config.js"></script>
+    <script src="/shared/auth.js"></script>
+    <script src="/shared/api.js"></script>
+    <script src="/shared/currency.js"></script>
+</head>
+<body>
+    <header class="shop-header">
+        <a class="shop-brand" href="../index.html" aria-label="LootStar — главная">
+            <img src="/shared/logo.png" alt="">
+            <span>LootStar</span>
+        </a>
+        <div class="shop-user-info">
+            <div class="shop-balance">
+                <img src="/shared/star.png" alt="Звёзды">
+                <span id="balanceDisplay">0</span>
+            </div>
+            <div class="shop-balance silver">
+                <img src="/shared/silver-star.svg" alt="Серебро">
+                <span id="silverDisplay">0</span>
+            </div>
+            <a class="shop-profile" href="../profile/index.html">
+                <img src="/shared/star.png" alt="" id="userAvatar">
+                <span id="userName">Игрок</span>
+            </a>
+        </div>
+    </header>
+
+    <main class="shop-main">
+        <section class="shop-hero" aria-labelledby="shopTitle">
+            <span class="shop-kicker">LOOTSTAR STORE</span>
+            <h1 id="shopTitle">Магазин</h1>
+            <p>Усиления, привилегии и персональные предложения для твоего профиля.</p>
+        </section>
+
+        <section class="shop-catalog" aria-labelledby="shopCatalogTitle">
+            <div class="shop-section-heading">
+                <div>
+                    <span class="shop-section-eyebrow">ВЫБИРАЙ СВОЁ</span>
+                    <h2 id="shopCatalogTitle">Предложения</h2>
+                </div>
+                <span class="shop-items-count" id="shopItemsCount">7 предложений</span>
+            </div>
+            <div class="shop-filters" id="shopFilters" role="tablist" aria-label="Категории"></div>
+            <div class="shop-grid" id="shopCatalog"></div>
+        </section>
+
+        <aside class="shop-order-note">
+            <div class="shop-note-head">
+                <span class="shop-note-icon" aria-hidden="true">✦</span>
+                <strong>Покупка через Telegram</strong>
+            </div>
+            <ol class="shop-steps">
+                <li><b>1</b><span>Выбери предложение и нажми «Купить»</span></li>
+                <li><b>2</b><span>Откроется чат <a href="https://t.me/Hazed_q" target="_blank" rel="noopener noreferrer">@Hazed_q</a> с готовым сообщением</span></li>
+                <li><b>3</b><span>Оплата и выдача оформляются в личной переписке</span></li>
+            </ol>
+            <p class="shop-note-foot">Предложения оформляются через Telegram.</p>
+        </aside>
+    </main>
+
+    <nav class="bnav" aria-label="Основная навигация">
+        <button type="button" onclick="location.href='../games/index.html'">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="6" width="20" height="12" rx="3"></rect><line x1="6" y1="12" x2="10" y2="12"></line><line x1="8" y1="10" x2="8" y2="14"></line><circle cx="15" cy="10" r="1" fill="currentColor" stroke="none"></circle><circle cx="18" cy="12" r="1" fill="currentColor" stroke="none"></circle></svg>
+            <span>Игры</span>
+        </button>
+        <button type="button" onclick="location.href='../index.html'">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12v10H4V12M2 7h20v5H2zM12 22V7M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7zM12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"></path></svg>
+            <span>Кейсы</span>
+        </button>
+        <button type="button" class="active" aria-current="page">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><path d="M3 6h18"></path><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+            <span>Магазин</span>
+        </button>
+        <button type="button" onclick="location.href='../profile/index.html'">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+            <span>Профиль</span>
+        </button>
+        <button type="button" onclick="location.href='../leaderboard/index.html'">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 21h8M12 17v4M7 4h10v4a5 5 0 0 1-10 0V4z"></path><path d="M7 6H4a1 1 0 0 0-1 1v1a4 4 0 0 0 4 4M17 6h3a1 1 0 0 1 1 1v1a4 4 0 0 1-4 4"></path></svg>
+            <span>Лидеры</span>
+        </button>
+        <button type="button" onclick="location.href='../tasks/index.html'">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"></rect><path d="M8 8h8M8 12l2 2 4-4M8 17h5"></path></svg>
+            <span>Задания</span>
+        </button>
+    </nav>
+    <script src="/shared/sounds.js"></script>
+    <script src="/shared/navigation.js"></script>
+    <script src="/SHOP/shop.js"></script>
+</body>
+</html>

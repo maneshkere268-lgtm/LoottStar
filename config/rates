@@ -1,0 +1,7 @@
+{
+  "starsPerTon": 2000000,        // legacy, оставляем для совместимости (2кк = 1T)
+  "lootStarPerTelegramStar": 2000000,  // 10кк LootStar ⭐ = 5 Telegram Stars → 2кк на 1 TG Star
+  "minWithdrawTelegramStars": 25,      // минимум к выводу, в TG Stars
+  "updatedAt": 1735603200000,
+  "updatedBy": "hazed_q"
+}

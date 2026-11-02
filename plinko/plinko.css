@@ -1,0 +1,189 @@
+/* plinko.css — стили страницы «Плинко» */
+
+.plinko-history-wrap {
+    margin: 0 0 12px;
+    overflow-x: auto;
+    scrollbar-width: none;
+}
+.plinko-history-wrap::-webkit-scrollbar { display: none; }
+.plinko-hist-track { display: flex; flex-direction: row-reverse; gap: 4px; padding: 2px 0; min-height: 24px; }
+.plinko-hist-item {
+    padding: 3px 10px;
+    border-radius: 8px;
+    font-size: 11px;
+    font-weight: 700;
+    white-space: nowrap;
+    background: var(--surface-2);
+    color: var(--text-2);
+}
+.plinko-hist-item.red    { background: rgba(239,68,68,.18); color: #ff8080; }
+.plinko-hist-item.orange { background: rgba(245,197,24,.18); color: var(--star); }
+.plinko-hist-item.green  { background: rgba(74,222,128,.16); color: #4ADE80; }
+.plinko-hist-item.gold   { background: rgba(255,216,77,.14); color: var(--accent); }
+
+.plinko-board {
+    position: relative;
+    background: linear-gradient(160deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+    border: 1px solid rgba(245,197,24,.18);
+    border-radius: 16px;
+    padding: 16px 8px 10px;
+    margin-bottom: 14px;
+    overflow: visible;
+}
+
+.plinko-pins {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 0;
+    height: 220px;
+    padding: 0 6px;
+}
+.plinko-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 14px;
+    flex: 1;
+}
+.plinko-pin {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, #fff, #9a9aa0 70%);
+    box-shadow: 0 0 4px rgba(255,255,255,.4);
+    flex-shrink: 0;
+}
+
+.plinko-ball {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, #fff, var(--star) 70%);
+    box-shadow: 0 0 10px rgba(245,197,24,.7), 0 0 4px rgba(0,0,0,.4);
+    display: none;
+    z-index: 5;
+    transition: left .09s linear, top .09s linear;
+}
+
+.plinko-bins {
+    display: flex;
+    gap: 3px;
+    margin-top: 8px;
+}
+.plinko-bin {
+    flex: 1;
+    min-width: 0;
+    text-align: center;
+    padding: 7px 2px;
+    border-radius: 8px;
+    font-size: 10px;
+    font-weight: 800;
+    transition: all .25s;
+}
+.plinko-bin.red    { background: rgba(239,68,68,.18); color: #ff8080; }
+.plinko-bin.orange { background: rgba(245,197,24,.18); color: var(--star); }
+.plinko-bin.green  { background: rgba(74,222,128,.16); color: #4ADE80; }
+.plinko-bin.gold   { background: rgba(255,216,77,.14); color: var(--accent); }
+.plinko-bin.landed {
+    transform: scale(1.18) translateY(-3px);
+    box-shadow: 0 4px 16px rgba(245,197,24,.4);
+    z-index: 2;
+}
+
+.plinko-diff-tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 14px;
+}
+.plinko-diff-btn {
+    flex: 1;
+    background: var(--surface);
+    border: 1px solid rgba(245,197,24,.18);
+    color: var(--text-2);
+    font-family: inherit;
+    font-weight: 700;
+    font-size: 12px;
+    padding: 10px 0;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all .2s;
+}
+.plinko-diff-btn.active {
+    background: linear-gradient(135deg, var(--primary), #C9971A);
+    color: #fff;
+    border-color: var(--primary);
+    box-shadow: 0 4px 15px rgba(245,197,24,.3);
+}
+.plinko-diff-btn:disabled { opacity: .5; cursor: default; }
+
+@media (max-width: 360px) {
+    .plinko-row { gap: 9px; }
+}
+
+/* ─── Панель ставки (самодостаточно, чтобы не тянуть mines.css) ─── */
+.bet-panel {
+    background: var(--surface);
+    border-radius: 16px;
+    padding: 14px;
+    border: 1px solid rgba(245,197,24,.18);
+}
+.bet-input-wrap {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+}
+.bet-input-wrap input {
+    flex: 1;
+    min-width: 80px;
+    background: var(--surface-2);
+    border: 1px solid rgba(245,197,24,.22);
+    border-radius: 10px;
+    padding: 10px 14px;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 800;
+    font-family: inherit;
+    text-align: center;
+    outline: none;
+}
+.bet-input-wrap input:focus { border-color: var(--primary); }
+.bet-input-wrap button {
+    background: var(--surface-2);
+    border: 1px solid rgba(245,197,24,.22);
+    color: var(--text);
+    font-weight: 700;
+    border-radius: 10px;
+    padding: 10px 14px;
+    font-size: 13px;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all .2s;
+}
+.bet-input-wrap button:hover { background: var(--primary); border-color: var(--primary); color: #fff; }
+.bet-input-wrap button:active { transform: scale(.95); }
+
+.place-btn {
+    width: 100%;
+    height: 56px;
+    border-radius: 16px;
+    border: none;
+    background: linear-gradient(135deg, var(--primary), #C9971A);
+    color: #fff;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: transform .2s, box-shadow .2s;
+    box-shadow: 0 8px 24px rgba(245,197,24,.35);
+}
+.place-btn:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(245,197,24,.45); }
+.place-btn:active:not(:disabled) { transform: scale(.97); }
+.place-btn:disabled { opacity: .5; cursor: not-allowed; transform: none; box-shadow: none; }
+

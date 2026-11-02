@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+    <meta name="theme-color" content="#08090D">
+    <title>LootStar — Кейсы</title>
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;600;700&family=Manrope:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="/shared/common.css">
+
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+
+    <script src="/shared/config.js"></script>
+    <script src="/shared/auth.js"></script>
+    <script src="/shared/api.js"></script>
+    <script src="/shared/events.js"></script>
+    <script src="/shared/ban_check.js"></script>
+    <script src="/shared/currency.js"></script>
+    <script src="/shared/gifts.js"></script>
+    <script src="/shared/ropeko.js"></script>
+    <script src="/shared/tasks.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js"></script>
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">
+            <img src="/shared/logo.png" alt="LootStar" onerror="this.style.display='none'">
+            <h1>LootStar</h1>
+        </div>
+        <div class="user-info">
+            <div class="user-balances">
+                <div class="user-balance star">
+                    <img src="/shared/star.png" alt="⭐">
+                    <p id="balanceDisplay">0</p>
+                </div>
+                <div class="user-balance silver">
+                    <img src="/shared/silver-star.svg" alt="💎">
+                    <p id="silverDisplay">0</p>
+                </div>
+            </div>
+            <div class="user-profile" onclick="location.href='profile/index.html'">
+                <img src="/shared/star.png" alt="user" id="userAvatar">
+                <p id="userName">Игрок</p>
+            </div>
+        </div>
+    </header>
+
+    <div class="live-wins" id="liveWins" aria-hidden="true">
+        <div class="live-wins-label">🔥 Live</div>
+        <div class="live-wins-track" id="liveWinsTrack"></div>
+    </div>
+
+    <main class="main" id="casesContainer"></main>
+
+    <nav class="bnav">
+        <button data-page="games" onclick="location.href='games/index.html'">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <rect x="2" y="6" width="20" height="12" rx="3"></rect>
+                <line x1="6" y1="12" x2="10" y2="12"></line>
+                <line x1="8" y1="10" x2="8" y2="14"></line>
+                <circle cx="15" cy="10" r="1" fill="currentColor" stroke="none"></circle>
+                <circle cx="18" cy="12" r="1" fill="currentColor" stroke="none"></circle>
+            </svg>
+            <span>Игры</span>
+        </button>
+        <button data-page="cases" class="active" onclick="location.href='index.html'">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path
+                    d="M20 12v10H4V12M2 7h20v5H2zM12 22V7M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7zM12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z">
+                </path>
+            </svg>
+            <span>Кейсы</span>
+        </button>
+        <button data-page="index" onclick="location.href='index/index.html'">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="3" width="7" height="7" rx="1.5"></rect>
+                <rect x="14" y="3" width="7" height="7" rx="1.5"></rect>
+                <rect x="3" y="14" width="7" height="7" rx="1.5"></rect>
+                <rect x="14" y="14" width="7" height="7" rx="1.5"></rect>
+            </svg>
+            <span>Индекс</span>
+        </button>
+        <button data-page="upgrades" onclick="location.href='upgrades/index.html'">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M12 19V5"></path>
+                <path d="M5 12l7-7 7 7"></path>
+            </svg>
+            <span>Апгрейд</span>
+        </button>
+        <button data-page="profile" onclick="location.href='profile/index.html'">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+            <span>Профиль</span>
+        </button>
+        <button data-page="leaderboard" onclick="location.href='leaderboard/index.html'">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M8 21h8M12 17v4M7 4h10v4a5 5 0 0 1-10 0V4z"></path>
+                <path d="M7 6H4a1 1 0 0 0-1 1v1a4 4 0 0 0 4 4M17 6h3a1 1 0 0 1 1 1v1a4 4 0 0 1-4 4"></path>
+            </svg>
+            <span>Лидеры</span>
+        </button>
+        <button data-page="tasks" onclick="location.href='tasks/index.html'">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <rect x="4" y="3" width="16" height="18" rx="2"></rect>
+                <path d="M8 8h8M8 12l2 2 4-4M8 17h5"></path>
+            </svg>
+            <span>Задания</span>
+        </button>
+    </nav>
+
+    <div class="modal-overlay" id="caseModal">
+        <div class="modal">
+            <div class="modal-scroll">
+                <div class="modal-handle"></div>
+                <div class="modal-hdr">
+                    <div class="modal-name" id="modalName">Кейс</div>
+                    <div class="modal-price" id="modalPrice">
+                        <img src="/shared/star.png" alt=""><span>0</span>
+                    </div>
+                </div>
+
+                <div class="roulette-wrap" id="rouletteWrap">
+                    <div class="roulette-track idle" id="rouletteTrack"></div>
+                    <div class="roulette-pointer ptr-top"></div>
+                    <div class="roulette-pointer ptr-bottom"></div>
+                </div>
+
+                <div class="qty-row" id="qtyRow">
+                    <button class="qty-btn active" data-qty="1" onclick="setQty(1)">1</button>
+                    <button class="qty-btn" data-qty="2" onclick="setQty(2)">2</button>
+                    <button class="qty-btn" data-qty="3" onclick="setQty(3)">3</button>
+                    <button class="qty-btn" data-qty="4" onclick="setQty(4)">4</button>
+                    <button class="qty-btn" data-qty="5" onclick="setQty(5)">5</button>
+                    <button class="qty-btn" data-qty="6" onclick="setQty(6)">6</button>
+                    <button class="qty-btn" data-qty="7" onclick="setQty(7)">7</button>
+                    <button class="qty-btn" data-qty="8" onclick="setQty(8)">8</button>
+                    <button class="qty-btn" data-qty="9" onclick="setQty(9)">9</button>
+                    <button class="qty-btn" data-qty="10" onclick="setQty(10)">10</button>
+                </div>
+
+                <div class="modal-win" id="modalWin" style="display:none"></div>
+
+                <div class="open-btn-wrap" id="openBtnWrap">
+                    <button class="open-btn" id="openBtn" onclick="openCase()">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                            <path d="M5 12h14M12 5l7 7-7 7"></path>
+                        </svg>
+                        Открыть кейс
+                    </button>
+                </div>
+
+                <div class="contents" id="contentsSection">
+                    <div class="contents-title">Что в кейсе?</div>
+                    <div class="contents-grid" id="contentsGrid"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+    <script src="index.js"></script>
+
+    <script src="/shared/trade_notifier.js"></script>
+    <script src="/shared/sounds.js"></script>
+    <script src="/shared/navigation.js"></script>
+</body>
+
+</html>
