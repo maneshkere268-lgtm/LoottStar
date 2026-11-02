@@ -39,8 +39,10 @@
         if (initialized) return;
         initialized = true;
         applyEvents(readLocal());
-        syncConfig();
-        configInterval = window.setInterval(syncConfig, 30_000);
+        if (window.TG?.isTelegram) {
+            syncConfig();
+            configInterval = window.setInterval(syncConfig, 30_000);
+        }
 
         window.addEventListener('storage', (e) => {
             if (e.key === 'localEvents') {

@@ -99,7 +99,9 @@
      * CHECK — главная функция
      * ═══════════════════════════════════════════════════════════ */
     async function check() {
-        if (window.TG?.isTelegram && window.LootStarAPI?.loadProfile) {
+        if (!window.TG?.isTelegram) return;
+
+        if (window.LootStarAPI?.loadProfile) {
             try {
                 await window.LootStarAPI.loadProfile();
             } catch (error) {

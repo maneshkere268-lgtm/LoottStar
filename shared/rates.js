@@ -70,6 +70,7 @@
     }
 
     document.addEventListener('DOMContentLoaded', () => {
+        if (!window.TG?.isTelegram) return;
         loadRates();
         subscribeRates();
     });
@@ -85,6 +86,6 @@
     };
 
     window.addEventListener('profileDataLoaded', () => {
-        if (!_loaded) loadRates();
+        if (window.TG?.isTelegram && !_loaded) loadRates();
     });
 })();

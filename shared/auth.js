@@ -50,6 +50,10 @@
         }
     }
 
+    const isTelegram = Boolean(
+        tgWebApp && typeof tgWebApp.initData === 'string' && tgWebApp.initData.trim() && tgUser
+    );
+
     function getUserDisplayName() {
         if (!tgUser) return 'Username';
         let n = tgUser.first_name || 'Игрок';
@@ -71,6 +75,7 @@
     }
 
     function persistUser() {
+        if (!isTelegram) return;
         localStorage.setItem(STORAGE_KEYS.userId, String(tgUser.id));
         localStorage.setItem(STORAGE_KEYS.userName, getUserDisplayName());
         if (tgUser.photo_url) {
@@ -143,7 +148,7 @@
         user: tgUser,
         webApp: tgWebApp,
         id: tgUser.id,
-        isTelegram: !!tgWebApp,
+        isTelegram,
         getName: getUserDisplayName,
         getShortName: getUserShortName,
         getInitial: getUserInitial,

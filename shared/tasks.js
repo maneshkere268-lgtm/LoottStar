@@ -293,6 +293,10 @@
     };
 
     document.addEventListener('DOMContentLoaded', () => {
+        if (!window.TG?.isTelegram) {
+            paintNavBadge();
+            return;
+        }
         refreshTasks().catch(error => {
             console.error('[tasks] Could not load server task state:', error);
         }).finally(paintNavBadge);
