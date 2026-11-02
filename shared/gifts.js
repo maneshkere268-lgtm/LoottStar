@@ -1,0 +1,442 @@
+// gifts.js — общий пул подарков
+// Подключать ПОСЛЕ config.js.
+//
+// Формат name:
+//   "Name"        → /Name/png/Original.png
+//   "Name (Model)" → /Name/png/Model.png
+//
+// Цена каждого предмета синхронизирована с кейсами.
+
+window.GIFTS = [
+    /* ═══════════════════════ MIRAGE LAMPS ═══════════════════════ */
+    { name: 'Mirage Lamp (Crimson Shrine)', price: 850000000, image: 'https://cdn.changes.tg/gifts/models/Mirage%20Lamp/png/Crimson%20Shrine.png' },
+    { name: 'Mirage Lamp (Warm Pixel)', price: 185000000, image: 'https://cdn.changes.tg/gifts/models/Mirage%20Lamp/png/Warm%20Pixel.png' },
+    { name: 'Mirage Lamp (Soft Glow)', price: 150000000, image: 'https://cdn.changes.tg/gifts/models/Mirage%20Lamp/png/Soft%20Glow.png' },
+    { name: 'Mirage Lamp (Rising Sun)', price: 15000000, image: 'https://cdn.changes.tg/gifts/models/Mirage%20Lamp/png/Rising%20Sun.png' },
+    { name: 'Mirage Lamp (Iron Hearth)', price: 1000000, image: 'https://cdn.changes.tg/gifts/models/Mirage%20Lamp/png/Iron%20Hearth.png' },
+    { name: 'Mirage Lamp (Ruby Moon)', price: 50000, image: 'https://cdn.changes.tg/gifts/models/Mirage%20Lamp/png/Ruby%20Moon.png' },
+    { name: 'Mirage Lamp (Crimson Dusk)', price: 5000, image: 'https://cdn.changes.tg/gifts/models/Mirage%20Lamp/png/Crimson%20Dusk.png' },
+
+    /* ═══════════════════════ PLUSH PEPE (все варианты) ═══════════════════════ */
+    { name: 'Plush Pepe (Bavaria)', price: 300000000, image: 'https://cdn.changes.tg/gifts/models/Plush%20Pepe/png/Bavaria.png' },
+    { name: 'Plush Pepe (X-Ray)', price: 1000206225, image: 'https://cdn.changes.tg/gifts/models/Plush%20Pepe/png/X-Ray.png' },
+    { name: 'Plush Pepe (Gucci Leap)', price: 237725750, image: 'https://cdn.changes.tg/gifts/models/Plush%20Pepe/png/Gucci%20Leap.png' },
+    { name: 'Plush Pepe (Hothead)', price: 169292209, image: 'https://cdn.changes.tg/gifts/models/Plush%20Pepe/png/Hothead.png' },
+    { name: 'Plush Pepe (Kung Fu Pepe)', price: 57000000, image: 'https://cdn.changes.tg/gifts/models/Plush%20Pepe/png/Kung%20Fu%20Pepe.png' },
+    { name: 'Plush Pepe (Toading...)', price: 11670005, image: 'https://cdn.changes.tg/gifts/models/Plush%20Pepe/png/Toading....png' },
+    { name: 'Plush Pepe (Emerald Plush)', price: 6985225, image: 'https://cdn.changes.tg/gifts/models/Plush%20Pepe/png/Emerald%20Plush.png' },
+    { name: 'Plush Pepe (Emo Boi)', price: 5036225, image: 'https://cdn.changes.tg/gifts/models/Plush%20Pepe/png/Emo%20Boi.png' },
+    { name: 'Plush Pepe (Aqua Plush)', price: 3625000, image: 'https://cdn.changes.tg/gifts/models/Plush%20Pepe/png/Aqua%20Plush.png' },
+    { name: 'Plush Pepe (Leonardo)', price: 3065488, image: 'https://cdn.changes.tg/gifts/models/Plush%20Pepe/png/Leonardo.png' },
+    { name: 'Plush Pepe (Raphael)', price: 2707450, image: 'https://cdn.changes.tg/gifts/models/Plush%20Pepe/png/Raphael.png' },
+    { name: 'Plush Pepe (Donatello)', price: 2387445, image: 'https://cdn.changes.tg/gifts/models/Plush%20Pepe/png/Donatello.png' },
+    { name: 'Plush Pepe (Midas Pepe)', price: 2017345, image: 'https://cdn.changes.tg/gifts/models/Plush%20Pepe/png/Midas%20Pepe.png' },
+    { name: 'Plush Pepe (Ninja Mike)', price: 1765151, image: 'https://cdn.changes.tg/gifts/models/Plush%20Pepe/png/Ninja%20Mike.png' },
+    { name: 'Plush Pepe (Amalgam)', price: 1625025, image: 'https://cdn.changes.tg/gifts/models/Plush%20Pepe/png/Amalgam.png' },
+    { name: 'Plush Pepe (Cozy Galaxy)', price: 1485150, image: 'https://cdn.changes.tg/gifts/models/Plush%20Pepe/png/Cozy%20Galaxy.png' },
+    { name: 'Plush Pepe (Hue Jester)', price: 1337250, image: 'https://cdn.changes.tg/gifts/models/Plush%20Pepe/png/Hue%20Jester.png' },
+    { name: 'Plush Pepe (Poison Dart)', price: 1205075, image: 'https://cdn.changes.tg/gifts/models/Plush%20Pepe/png/Poison%20Dart.png' },
+    { name: 'Plush Pepe (Pumpkin)', price: 15000000, image: 'https://cdn.changes.tg/gifts/models/Plush%20Pepe/png/Pumpkin.png' },
+    { name: 'Plush Pepe', price: 828750, image: 'https://cdn.changes.tg/gifts/models/Plush%20Pepe/png/Original.png' },
+
+    /* ═══════════════════════ GIANT / MYTHIC ═══════════════════════ */
+    { name: "Durov's Figurine (Ilon)", price: 150000000, image: '/shared/gift.png' },
+    { name: 'Gem Signet (Spinny Boi)', price: 120000000, image: 'https://cdn.changes.tg/gifts/models/Gem%20Signet/png/Spinny%20Boi.png' },
+    { name: 'Loot Bag (Priestly)', price: 150000000, image: 'https://cdn.changes.tg/gifts/models/Loot%20Bag/png/Priestly.png' },
+    { name: 'Crystal Eagle', price: 74000000, image: '/shared/gift.png' },
+    { name: 'Pool Float (Nessie)', price: 74000000, image: 'https://cdn.changes.tg/gifts/models/Pool%20Float/png/Nessie.png' },
+    { name: 'Sleigh Bell (Holy Grenade)', price: 90000000, image: 'https://cdn.changes.tg/gifts/models/Sleigh%20Bell/png/Holy%20Grenade.png' },
+    { name: 'Heart Locket (Turtles)', price: 347668296, image: 'https://cdn.changes.tg/gifts/models/Heart%20Locket/png/Turtles.png' },
+    { name: 'Happy Brownie (Toilet Bot)', price: 52228677, image: 'https://cdn.changes.tg/gifts/models/Happy%20Brownie/png/Toilet%20Bot.png' },
+    { name: 'Heart Locket (Reactor)', price: 43520640, image: 'https://cdn.changes.tg/gifts/models/Heart%20Locket/png/Reactor.png' },
+    { name: "Durov's Cap (Toxic Guy)", price: 22670240, image: "https://cdn.changes.tg/gifts/models/Durov's%20Cap/png/Toxic%20Guy.png" },
+
+    /* ═══════════════════════ HIGH VALUE ═══════════════════════ */
+    { name: 'Precious Peach (Gleam Bite)', price: 10747200, image: 'https://cdn.changes.tg/gifts/models/Precious%20Peach/png/Gleam%20Bite.png' },
+    { name: 'Genie Lamp (Lost Souls)', price: 6722080, image: 'https://cdn.changes.tg/gifts/models/Genie%20Lamp/png/Lost%20Souls.png' },
+    { name: 'Astral Shard (Uranium)', price: 5056160, image: 'https://cdn.changes.tg/gifts/models/Astral%20Shard/png/Uranium.png' },
+    { name: 'Magic Potion (Verdant Vial)', price: 3616960, image: 'https://cdn.changes.tg/gifts/models/Magic%20Potion/png/Verdant%20Vial.png' },
+    { name: 'Mood Pack (Bank Vault)', price: 3124789, image: 'https://cdn.changes.tg/gifts/models/Mood%20Pack/png/Bank%20Vault.png' },
+    { name: 'Perfume Bottle (Venom Mist)', price: 2785120, image: 'https://cdn.changes.tg/gifts/models/Perfume%20Bottle/png/Venom%20Mist.png' },
+    { name: 'Top Hat (Celestial)', price: 1777778, image: 'https://cdn.changes.tg/gifts/models/Top%20Hat/png/Celestial.png' },
+    { name: 'Toy Bear (Blueprint)', price: 1536235, image: 'https://cdn.changes.tg/gifts/models/Toy%20Bear/png/Blueprint.png' },
+    { name: 'Heart Locket (Cirque)', price: 1135075, image: 'https://cdn.changes.tg/gifts/models/Heart%20Locket/png/Cirque.png' },
+    { name: "Durov's Cap (RGB Glitch)", price: 1075025, image: "https://cdn.changes.tg/gifts/models/Durov's%20Cap/png/RGB%20Glitch.png" },
+    { name: 'Heart Locket (Delegam)', price: 986250, image: 'https://cdn.changes.tg/gifts/models/Heart%20Locket/png/Delegam.png' },
+    { name: 'Heart Locket (Neptune)', price: 888750, image: 'https://cdn.changes.tg/gifts/models/Heart%20Locket/png/Neptune.png' },
+    { name: 'Heart Locket (Fairy Dust)', price: 637025, image: 'https://cdn.changes.tg/gifts/models/Heart%20Locket/png/Fairy%20Dust.png' },
+    { name: 'Heart Locket (Shield of Sun)', price: 623500, image: 'https://cdn.changes.tg/gifts/models/Heart%20Locket/png/Shield%20of%20Sun.png' },
+    { name: 'Heart Locket (Nightclub)', price: 607050, image: 'https://cdn.changes.tg/gifts/models/Heart%20Locket/png/Nightclub.png' },
+    { name: 'Heart Locket (Mecha Love)', price: 600000, image: 'https://cdn.changes.tg/gifts/models/Heart%20Locket/png/Mecha%20Love.png' },
+    { name: "Durov's Cap (Falcon)", price: 545725, image: "https://cdn.changes.tg/gifts/models/Durov's%20Cap/png/Falcon.png" },
+    { name: "Durov's Cap (Tron)", price: 398025, image: "https://cdn.changes.tg/gifts/models/Durov's%20Cap/png/Tron.png" },
+    { name: "Durov's Cap (Sky High)", price: 374025, image: "https://cdn.changes.tg/gifts/models/Durov's%20Cap/png/Sky%20High.png" },
+    { name: 'Artisan Brick (USBrick)', price: 360500, image: 'https://cdn.changes.tg/gifts/models/Artisan%20Brick/png/USBrick.png' },
+    { name: "Durov's Cap (Neon)", price: 348750, image: "https://cdn.changes.tg/gifts/models/Durov's%20Cap/png/Neon.png" },
+    { name: "Durov's Cap (Honey Bee)", price: 305750, image: "https://cdn.changes.tg/gifts/models/Durov's%20Cap/png/Honey%20Bee.png" },
+    { name: 'Heroic Helmet (Punk Skull)', price: 261750, image: 'https://cdn.changes.tg/gifts/models/Heroic%20Helmet/png/Punk%20Skull.png' },
+    { name: 'Precious Peach (Angelic)', price: 245050, image: 'https://cdn.changes.tg/gifts/models/Precious%20Peach/png/Angelic.png' },
+    { name: "Durov's Cap (Sunrise)", price: 237050, image: "https://cdn.changes.tg/gifts/models/Durov's%20Cap/png/Sunrise.png" },
+    { name: "Durov's Cap (Fun Time)", price: 232775, image: "https://cdn.changes.tg/gifts/models/Durov's%20Cap/png/Fun%20Time.png" },
+    { name: 'Heroic Helmet (Frozen Aegis)', price: 230325, image: 'https://cdn.changes.tg/gifts/models/Heroic%20Helmet/png/Frozen%20Aegis.png' },
+    { name: "Durov's Cap (Shadow)", price: 225000, image: "https://cdn.changes.tg/gifts/models/Durov's%20Cap/png/Shadow.png" },
+    { name: 'Precious Peach (Rich Green)', price: 211725, image: 'https://cdn.changes.tg/gifts/models/Precious%20Peach/png/Rich%20Green.png' },
+    { name: 'Precious Peach (Bubbling Blue)', price: 202750, image: 'https://cdn.changes.tg/gifts/models/Precious%20Peach/png/Bubbling%20Blue.png' },
+    { name: 'Nail Bracelet (Interstellar)', price: 197425, image: 'https://cdn.changes.tg/gifts/models/Nail%20Bracelet/png/Interstellar.png' },
+    { name: 'Precious Peach (Yin Yang)', price: 162325, image: 'https://cdn.changes.tg/gifts/models/Precious%20Peach/png/Yin%20Yang.png' },
+    { name: 'Artisan Brick (Gold Block)', price: 157025, image: 'https://cdn.changes.tg/gifts/models/Artisan%20Brick/png/Gold%20Block.png' },
+    { name: 'Happy Brownie (Raphael)', price: 150650, image: 'https://cdn.changes.tg/gifts/models/Happy%20Brownie/png/Raphael.png' },
+    { name: 'Heroic Helmet (Cyberpunk)', price: 147250, image: 'https://cdn.changes.tg/gifts/models/Heroic%20Helmet/png/Cyberpunk.png' },
+    { name: 'Mighty Arm (Pizza Pump)', price: 174635, image: 'https://cdn.changes.tg/gifts/models/Mighty%20Arm/png/Pizza%20Pump.png' },
+    { name: 'Mighty Arm (Gladiator)', price: 133200, image: 'https://cdn.changes.tg/gifts/models/Mighty%20Arm/png/Gladiator.png' },
+    { name: 'Mighty Arm (Crystal Fist)', price: 132175, image: 'https://cdn.changes.tg/gifts/models/Mighty%20Arm/png/Crystal%20Fist.png' },
+    { name: 'Loot Bag (Crypto Byte)', price: 113750, image: 'https://cdn.changes.tg/gifts/models/Loot%20Bag/png/Crypto%20Byte.png' },
+    { name: 'Loot Bag (Black Purrse)', price: 112050, image: 'https://cdn.changes.tg/gifts/models/Loot%20Bag/png/Black%20Purrse.png' },
+    { name: 'Artisan Brick (Fight Club)', price: 112400, image: 'https://cdn.changes.tg/gifts/models/Artisan%20Brick/png/Fight%20Club.png' },
+    { name: 'Precious Peach (Peach Black)', price: 110725, image: 'https://cdn.changes.tg/gifts/models/Precious%20Peach/png/Peach%20Black.png' },
+    { name: 'Gem Signet (8 Bit Diamond)', price: 105275, image: 'https://cdn.changes.tg/gifts/models/Gem%20Signet/png/8%20Bit%20Diamond.png' },
+    { name: 'Artisan Brick (Cash Roll)', price: 102050, image: 'https://cdn.changes.tg/gifts/models/Artisan%20Brick/png/Cash%20Roll.png' },
+    { name: 'Mini Oscar (Fiery-Hot)', price: 87550, image: 'https://cdn.changes.tg/gifts/models/Mini%20Oscar/png/Fiery-Hot.png' },
+    { name: 'Loot Bag (Conductor)', price: 84225, image: 'https://cdn.changes.tg/gifts/models/Loot%20Bag/png/Conductor.png' },
+    { name: 'Sakura Flower (Flowey)', price: 83225, image: 'https://cdn.changes.tg/gifts/models/Sakura%20Flower/png/Flowey.png' },
+    { name: 'Genie Lamp (Cat Spirit)', price: 82050, image: 'https://cdn.changes.tg/gifts/models/Genie%20Lamp/png/Cat%20Spirit.png' },
+    { name: 'Artisan Brick (Gold Bar)', price: 76725, image: 'https://cdn.changes.tg/gifts/models/Artisan%20Brick/png/Gold%20Bar.png' },
+    { name: 'Loot Bag (City Life)', price: 74750, image: 'https://cdn.changes.tg/gifts/models/Loot%20Bag/png/City%20Life.png' },
+    { name: 'Nail Bracelet (Moon Cat)', price: 74725, image: 'https://cdn.changes.tg/gifts/models/Nail%20Bracelet/png/Moon%20Cat.png' },
+    { name: 'Heroic Helmet (Black Thorn)', price: 74075, image: 'https://cdn.changes.tg/gifts/models/Heroic%20Helmet/png/Black%20Thorn.png' },
+    { name: 'Heroic Helmet (Praetorian)', price: 74025, image: 'https://cdn.changes.tg/gifts/models/Heroic%20Helmet/png/Praetorian.png' },
+    { name: 'Electric Skull (Terminator)', price: 70225, image: 'https://cdn.changes.tg/gifts/models/Electric%20Skull/png/Terminator.png' },
+    { name: 'Artisan Brick (Bomb Planted)', price: 63025, image: 'https://cdn.changes.tg/gifts/models/Artisan%20Brick/png/Bomb%20Planted.png' },
+    { name: 'Scared Cat (Obelisk)', price: 61125, image: 'https://cdn.changes.tg/gifts/models/Scared%20Cat/png/Obelisk.png' },
+    { name: 'Ion Gem (Prismatic)', price: 56250, image: 'https://cdn.changes.tg/gifts/models/Ion%20Gem/png/Prismatic.png' },
+    { name: 'Nail Bracelet (Cat Person)', price: 52500, image: 'https://cdn.changes.tg/gifts/models/Nail%20Bracelet/png/Cat%20Person.png' },
+    { name: 'Gem Signet (Death Star)', price: 49575, image: 'https://cdn.changes.tg/gifts/models/Gem%20Signet/png/Death%20Star.png' },
+    { name: 'Heroic Helmet', price: 48625, image: 'https://cdn.changes.tg/gifts/models/Heroic%20Helmet/png/Original.png' },
+    { name: 'Gem Signet (Black Lotus)', price: 34225, image: 'https://cdn.changes.tg/gifts/models/Gem%20Signet/png/Black%20Lotus.png' },
+    { name: 'Bonded Ring (Duckling)', price: 31825, image: 'https://cdn.changes.tg/gifts/models/Bonded%20Ring/png/Duckling.png' },
+    { name: 'Toy Bear (Dark Knight)', price: 30325, image: 'https://cdn.changes.tg/gifts/models/Toy%20Bear/png/Dark%20Knight.png' },
+    { name: 'Astral Shard (Bogartite)', price: 29225, image: 'https://cdn.changes.tg/gifts/models/Astral%20Shard/png/Bogartite.png' },
+    { name: 'Astral Shard (Aquarium)', price: 28950, image: 'https://cdn.changes.tg/gifts/models/Astral%20Shard/png/Aquarium.png' },
+    { name: 'Magic Potion (Gold Medal)', price: 27025, image: 'https://cdn.changes.tg/gifts/models/Magic%20Potion/png/Gold%20Medal.png' },
+    { name: 'Diamond Ring (Black Hole)', price: 23250, image: 'https://cdn.changes.tg/gifts/models/Diamond%20Ring/png/Black%20Hole.png' },
+    { name: 'Bonded Ring (Cat Bed)', price: 22725, image: 'https://cdn.changes.tg/gifts/models/Bonded%20Ring/png/Cat%20Bed.png' },
+    { name: 'Toy Bear (Ursa Major)', price: 22625, image: 'https://cdn.changes.tg/gifts/models/Toy%20Bear/png/Ursa%20Major.png' },
+    { name: 'Gem Signet (Elven Shade)', price: 21750, image: 'https://cdn.changes.tg/gifts/models/Gem%20Signet/png/Elven%20Shade.png' },
+    { name: 'Astral Shard', price: 21100, image: 'https://cdn.changes.tg/gifts/models/Astral%20Shard/png/Original.png' },
+    { name: 'Bonded Ring (Rainbow)', price: 21075, image: 'https://cdn.changes.tg/gifts/models/Bonded%20Ring/png/Rainbow.png' },
+    { name: 'Bonded Ring (Pixel Loot)', price: 19250, image: 'https://cdn.changes.tg/gifts/models/Bonded%20Ring/png/Pixel%20Loot.png' },
+    { name: 'Loot Bag', price: 19375, image: 'https://cdn.changes.tg/gifts/models/Loot%20Bag/png/Original.png' },
+    { name: 'Kissed Frog (Lava Leap)', price: 18975, image: 'https://cdn.changes.tg/gifts/models/Kissed%20Frog/png/Lava%20Leap.png' },
+    { name: 'Gem Signet (Old Bronze)', price: 18250, image: 'https://cdn.changes.tg/gifts/models/Gem%20Signet/png/Old%20Bronze.png' },
+    { name: 'Gem Signet (Amethyst)', price: 17225, image: 'https://cdn.changes.tg/gifts/models/Gem%20Signet/png/Amethyst.png' },
+    { name: 'Perfume Bottle', price: 17350, image: 'https://cdn.changes.tg/gifts/models/Perfume%20Bottle/png/Original.png' },
+    { name: 'Swiss Watch (Day Trader)', price: 15050, image: 'https://cdn.changes.tg/gifts/models/Swiss%20Watch/png/Day%20Trader.png' },
+    { name: 'Gem Signet', price: 14775, image: 'https://cdn.changes.tg/gifts/models/Gem%20Signet/png/Original.png' },
+    { name: 'Jester Hat (Pepe Hop)', price: 14825, image: 'https://cdn.changes.tg/gifts/models/Jester%20Hat/png/Pepe%20Hop.png' },
+    { name: 'Electric Skull (Half Alive)', price: 13750, image: 'https://cdn.changes.tg/gifts/models/Electric%20Skull/png/Half%20Alive.png' },
+    { name: 'Sakura Flower (Sunflower)', price: 12275, image: 'https://cdn.changes.tg/gifts/models/Sakura%20Flower/png/Sunflower.png' },
+    { name: 'Bonded Ring', price: 12975, image: 'https://cdn.changes.tg/gifts/models/Bonded%20Ring/png/Original.png' },
+    { name: 'Swiss Watch (Memory Flash)', price: 11775, image: 'https://cdn.changes.tg/gifts/models/Swiss%20Watch/png/Memory%20Flash.png' },
+    { name: 'Low Rider (Gold Rush)', price: 11025, image: 'https://cdn.changes.tg/gifts/models/Low%20Rider/png/Gold%20Rush.png' },
+    { name: 'Kissed Frog (Ectofrog)', price: 10500, image: 'https://cdn.changes.tg/gifts/models/Kissed%20Frog/png/Ectofrog.png' },
+    { name: 'Scared Cat', price: 10500, image: 'https://cdn.changes.tg/gifts/models/Scared%20Cat/png/Original.png' },
+    { name: 'Mini Oscar', price: 30250, image: 'https://cdn.changes.tg/gifts/models/Mini%20Oscar/png/Original.png' },
+
+    /* ═══════════════════════ MID-TIER GIFT ═══════════════════════ */
+    { name: 'Kissed Frog', price: 8625, image: 'https://cdn.changes.tg/gifts/models/Kissed%20Frog/png/Original.png' },
+    { name: 'Toy Bear (Golden Cub)', price: 7850, image: 'https://cdn.changes.tg/gifts/models/Toy%20Bear/png/Golden%20Cub.png' },
+    { name: 'Ionic Dryer (Gold Rush)', price: 7075, image: 'https://cdn.changes.tg/gifts/models/Ionic%20Dryer/png/Gold%20Rush.png' },
+    { name: 'Love Potion (Banana)', price: 8225, image: 'https://cdn.changes.tg/gifts/models/Love%20Potion/png/Banana.png' },
+    { name: 'Hanging Star (This Is Fine)', price: 8150, image: 'https://cdn.changes.tg/gifts/models/Hanging%20Star/png/This%20Is%20Fine.png' },
+    { name: 'Toy Bear (Fazbear)', price: 8350, image: 'https://cdn.changes.tg/gifts/models/Toy%20Bear/png/Fazbear.png' },
+    { name: 'Signet Ring (Obsidian)', price: 7975, image: 'https://cdn.changes.tg/gifts/models/Signet%20Ring/png/Obsidian.png' },
+    { name: 'Low Rider (Neon Nitro)', price: 6025, image: 'https://cdn.changes.tg/gifts/models/Low%20Rider/png/Neon%20Nitro.png' },
+    { name: 'Neko Helmet', price: 5750, image: 'https://cdn.changes.tg/gifts/models/Neko%20Helmet/png/Original.png' },
+    { name: 'Record Player (Dark Noir)', price: 5825, image: 'https://cdn.changes.tg/gifts/models/Record%20Player/png/Dark%20Noir.png' },
+    { name: 'Mad Pumpkin (Frostbite)', price: 6025, image: 'https://cdn.changes.tg/gifts/models/Mad%20Pumpkin/png/Frostbite.png' },
+    { name: 'Cupid Charm (Dryad Heart)', price: 5275, image: 'https://cdn.changes.tg/gifts/models/Cupid%20Charm/png/Dryad%20Heart.png' },
+    { name: 'Toy Bear', price: 4250, image: 'https://cdn.changes.tg/gifts/models/Toy%20Bear/png/Original.png' },
+    { name: 'Ionic Dryer', price: 3850, image: 'https://cdn.changes.tg/gifts/models/Ionic%20Dryer/png/Original.png' },
+    { name: 'Voodoo Doll', price: 3725, image: 'https://cdn.changes.tg/gifts/models/Voodoo%20Doll/png/Original.png' },
+    { name: 'Mad Pumpkin', price: 3500, image: 'https://cdn.changes.tg/gifts/models/Mad%20Pumpkin/png/Original.png' },
+    { name: 'Cupid Charm (Crystal Clear)', price: 3375, image: 'https://cdn.changes.tg/gifts/models/Cupid%20Charm/png/Crystal%20Clear.png' },
+    { name: 'Eternal Rose', price: 3325, image: 'https://cdn.changes.tg/gifts/models/Eternal%20Rose/png/Original.png' },
+    { name: 'Crystal Ball (Dryad Circle)', price: 3125, image: 'https://cdn.changes.tg/gifts/models/Crystal%20Ball/png/Dryad%20Circle.png' },
+    { name: 'Hanging Star (Black Hole)', price: 3125, image: 'https://cdn.changes.tg/gifts/models/Hanging%20Star/png/Black%20Hole.png' },
+    { name: 'Easter Egg (Boiled Pepe)', price: 3025, image: 'https://cdn.changes.tg/gifts/models/Easter%20Egg/png/Boiled%20Pepe.png' },
+    { name: 'Love Candle (Golden Glow)', price: 2925, image: 'https://cdn.changes.tg/gifts/models/Love%20Candle/png/Golden%20Glow.png' },
+    { name: 'Cupid Charm', price: 2875, image: 'https://cdn.changes.tg/gifts/models/Cupid%20Charm/png/Original.png' },
+    { name: 'Love Potion (Ice Queen)', price: 2550, image: 'https://cdn.changes.tg/gifts/models/Love%20Potion/png/Ice%20Queen.png' },
+    { name: 'Ginger Cookie (Headless)', price: 2350, image: 'https://cdn.changes.tg/gifts/models/Ginger%20Cookie/png/Headless.png' },
+    { name: 'Flying Broom', price: 2300, image: 'https://cdn.changes.tg/gifts/models/Flying%20Broom/png/Original.png' },
+    { name: 'Record Player', price: 2200, image: 'https://cdn.changes.tg/gifts/models/Record%20Player/png/Original.png' },
+    { name: 'Love Potion', price: 2075, image: 'https://cdn.changes.tg/gifts/models/Love%20Potion/png/Original.png' },
+    { name: 'Trapped Heart', price: 2075, image: 'https://cdn.changes.tg/gifts/models/Trapped%20Heart/png/Original.png' },
+    { name: 'Eternal Candle (Bubble Bath)', price: 1775, image: 'https://cdn.changes.tg/gifts/models/Eternal%20Candle/png/Bubble%20Bath.png' },
+    { name: 'Evil Eye (8 Ball)', price: 1725, image: 'https://cdn.changes.tg/gifts/models/Evil%20Eye/png/8%20Ball.png' },
+    { name: 'Easter Egg (Creeper)', price: 1425, image: 'https://cdn.changes.tg/gifts/models/Easter%20Egg/png/Creeper.png' },
+    { name: 'Top Hat', price: 1272.5, image: 'https://cdn.changes.tg/gifts/models/Top%20Hat/png/Original.png' },
+    { name: 'Hanging Star', price: 1225, image: 'https://cdn.changes.tg/gifts/models/Hanging%20Star/png/Original.png' },
+    { name: 'Valentine Box', price: 1175, image: 'https://cdn.changes.tg/gifts/models/Valentine%20Box/png/Original.png' },
+    { name: 'Jolly Chimp (Retro Cartoon)', price: 1150, image: 'https://cdn.changes.tg/gifts/models/Jolly%20Chimp/png/Retro%20Cartoon.png' },
+    { name: 'Sakura Flower', price: 1075, image: 'https://cdn.changes.tg/gifts/models/Sakura%20Flower/png/Original.png' },
+    { name: 'Evil Eye', price: 925, image: 'https://cdn.changes.tg/gifts/models/Evil%20Eye/png/Original.png' },
+    { name: 'Jolly Chimp', price: 900, image: 'https://cdn.changes.tg/gifts/models/Jolly%20Chimp/png/Original.png' },
+    { name: 'Bunny Muffin (Gold)', price: 900, image: 'https://cdn.changes.tg/gifts/models/Bunny%20Muffin/png/Gold.png' },
+    { name: 'Berry Box', price: 875, image: 'https://cdn.changes.tg/gifts/models/Berry%20Box/png/Original.png' },
+    { name: 'Jelly Bunny', price: 800, image: 'https://cdn.changes.tg/gifts/models/Jelly%20Bunny/png/Original.png' },
+    { name: 'Light Sword', price: 725, image: 'https://cdn.changes.tg/gifts/models/Light%20Sword/png/Original.png' },
+    { name: 'Witch Hat', price: 725, image: 'https://cdn.changes.tg/gifts/models/Witch%20Hat/png/Original.png' },
+    { name: 'Spy Agaric', price: 725, image: 'https://cdn.changes.tg/gifts/models/Spy%20Agaric/png/Original.png' },
+    { name: 'Hex Pot', price: 700, image: 'https://cdn.changes.tg/gifts/models/Hex%20Pot/png/Original.png' },
+    { name: 'Jack in the box (Aliens)', price: 675, image: 'https://cdn.changes.tg/gifts/models/Jack%20in%20the%20box/png/Aliens.png' },
+    { name: 'Toy Bear (Angel)', price: 650, image: 'https://cdn.changes.tg/gifts/models/Toy%20Bear/png/Angel.png' },
+    { name: 'Lush Bouquet', price: 650, image: 'https://cdn.changes.tg/gifts/models/Lush%20Bouquet/png/Original.png' },
+    { name: 'Lol Pop (Gold Star)', price: 625, image: 'https://cdn.changes.tg/gifts/models/Lol%20Pop/png/Gold%20Star.png' },
+    { name: 'Star Notepad', price: 600, image: 'https://cdn.changes.tg/gifts/models/Star%20Notepad/png/Original.png' },
+    { name: 'Party Sparkler', price: 500, image: 'https://cdn.changes.tg/gifts/models/Party%20Sparkler/png/Original.png' },
+    { name: 'Jester Hat', price: 500, image: 'https://cdn.changes.tg/gifts/models/Jester%20Hat/png/Original.png' },
+    { name: 'Hypno Lollipop', price: 475, image: 'https://cdn.changes.tg/gifts/models/Hypno%20Lollipop/png/Original.png' },
+    { name: 'Clover Pin (Corrupted)', price: 475, image: 'https://cdn.changes.tg/gifts/models/Clover%20Pin/png/Corrupted.png' },
+    { name: 'Holiday Drink', price: 450, image: 'https://cdn.changes.tg/gifts/models/Holiday%20Drink/png/Original.png' },
+    { name: 'Tama Gadget', price: 450, image: 'https://cdn.changes.tg/gifts/models/Tama%20Gadget/png/Original.png' },
+    { name: 'Ginger Cookie', price: 450, image: 'https://cdn.changes.tg/gifts/models/Ginger%20Cookie/png/Original.png' },
+    { name: 'Pet Snake', price: 450, image: 'https://cdn.changes.tg/gifts/models/Pet%20Snake/png/Original.png' },
+    { name: 'Snoop Dogg', price: 425, image: 'https://cdn.changes.tg/gifts/models/Snoop%20Dogg/png/Original.png' },
+    { name: 'Lunar Snake', price: 350, image: 'https://cdn.changes.tg/gifts/models/Lunar%20Snake/png/Original.png' },
+    { name: 'Xmas Stocking', price: 350, image: 'https://cdn.changes.tg/gifts/models/Xmas%20Stocking/png/Original.png' },
+    { name: 'Lol Pop', price: 325, image: 'https://cdn.changes.tg/gifts/models/Lol%20Pop/png/Original.png' },
+    { name: 'Snake Box', price: 325, image: 'https://cdn.changes.tg/gifts/models/Snake%20Box/png/Original.png' },
+    { name: 'Bow Tie (Dark Lord)', price: 3925, image: 'https://cdn.changes.tg/gifts/models/Bow%20Tie/png/Dark%20Lord.png' },
+    { name: 'Resistance Dog', price: 36250, image: 'https://cdn.changes.tg/gifts/models/Resistance%20Dog/png/Original.png' },
+    { name: 'Resistance Dog (Lightpaw)', price: 2500000, image: 'https://cdn.changes.tg/gifts/models/Resistance%20Dog/png/Lightpaw.png' },
+    { name: 'Resistance Dog (Loki)', price: 1000000000, image: 'https://cdn.changes.tg/gifts/models/Resistance%20Dog/png/Loki.png' },
+    { name: 'Fresh Socks (Billie Jean)', price: 4465, image: 'https://cdn.changes.tg/gifts/models/Fresh%20Socks/png/Billie%20Jean.png' },
+
+    /* ═══════════════════════ CHEAP GIFT ═══════════════════════ */
+    { name: 'Desk Calendar', price: 300, image: 'https://cdn.changes.tg/gifts/models/Desk%20Calendar/png/Original.png' },
+    { name: 'Mighty Arm', price: 83750, image: 'https://cdn.changes.tg/gifts/models/Mighty%20Arm/png/Original.png' },
+    { name: 'Artisan Brick', price: 7522.5, image: 'https://cdn.changes.tg/gifts/models/Artisan%20Brick/png/Original.png' },
+    { name: 'Vintage Cigar', price: 4576.25, image: 'https://cdn.changes.tg/gifts/models/Vintage%20Cigar/png/Original.png' },
+    { name: 'Westside Sign', price: 12353.75, image: 'https://cdn.changes.tg/gifts/models/Westside%20Sign/png/Original.png' },
+    { name: 'Low Rider', price: 6776.25, image: 'https://cdn.changes.tg/gifts/models/Low%20Rider/png/Original.png' },
+    { name: 'Snoop Cigar', price: 1838.75, image: 'https://cdn.changes.tg/gifts/models/Snoop%20Cigar/png/Original.png' },
+    { name: "Durov's Cap", price: 49725, image: "https://cdn.changes.tg/gifts/models/Durov's%20Cap/png/Original.png" },
+    { name: "Durov's Figurine", price: 152906.25, image: "https://cdn.changes.tg/gifts/models/Durov's%20Figurine/png/Original.png" },
+    { name: "Durov's Coat", price: 10375, image: "https://cdn.changes.tg/gifts/models/Durov's%20Coat/png/Original.png" },
+    { name: "Durov's Boots", price: 8531, image: "https://cdn.changes.tg/gifts/models/Durov's%20Boots/png/Original.png" },
+    { name: 'Swiss Watch', price: 6146.25, image: 'https://cdn.changes.tg/gifts/models/Swiss%20Watch/png/Original.png' },
+    { name: 'Genie Lamp (Lava Lamp)', price: 42875, image: 'https://cdn.changes.tg/gifts/models/Genie%20Lamp/png/Lava%20Lamp.png' },
+    { name: 'Astral Shard (Crystal Punk)', price: 31250, image: 'https://cdn.changes.tg/gifts/models/Astral%20Shard/png/Crystal%20Punk.png' },
+    { name: 'Astral Shard (Nectarite)', price: 37050, image: 'https://cdn.changes.tg/gifts/models/Astral%20Shard/png/Nectarite.png' },
+    { name: "Astral Shard (Eve's Apple)", price: 117250, image: "https://cdn.changes.tg/gifts/models/Astral%20Shard/png/Eve's%20Apple.png" },
+    { name: 'Cupid Charm (Pepe Love)', price: 87050, image: 'https://cdn.changes.tg/gifts/models/Cupid%20Charm/png/Pepe%20Love.png' },
+    { name: 'Mighty Arm (Body Builder)', price: 40750, image: 'https://cdn.changes.tg/gifts/models/Mighty%20Arm/png/Body%20Builder.png' },
+    { name: 'Input Key (Angel)', price: 105, image: 'https://cdn.changes.tg/gifts/models/Input%20Key/png/Angel.png' },
+    { name: 'Heart', price: 15, image: 'https://cdn.changes.tg/gifts/models/Heart/png/Original.png' },
+    { name: 'Cookie Heart', price: 15, image: 'https://cdn.changes.tg/gifts/models/Cookie%20Heart/png/Original.png' },
+    { name: 'Eternal Rose', price: 25, image: 'https://cdn.changes.tg/gifts/models/Eternal%20Rose/png/Original.png' },
+    { name: 'Lush Bouquet', price: 50, image: 'https://cdn.changes.tg/gifts/models/Lush%20Bouquet/png/Original.png' },
+    { name: 'Stellar Rocket', price: 50, image: 'https://cdn.changes.tg/gifts/models/Stellar%20Rocket/png/Original.png' },
+    { name: 'Signet Ring', price: 100, image: 'https://cdn.changes.tg/gifts/models/Signet%20Ring/png/Original.png' },
+    { name: 'Diamond Ring', price: 100, image: 'https://cdn.changes.tg/gifts/models/Diamond%20Ring/png/Original.png' },
+
+    /* ═══════════ БАЗОВЫЕ ПРЕДМЕТЫ (используются как fallback) ═══════════ */
+    { name: 'Heart Locket', price: 139612.5, image: 'https://cdn.changes.tg/gifts/models/Heart%20Locket/png/Original.png' },
+    { name: 'Magic Potion', price: 6761.25, image: 'https://cdn.changes.tg/gifts/models/Magic%20Potion/png/Original.png' },
+    { name: 'Precious Peach', price: 31873.75, image: 'https://cdn.changes.tg/gifts/models/Precious%20Peach/png/Original.png' },
+    { name: 'Genie Lamp', price: 4153.75, image: 'https://cdn.changes.tg/gifts/models/Genie%20Lamp/png/Original.png' },
+    { name: 'Airplane', price: 787500, image: 'https://cdn.changes.tg/gifts/models/Airplane/png/Original.png' },
+    { name: 'Ion Gem', price: 8925, image: 'https://cdn.changes.tg/gifts/models/Ion%20Gem/png/Original.png' },
+    { name: 'Nail Bracelet', price: 14333.75, image: 'https://cdn.changes.tg/gifts/models/Nail%20Bracelet/png/Original.png' },
+
+    /* ═══════════════════════════════════════════════════════════════
+       ★★★ НОВЫЕ МОДЕЛИ PRECIOUS PEACH (из messages.html) ★★★
+       Цены по редкости:
+         0.2%  → 15 000 000  (легендарные)
+         0.5%  → 10 747 200  (эпические, как Gleam Bite)
+         1%    → 211 725     (редкие, как Rich Green)
+         1.5%  → 150 000     (необычные)
+         2%    → 100 000     (обычные)
+       ═══════════════════════════════════════════════════════════════ */
+    // 0.2% — легендарные
+    { name: 'Precious Peach (Smelting)', price: 15000000, image: 'https://cdn.changes.tg/gifts/models/Precious%20Peach/png/Smelting.png' },
+    { name: 'Precious Peach (Caramel Red)', price: 15000000, image: 'https://cdn.changes.tg/gifts/models/Precious%20Peach/png/Caramel%20Red.png' },
+    { name: 'Precious Peach (Cherry Secret)', price: 15000000, image: 'https://cdn.changes.tg/gifts/models/Precious%20Peach/png/Cherry%20Secret.png' },
+    { name: 'Precious Peach (Shocking)', price: 15000000, image: 'https://cdn.changes.tg/gifts/models/Precious%20Peach/png/Shocking.png' },
+    { name: 'Precious Peach (Spanked)', price: 15000000, image: 'https://cdn.changes.tg/gifts/models/Precious%20Peach/png/Spanked.png' },
+    // 0.5% — эпические (Bubbling Blue и Gleam Bite уже выше)
+    { name: 'Precious Peach (Xmas Lights)', price: 10747200, image: 'https://cdn.changes.tg/gifts/models/Precious%20Peach/png/Xmas%20Lights.png' },
+    { name: 'Precious Peach (Blizzard)', price: 10747200, image: 'https://cdn.changes.tg/gifts/models/Precious%20Peach/png/Blizzard.png' },
+    { name: 'Precious Peach (Saint Nickel)', price: 10747200, image: 'https://cdn.changes.tg/gifts/models/Precious%20Peach/png/Saint%20Nickel.png' },
+    { name: 'Precious Peach (Spoiled)', price: 10747200, image: 'https://cdn.changes.tg/gifts/models/Precious%20Peach/png/Spoiled.png' },
+    { name: 'Precious Peach (Impeached)', price: 10747200, image: 'https://cdn.changes.tg/gifts/models/Precious%20Peach/png/Impeached.png' },
+    // 1% — редкие (Rich Green уже выше)
+    { name: 'Precious Peach (Pink Cupid)', price: 211725, image: 'https://cdn.changes.tg/gifts/models/Precious%20Peach/png/Pink%20Cupid.png' },
+    { name: 'Precious Peach (Jelly Bubble)', price: 211725, image: 'https://cdn.changes.tg/gifts/models/Precious%20Peach/png/Jelly%20Bubble.png' },
+    { name: 'Precious Peach (Premium)', price: 211725, image: 'https://cdn.changes.tg/gifts/models/Precious%20Peach/png/Premium.png' },
+    { name: 'Precious Peach (Ladybug)', price: 211725, image: 'https://cdn.changes.tg/gifts/models/Precious%20Peach/png/Ladybug.png' },
+    { name: 'Precious Peach (Bumblebee)', price: 211725, image: 'https://cdn.changes.tg/gifts/models/Precious%20Peach/png/Bumblebee.png' },
+    { name: 'Precious Peach (Cherry Season)', price: 211725, image: 'https://cdn.changes.tg/gifts/models/Precious%20Peach/png/Cherry%20Season.png' },
+    { name: 'Precious Peach (Cutout)', price: 211725, image: 'https://cdn.changes.tg/gifts/models/Precious%20Peach/png/Cutout.png' },
+    { name: 'Precious Peach (Airy Bright)', price: 211725, image: 'https://cdn.changes.tg/gifts/models/Precious%20Peach/png/Airy%20Bright.png' },
+    { name: 'Precious Peach (Mushroom)', price: 211725, image: 'https://cdn.changes.tg/gifts/models/Precious%20Peach/png/Mushroom.png' },
+    { name: 'Precious Peach (Morningstar)', price: 211725, image: 'https://cdn.changes.tg/gifts/models/Precious%20Peach/png/Morningstar.png' },
+    { name: 'Precious Peach (Smooch)', price: 211725, image: 'https://cdn.changes.tg/gifts/models/Precious%20Peach/png/Smooch.png' },
+    { name: 'Precious Peach (Jelly Stars)', price: 211725, image: 'https://cdn.changes.tg/gifts/models/Precious%20Peach/png/Jelly%20Stars.png' },
+    { name: 'Precious Peach (999 Karat)', price: 211725, image: 'https://cdn.changes.tg/gifts/models/Precious%20Peach/png/999%20Karat.png' },
+    { name: 'Precious Peach (Glass Heart)', price: 211725, image: 'https://cdn.changes.tg/gifts/models/Precious%20Peach/png/Glass%20Heart.png' },
+    { name: 'Precious Peach (Crypto Orange)', price: 211725, image: 'https://cdn.changes.tg/gifts/models/Precious%20Peach/png/Crypto%20Orange.png' },
+    { name: 'Precious Peach (Tonfruit)', price: 211725, image: 'https://cdn.changes.tg/gifts/models/Precious%20Peach/png/Tonfruit.png' },
+    // 1.5% — необычные (Yin Yang уже выше)
+    { name: 'Precious Peach (Lush Green)', price: 150000, image: 'https://cdn.changes.tg/gifts/models/Precious%20Peach/png/Lush%20Green.png' },
+    { name: 'Precious Peach (Glossy Pink)', price: 150000, image: 'https://cdn.changes.tg/gifts/models/Precious%20Peach/png/Glossy%20Pink.png' },
+    { name: 'Precious Peach (Moss Posh)', price: 150000, image: 'https://cdn.changes.tg/gifts/models/Precious%20Peach/png/Moss%20Posh.png' },
+    { name: 'Precious Peach (Dreamer)', price: 150000, image: 'https://cdn.changes.tg/gifts/models/Precious%20Peach/png/Dreamer.png' },
+    { name: 'Precious Peach (Terra Firma)', price: 150000, image: 'https://cdn.changes.tg/gifts/models/Precious%20Peach/png/Terra%20Firma.png' },
+    { name: 'Precious Peach (Cozy Warmth)', price: 150000, image: 'https://cdn.changes.tg/gifts/models/Precious%20Peach/png/Cozy%20Warmth.png' },
+    { name: 'Precious Peach (Golden Shine)', price: 150000, image: 'https://cdn.changes.tg/gifts/models/Precious%20Peach/png/Golden%20Shine.png' },
+    { name: 'Precious Peach (Malachite)', price: 150000, image: 'https://cdn.changes.tg/gifts/models/Precious%20Peach/png/Malachite.png' },
+    { name: 'Precious Peach (Bismuth)', price: 150000, image: 'https://cdn.changes.tg/gifts/models/Precious%20Peach/png/Bismuth.png' },
+    { name: 'Precious Peach (Iridescent)', price: 150000, image: 'https://cdn.changes.tg/gifts/models/Precious%20Peach/png/Iridescent.png' },
+    { name: 'Precious Peach (Neo-Chrome)', price: 150000, image: 'https://cdn.changes.tg/gifts/models/Precious%20Peach/png/Neo-Chrome.png' },
+    { name: 'Precious Peach (Berry Pit)', price: 150000, image: 'https://cdn.changes.tg/gifts/models/Precious%20Peach/png/Berry%20Pit.png' },
+    { name: 'Precious Peach (Juicy Orange)', price: 150000, image: 'https://cdn.changes.tg/gifts/models/Precious%20Peach/png/Juicy%20Orange.png' },
+    { name: 'Precious Peach (Twilight)', price: 150000, image: 'https://cdn.changes.tg/gifts/models/Precious%20Peach/png/Twilight.png' },
+    { name: 'Precious Peach (Ripe Green)', price: 150000, image: 'https://cdn.changes.tg/gifts/models/Precious%20Peach/png/Ripe%20Green.png' },
+    { name: 'Precious Peach (Faded Silver)', price: 150000, image: 'https://cdn.changes.tg/gifts/models/Precious%20Peach/png/Faded%20Silver.png' },
+    { name: 'Precious Peach (Juicy Tones)', price: 150000, image: 'https://cdn.changes.tg/gifts/models/Precious%20Peach/png/Juicy%20Tones.png' },
+    { name: 'Precious Peach (Clear Sky)', price: 150000, image: 'https://cdn.changes.tg/gifts/models/Precious%20Peach/png/Clear%20Sky.png' },
+    { name: 'Precious Peach (Soap Bubble)', price: 150000, image: 'https://cdn.changes.tg/gifts/models/Precious%20Peach/png/Soap%20Bubble.png' },
+    { name: 'Precious Peach (Heirloom)', price: 150000, image: 'https://cdn.changes.tg/gifts/models/Precious%20Peach/png/Heirloom.png' },
+    { name: 'Precious Peach (Iron Blush)', price: 150000, image: 'https://cdn.changes.tg/gifts/models/Precious%20Peach/png/Iron%20Blush.png' },
+    { name: 'Precious Peach (Elegance)', price: 150000, image: 'https://cdn.changes.tg/gifts/models/Precious%20Peach/png/Elegance.png' },
+    { name: 'Precious Peach (Cutie Pink)', price: 150000, image: 'https://cdn.changes.tg/gifts/models/Precious%20Peach/png/Cutie%20Pink.png' },
+    { name: 'Precious Peach (Party-Ready)', price: 150000, image: 'https://cdn.changes.tg/gifts/models/Precious%20Peach/png/Party-Ready.png' },
+    { name: 'Precious Peach (Honey Gold)', price: 150000, image: 'https://cdn.changes.tg/gifts/models/Precious%20Peach/png/Honey%20Gold.png' },
+    { name: 'Precious Peach (Bright Amber)', price: 150000, image: 'https://cdn.changes.tg/gifts/models/Precious%20Peach/png/Bright%20Amber.png' },
+    { name: 'Precious Peach (Bright Coral)', price: 150000, image: 'https://cdn.changes.tg/gifts/models/Precious%20Peach/png/Bright%20Coral.png' },
+    { name: 'Precious Peach (Morning Haze)', price: 150000, image: 'https://cdn.changes.tg/gifts/models/Precious%20Peach/png/Morning%20Haze.png' },
+    { name: 'Precious Peach (Bronze)', price: 150000, image: 'https://cdn.changes.tg/gifts/models/Precious%20Peach/png/Bronze.png' },
+    { name: 'Precious Peach (Christmas)', price: 150000, image: 'https://cdn.changes.tg/gifts/models/Precious%20Peach/png/Christmas.png' },
+    { name: 'Precious Peach (Mardi Gras)', price: 150000, image: 'https://cdn.changes.tg/gifts/models/Precious%20Peach/png/Mardi%20Gras.png' },
+    { name: 'Precious Peach (Sunset)', price: 150000, image: 'https://cdn.changes.tg/gifts/models/Precious%20Peach/png/Sunset.png' },
+    { name: 'Precious Peach (Purple Glow)', price: 150000, image: 'https://cdn.changes.tg/gifts/models/Precious%20Peach/png/Purple%20Glow.png' },
+    { name: 'Precious Peach (Cold Iron)', price: 150000, image: 'https://cdn.changes.tg/gifts/models/Precious%20Peach/png/Cold%20Iron.png' },
+    { name: 'Precious Peach (Pure Peach)', price: 150000, image: 'https://cdn.changes.tg/gifts/models/Precious%20Peach/png/Pure%20Peach.png' },
+    { name: 'Precious Peach (Polaris)', price: 150000, image: 'https://cdn.changes.tg/gifts/models/Precious%20Peach/png/Polaris.png' },
+    { name: 'Precious Peach (Ruby Slice)', price: 150000, image: 'https://cdn.changes.tg/gifts/models/Precious%20Peach/png/Ruby%20Slice.png' },
+    { name: 'Precious Peach (Ruby Red)', price: 150000, image: 'https://cdn.changes.tg/gifts/models/Precious%20Peach/png/Ruby%20Red.png' },
+    { name: 'Precious Peach (Smooth Touch)', price: 150000, image: 'https://cdn.changes.tg/gifts/models/Precious%20Peach/png/Smooth%20Touch.png' },
+    { name: 'Precious Peach (Stardust)', price: 150000, image: 'https://cdn.changes.tg/gifts/models/Precious%20Peach/png/Stardust.png' },
+    { name: 'Precious Peach (Fuzzy Lilac)', price: 150000, image: 'https://cdn.changes.tg/gifts/models/Precious%20Peach/png/Fuzzy%20Lilac.png' },
+    // 2% — обычные
+    { name: 'Precious Peach (Neptune)', price: 100000, image: 'https://cdn.changes.tg/gifts/models/Precious%20Peach/png/Neptune.png' },
+    { name: 'Precious Peach (Rosegold)', price: 100000, image: 'https://cdn.changes.tg/gifts/models/Precious%20Peach/png/Rosegold.png' },
+    { name: 'Precious Peach (Soft Sunset)', price: 100000, image: 'https://cdn.changes.tg/gifts/models/Precious%20Peach/png/Soft%20Sunset.png' },
+    { name: 'Precious Peach (Ogre Green)', price: 100000, image: 'https://cdn.changes.tg/gifts/models/Precious%20Peach/png/Ogre%20Green.png' },
+    { name: 'Precious Peach (Pyrite)', price: 100000, image: 'https://cdn.changes.tg/gifts/models/Precious%20Peach/png/Pyrite.png' },
+    { name: 'Precious Peach (Glossy Finish)', price: 100000, image: 'https://cdn.changes.tg/gifts/models/Precious%20Peach/png/Glossy%20Finish.png' },
+    { name: 'Precious Peach (Ripe Pink)', price: 100000, image: 'https://cdn.changes.tg/gifts/models/Precious%20Peach/png/Ripe%20Pink.png' }
+];
+
+/* ═══════════ СПЕЦИАЛЬНЫЕ (наши) ПРЕДМЕТЫ ═══════════ */
+window.SPECIAL_GIFTS = [
+    { name: 'Heart', price: 15, image: 'https://cdn.changes.tg/gifts/models/Heart/png/Original.png' },
+    { name: 'Rose', price: 25, image: 'https://cdn.changes.tg/gifts/models/Eternal%20Rose/png/Original.png' },
+    { name: 'Gift', price: 25, image: 'https://cdn.changes.tg/gifts/originals/5170250947678437525/Original.png' },
+    { name: 'Cake', price: 50, image: 'https://cdn.changes.tg/gifts/originals/5170144170496491616/Original.png' },
+    { name: 'Boquet', price: 50, image: 'https://cdn.changes.tg/gifts/originals/5170314324215857265/Original.png' },
+    { name: 'Trophy', price: 100, image: 'https://cdn.changes.tg/gifts/originals/5168043875654172773/Original.png' },
+    { name: 'Diamond', price: 100, image: 'https://cdn.changes.tg/gifts/originals/5170521118301225164/Original.png' }
+];
+
+/* ═══════════ ОБЩИЙ ПУЛ (ЗВЁЗДЫ) ═══════════ */
+window.ALL_GIFTS = [...GIFTS, ...SPECIAL_GIFTS]
+    .map(g => ({ ...g, currency: 'star' }))
+    .sort((a, b) => b.price - a.price);
+window.ALL_GIFTS_STAR = window.ALL_GIFTS;
+
+/* ═══════════ ПУЛ ЗА СЕРЕБРО ═══════════ */
+window.SILVER_GIFTS = [
+    { name: 'Серебряный мишка', price: 40, image: '/shared/bear.png', currency: 'silver' },
+    { name: 'Серебряный подарок', price: 90, image: '/shared/gift.png', currency: 'silver' },
+    { name: 'Серебряный кубок', price: 220, image: '/shared/trophy.png', currency: 'silver' },
+    { name: 'Серебряная звезда', price: 450, image: '/shared/silver-star.svg', currency: 'silver' },
+    { name: 'Осколок серебра', price: 900, image: '/shared/silver-star.svg', currency: 'silver' },
+    { name: 'Слиток серебра', price: 1800, image: '/shared/silver-star.svg', currency: 'silver' }
+];
+window.ALL_GIFTS_SILVER = [...window.SILVER_GIFTS].sort((a, b) => b.price - a.price);
+
+/* ═══════════ УТИЛИТА: подобрать подарок под выигрыш ═══════════ */
+window.pickGiftForWin = function (amount, currency) {
+    currency = currency === 'silver' ? 'silver' : 'star';
+    if (!amount || amount <= 0) return { gift: null, remainder: 0 };
+
+    if (currency === 'silver') {
+        const pool = window.ALL_GIFTS_SILVER.filter(g => g.price <= amount);
+        if (!pool.length) return { gift: null, remainder: amount };
+        pool.sort((a, b) => b.price - a.price);
+        const best = pool[0];
+        return { gift: best, remainder: amount - best.price };
+    }
+
+    const pool = window.ALL_GIFTS_STAR;
+    const fits = pool.filter(g => g.price <= amount || (g.price * 125) <= amount);
+    if (!fits.length) return { gift: null, remainder: amount };
+    fits.sort((a, b) => {
+        const aVal = a.price <= amount ? a.price : a.price * 125;
+        const bVal = b.price <= amount ? b.price : b.price * 125;
+        return bVal - aVal;
+    });
+    const best = fits[0];
+    const price = best.price <= amount ? best.price : best.price * 125;
+    return { gift: best, remainder: amount - price };
+};
+
+/* ═══════════════════════════════════════════════════════════
+ * ИНВЕНТАРЬ — единые функции для всех игр
+ * ═══════════════════════════════════════════════════════════ */
+window.getInventory = function () {
+    try {
+        const raw = localStorage.getItem('userInventory');
+        const arr = raw ? JSON.parse(raw) : [];
+        return Array.isArray(arr) ? arr : [];
+    } catch (e) {
+        return [];
+    }
+};
+
+window.saveInventory = async function (inv) {
+    console.error('[inventory] Generic inventory saves are disabled; use a server-owned operation.');
+    return false;
+};
+
+window.awardGamePayout = async function (currency, amount, item = null) {
+    console.error('[inventory] Client-generated payouts are disabled; use a server-owned game operation.', {
+        currency, amount, itemId: item?.id
+    });
+    return false;
+};
+
+window.getInventoryByCurrency = function (currency) {
+    const inv = window.getInventory();
+    return inv.filter(item => (item.currency || 'star') === currency);
+};
+
+/* ═══════════════════════════════════════════════════════════
+ * LIMITED: Durov Figure (Ropeko)
+ * Не входит в пул кейсов. Выдаётся автоматически по username.
+ * ═══════════════════════════════════════════════════════════ */
+window.ROPEKO_ITEM = {
+    name: 'Durov Figure (Ropeko)',
+    price: 50000000,
+    image: '/images/DurovFigureRopeko.png',
+    currency: 'star',
+    limited: true,
+    noSell: true,
+    untradeable: true,
+    noStake: true,
+    ropeko: true,
+    dailyPercent: 0.10
+};
