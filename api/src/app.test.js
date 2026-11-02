@@ -696,6 +696,21 @@ test('index shop API purchases catalog items server-side and replays idempotentl
     assert.equal(pool.state.inventory.length, 1);
 });
 
+test('Ropeko settlement endpoint is registered and validates its idempotency key', async t => {
+    const baseUrl = await withServer(t, createTestPool());
+    const response = await fetch(`${baseUrl}/api/v1/profile/ropeko/settle`, {
+        method: 'POST',
+        headers: {
+            Authorization: `tma ${makeInitData()}`,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({})
+    });
+
+    assert.equal(response.status, 400);
+    assert.deepEqual(await response.json(), { error: 'INVALID_ROPEKO_REQUEST' });
+});
+
 test('case API opens using verified Telegram identity and an idempotency key', async t => {
     const pool = createTestPool({ stars: 100 });
     const baseUrl = await withServer(t, pool);

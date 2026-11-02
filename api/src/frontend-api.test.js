@@ -7,7 +7,8 @@ const path = require('node:path');
 const vm = require('node:vm');
 
 const frontendApiPath = path.join(__dirname, '..', '..', 'shared', 'api.js');
-const frontendAvailable = fs.existsSync(frontendApiPath);
+const authPath = path.join(__dirname, '..', '..', 'shared', 'auth.js');
+const frontendAvailable = fs.existsSync(frontendApiPath) && fs.existsSync(authPath);
 function test(name, options, fn) {
     if (typeof options === 'function') {
         fn = options;
@@ -62,6 +63,54 @@ function createBrowser(initData = 'signed-telegram-init-data') {
     });
     return { window, values, calls, events };
 }
+
+function createAuthBrowser({ initData = '', user = null, savedValues = [] } = {}) {
+    const values = new Map(savedValues);
+    const localStorage = {
+        setItem: (key, value) => values.set(key, String(value)),
+        getItem: key => values.get(key) ?? null,
+        removeItem: key => values.delete(key)
+    };
+    const window = {
+        Telegram: {
+            WebApp: {
+                initData,
+                initDataUnsafe: { user },
+                expand() {},
+                ready() {},
+                isVersionAtLeast() { return false; }
+            }
+        }
+    };
+    const document = { addEventListener() {} };
+    vm.runInNewContext(fs.readFileSync(authPath, 'utf8'), {
+        window,
+        document,
+        localStorage
+    });
+    return { window, values };
+}
+
+test('ordinary browser preview does not authenticate or persist a guest profile', () => {
+    const browser = createAuthBrowser({
+        user: { id: 12345, first_name: 'Cached user' }
+    });
+
+    assert.equal(browser.window.TG.isTelegram, false);
+    assert.equal(browser.values.has('userId'), false);
+    assert.equal(browser.values.has('userName'), false);
+});
+
+test('Telegram profile is persisted only when WebApp initData is present', () => {
+    const browser = createAuthBrowser({
+        initData: 'signed-init-data',
+        user: { id: 12345, first_name: 'Test' }
+    });
+
+    assert.equal(browser.window.TG.isTelegram, true);
+    assert.equal(browser.values.get('userId'), '12345');
+    assert.equal(browser.values.get('userName'), 'Test');
+});
 
 test('frontend API sends Telegram initData and applies PostgreSQL profile values', async () => {
     const browser = createBrowser();

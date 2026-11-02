@@ -19,6 +19,8 @@ The server binds to `127.0.0.1`; put Nginx or another TLS reverse proxy in front
 
 `GET /health/live` is a process check; `GET /health/ready` also checks PostgreSQL. Authenticated endpoints require `Authorization: tma <Telegram.WebApp.initData>`. The server validates Telegram's signature and timestamp itself. The API registers a zero-balance PostgreSQL profile when an authenticated Telegram user makes their first API request.
 
+Opening the site in a regular browser outside Telegram is a read-only preview: it does not create or persist a guest profile, and server-backed account and game operations require Telegram WebApp authentication. Use the Telegram WebApp to load and save player progress.
+
 ## Current API surface
 
 - `GET /api/v1/me` returns the authenticated account state.
@@ -67,7 +69,7 @@ There is deliberately no public balance-credit endpoint. Wins and rewards must b
 
 The API origin used by the local admin file is `https://api.immortals-market.ru`. Keep `null` in `CORS_ORIGINS` for the local HTML file. Do not expose port 3000 directly. All game/economy pages now use authenticated API operations; cached browser balances are presentation only and are not authoritative.
 
-For production, edit `/etc/lootstar-api/api.env` on the VPS with `sudoedit` and set `DATABASE_URL=postgresql://lootstar@/lootstar?host=/var/run/postgresql`, `TELEGRAM_BOT_TOKEN` from BotFather, `ADMIN_TELEGRAM_IDS` to the administrator's numeric Telegram ID, `CORS_ORIGINS=null`, and `TRUST_PROXY=true` after configuring a trusted proxy. Set the local admin password using the interactive script above. Restart with `sudo systemctl restart lootstar-api`. Do not send bot tokens or passwords through chat, commit them, or put them in static frontend files.
+For production, edit `/etc/lootstar-api/api.env` on the VPS with `sudoedit` and set `DATABASE_URL=postgresql://lootstar@/lootstar?host=/var/run/postgresql`, `TELEGRAM_BOT_TOKEN` from BotFather, `ADMIN_TELEGRAM_IDS` to the administrator's numeric Telegram ID, and `CORS_ORIGINS` to a comma-separated list of exact frontend origins (for example `https://beamish-kleicha-cff127.netlify.app,https://lootstar.vercel.app,null`). Keep `null` only if you use the local `file://` admin page. Set `TRUST_PROXY=true` only after configuring a trusted proxy. Set the local admin password using the interactive script above. Restart with `sudo systemctl restart lootstar-api`. Do not send bot tokens or passwords through chat, commit them, or put them in static frontend files.
 
 ## Fresh database deployment
 

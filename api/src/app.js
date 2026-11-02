@@ -271,20 +271,20 @@ function createApp({ pool, env = process.env }) {
                 requestId,
                 itemName: req.body?.itemName
             }));
+        } catch (error) {
+            if (error instanceof OperationError) return res.status(error.status).json({ error: error.code });
+            throw error;
+        }
+    }));
 
-            app.post('/api/v1/profile/ropeko/settle', asyncRoute(async (req, res) => {
-                const requestId = req.get('idempotency-key');
-                if (!/^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(requestId || '')) {
-                    return res.status(400).json({ error: 'INVALID_ROPEKO_REQUEST' });
-                }
-                try {
-                    return res.json(await settleRopeko({
-                        pool, env, telegramId: req.telegramUser.id, requestId
-                    }));
-                } catch (error) {
-                    if (error instanceof OperationError) return res.status(error.status).json({ error: error.code });
-                    throw error;
-                }
+    app.post('/api/v1/profile/ropeko/settle', asyncRoute(async (req, res) => {
+        const requestId = req.get('idempotency-key');
+        if (!/^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(requestId || '')) {
+            return res.status(400).json({ error: 'INVALID_ROPEKO_REQUEST' });
+        }
+        try {
+            return res.json(await settleRopeko({
+                pool, env, telegramId: req.telegramUser.id, requestId
             }));
         } catch (error) {
             if (error instanceof OperationError) return res.status(error.status).json({ error: error.code });
