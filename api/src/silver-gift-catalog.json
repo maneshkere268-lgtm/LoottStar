@@ -1,0 +1,38 @@
+[
+  {
+    "name": "Серебряный мишка",
+    "price": 40,
+    "image": "/shared/bear.png",
+    "currency": "silver"
+  },
+  {
+    "name": "Серебряный подарок",
+    "price": 90,
+    "image": "/shared/gift.png",
+    "currency": "silver"
+  },
+  {
+    "name": "Серебряный кубок",
+    "price": 220,
+    "image": "/shared/trophy.png",
+    "currency": "silver"
+  },
+  {
+    "name": "Серебряная звезда",
+    "price": 450,
+    "image": "/shared/silver-star.svg",
+    "currency": "silver"
+  },
+  {
+    "name": "Осколок серебра",
+    "price": 900,
+    "image": "/shared/silver-star.svg",
+    "currency": "silver"
+  },
+  {
+    "name": "Слиток серебра",
+    "price": 1800,
+    "image": "/shared/silver-star.svg",
+    "currency": "silver"
+  }
+]

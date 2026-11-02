@@ -1,0 +1,3206 @@
+[
+  {
+    "id": 0,
+    "category": "free",
+    "name": "Trash",
+    "free": true,
+    "freeType": "unlimited",
+    "currency": "star",
+    "tier": "#7B8089",
+    "image": "/images/cases/trash.png",
+    "items": [
+      {
+        "name": "Jester Hat",
+        "price": 500,
+        "chance": 0.72,
+        "currency": "star"
+      },
+      {
+        "name": "Snoop Dogg",
+        "price": 425,
+        "chance": 1.44,
+        "currency": "star"
+      },
+      {
+        "name": "Lol Pop",
+        "price": 325,
+        "chance": 2.16,
+        "currency": "star"
+      },
+      {
+        "name": "Silver",
+        "price": 100,
+        "chance": 4.32,
+        "currency": "silver"
+      },
+      {
+        "name": "Silver",
+        "price": 100,
+        "chance": 4.32,
+        "currency": "silver"
+      },
+      {
+        "name": "Silver",
+        "price": 50,
+        "chance": 6.69,
+        "currency": "silver"
+      },
+      {
+        "name": "Silver",
+        "price": 50,
+        "chance": 6.69,
+        "currency": "silver"
+      },
+      {
+        "name": "Silver",
+        "price": 25,
+        "chance": 16.26,
+        "currency": "silver"
+      },
+      {
+        "name": "Silver",
+        "price": 15,
+        "chance": 57.4,
+        "currency": "silver"
+      }
+    ]
+  },
+  {
+    "id": 10000,
+    "category": "free",
+    "name": "Daily",
+    "free": true,
+    "freeType": "daily",
+    "currency": "star",
+    "tier": "#E8548A",
+    "image": "/images/cases/daily.png",
+    "items": [
+      {
+        "name": "Mighty Arm",
+        "price": 83750,
+        "chance": 1.44
+      },
+      {
+        "name": "Flying Broom",
+        "price": 2300,
+        "chance": 27.36
+      },
+      {
+        "name": "Desk Calendar",
+        "price": 300,
+        "chance": 71.2
+      }
+    ]
+  },
+  {
+    "id": 42,
+    "category": "starter",
+    "badge": "new",
+    "name": "Starter",
+    "price": 50,
+    "currency": "star",
+    "tier": "#4FBE8D",
+    "image": "/images/cases/starcase.png",
+    "targetRtp": 0.97,
+    "keepLowPrice": true,
+    "items": [
+      {
+        "name": "Heart",
+        "price": 15,
+        "chance": 30,
+        "currency": "star"
+      },
+      {
+        "name": "Rose",
+        "price": 25,
+        "chance": 20,
+        "currency": "star"
+      },
+      {
+        "name": "Gift",
+        "price": 25,
+        "chance": 15,
+        "currency": "star"
+      },
+      {
+        "name": "Cake",
+        "price": 50,
+        "chance": 15,
+        "currency": "star"
+      },
+      {
+        "name": "Boquet",
+        "price": 50,
+        "chance": 10,
+        "currency": "star"
+      },
+      {
+        "name": "Trophy",
+        "price": 100,
+        "chance": 5,
+        "currency": "star"
+      },
+      {
+        "name": "Diamond",
+        "price": 100,
+        "chance": 2.83,
+        "currency": "star"
+      },
+      {
+        "name": "Lol Pop",
+        "price": 325,
+        "chance": 1.6,
+        "currency": "star"
+      },
+      {
+        "name": "Love Potion",
+        "price": 2075,
+        "chance": 0.5,
+        "currency": "star"
+      },
+      {
+        "name": "Eternal Rose",
+        "price": 3325,
+        "chance": 0.07,
+        "currency": "star"
+      }
+    ]
+  },
+  {
+    "id": 43,
+    "category": "starter",
+    "badge": "new",
+    "name": "Lucky",
+    "price": 100,
+    "currency": "star",
+    "tier": "#E8B84F",
+    "image": "/images/cases/gold.png",
+    "targetRtp": 0.97,
+    "keepLowPrice": true,
+    "items": [
+      {
+        "name": "Heart",
+        "price": 15,
+        "chance": 20,
+        "currency": "star"
+      },
+      {
+        "name": "Rose",
+        "price": 25,
+        "chance": 15,
+        "currency": "star"
+      },
+      {
+        "name": "Gift",
+        "price": 25,
+        "chance": 10,
+        "currency": "star"
+      },
+      {
+        "name": "Cake",
+        "price": 50,
+        "chance": 15,
+        "currency": "star"
+      },
+      {
+        "name": "Boquet",
+        "price": 50,
+        "chance": 10,
+        "currency": "star"
+      },
+      {
+        "name": "Trophy",
+        "price": 100,
+        "chance": 8,
+        "currency": "star"
+      },
+      {
+        "name": "Diamond",
+        "price": 100,
+        "chance": 5.2,
+        "currency": "star"
+      },
+      {
+        "name": "Lol Pop",
+        "price": 325,
+        "chance": 10,
+        "currency": "star"
+      },
+      {
+        "name": "Love Potion",
+        "price": 2075,
+        "chance": 1.6,
+        "currency": "star"
+      },
+      {
+        "name": "Eternal Rose",
+        "price": 3325,
+        "chance": 0.2,
+        "currency": "star"
+      }
+    ]
+  },
+  {
+    "id": 44,
+    "category": "starter",
+    "badge": "new",
+    "name": "Premium",
+    "price": 150,
+    "currency": "star",
+    "tier": "#9B86F0",
+    "image": "/images/cases/luxury.png",
+    "targetRtp": 0.97,
+    "keepLowPrice": true,
+    "items": [
+      {
+        "name": "Heart",
+        "price": 15,
+        "chance": 15,
+        "currency": "star"
+      },
+      {
+        "name": "Rose",
+        "price": 25,
+        "chance": 10,
+        "currency": "star"
+      },
+      {
+        "name": "Gift",
+        "price": 25,
+        "chance": 8,
+        "currency": "star"
+      },
+      {
+        "name": "Cake",
+        "price": 50,
+        "chance": 15,
+        "currency": "star"
+      },
+      {
+        "name": "Boquet",
+        "price": 50,
+        "chance": 10,
+        "currency": "star"
+      },
+      {
+        "name": "Trophy",
+        "price": 100,
+        "chance": 10,
+        "currency": "star"
+      },
+      {
+        "name": "Diamond",
+        "price": 100,
+        "chance": 7,
+        "currency": "star"
+      },
+      {
+        "name": "Lol Pop",
+        "price": 325,
+        "chance": 18,
+        "currency": "star"
+      },
+      {
+        "name": "Love Potion",
+        "price": 2075,
+        "chance": 2.2,
+        "currency": "star"
+      },
+      {
+        "name": "Eternal Rose",
+        "price": 3325,
+        "chance": 0.52,
+        "currency": "star"
+      }
+    ]
+  },
+  {
+    "id": 39,
+    "category": "halloween",
+    "badge": "new",
+    "name": "Pumpkin Patch",
+    "price": 35000,
+    "currency": "star",
+    "tier": "#E2793D",
+    "image": "/images/cases/pumpkinpatch.png",
+    "targetRtp": 0.97,
+    "items": [
+      {
+        "name": "Plush Pepe (Pumpkin)",
+        "price": 15000000,
+        "chance": 0
+      },
+      {
+        "name": "Mad Pumpkin (Pump King)",
+        "price": 7500000,
+        "chance": 0.01
+      },
+      {
+        "name": "Scared Cat (Salem)",
+        "price": 750000,
+        "chance": 4.9
+      },
+      {
+        "name": "Witch Hat (Black Magic)",
+        "price": 1250000,
+        "chance": 0.09
+      },
+      {
+        "name": "Genie Lamp (Lost Souls)",
+        "price": 225000,
+        "chance": 25
+      },
+      {
+        "name": "Voodoo Doll (Pumpkin)",
+        "price": 85000,
+        "chance": 30
+      },
+      {
+        "name": "Evil Eye (Monster Mash)",
+        "price": 8000,
+        "chance": 10
+      },
+      {
+        "name": "Jack-in-the-Box (Haunted House)",
+        "price": 30000,
+        "chance": 10
+      },
+      {
+        "name": "Trapped Heart (Undead Beat)",
+        "price": 12000,
+        "chance": 10
+      },
+      {
+        "name": "Lol Pop (Pumpkin)",
+        "price": 3500,
+        "chance": 10
+      }
+    ]
+  },
+  {
+    "id": 40,
+    "category": "halloween",
+    "name": "Witching Hour",
+    "price": 2500000,
+    "currency": "star",
+    "tier": "#4FBE8D",
+    "image": "/images/cases/witchinghour.png",
+    "items": [
+      {
+        "name": "Witch Hat (Baba Yaga)",
+        "price": 12500000,
+        "chance": 0.09518782
+      },
+      {
+        "name": "Witch Hat (Necromancy)",
+        "price": 750000,
+        "chance": 0.62091467
+      },
+      {
+        "name": "Genie Lamp (Lost Souls)",
+        "price": 6722080,
+        "chance": 3.33157364
+      },
+      {
+        "name": "Magic Potion (Verdant Vial)",
+        "price": 3616960,
+        "chance": 6.66314727
+      },
+      {
+        "name": "Perfume Bottle (Venom Mist)",
+        "price": 2785120,
+        "chance": 26.17665
+      },
+      {
+        "name": "Voodoo Doll (Dark Side)",
+        "price": 85000,
+        "chance": 13.79810376
+      },
+      {
+        "name": "Scared Cat (Obelisk)",
+        "price": 61125,
+        "chance": 20.69715564
+      },
+      {
+        "name": "Hex Pot (Moonlight)",
+        "price": 5500,
+        "chance": 28.6172672
+      }
+    ]
+  },
+  {
+    "id": 41,
+    "category": "halloween",
+    "name": "Cursed Relics",
+    "price": 15000000,
+    "currency": "star",
+    "tier": "#9B86F0",
+    "image": "/images/cases/cursedrelics.png",
+    "items": [
+      {
+        "name": "Gem Signet (Spinny Boi)",
+        "price": 120000000,
+        "chance": 0.02630488
+      },
+      {
+        "name": "Witch Hat (Baba Yaga)",
+        "price": 12500000,
+        "chance": 0.13491379
+      },
+      {
+        "name": "Skull Flower (Ghost Rider)",
+        "price": 30000000,
+        "chance": 0.78914649
+      },
+      {
+        "name": "Plush Pepe (Gucci Leap)",
+        "price": 47545150,
+        "chance": 1.31524416
+      },
+      {
+        "name": "Mad Pumpkin (The Joker)",
+        "price": 3500000,
+        "chance": 2.24856309
+      },
+      {
+        "name": "Heart Locket (Reactor)",
+        "price": 43520640,
+        "chance": 13.15244156
+      },
+      {
+        "name": "Evil Eye (Monster Mash)",
+        "price": 700000,
+        "chance": 17.98850471
+      },
+      {
+        "name": "Voodoo Doll (Curse)",
+        "price": 200000,
+        "chance": 35.97700941
+      },
+      {
+        "name": "Trapped Heart (Undead Beat)",
+        "price": 12000,
+        "chance": 28.36787192
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "category": "new",
+    "badge": "new",
+    "name": "Mirage Lamps",
+    "price": 1750000,
+    "currency": "star",
+    "tier": "#E2793D",
+    "image": "/images/cases/miragelamp.png",
+    "items": [
+      {
+        "name": "Mirage Lamp (Crimson Shrine)",
+        "price": 850000000,
+        "chance": 0.00144
+      },
+      {
+        "name": "Mirage Lamp (Warm Pixel)",
+        "price": 185000000,
+        "chance": 0.00576
+      },
+      {
+        "name": "Mirage Lamp (Soft Glow)",
+        "price": 150000000,
+        "chance": 0.036
+      },
+      {
+        "name": "Mirage Lamp (Rising Sun)",
+        "price": 15000000,
+        "chance": 0.101
+      },
+      {
+        "name": "Mirage Lamp (Iron Hearth)",
+        "price": 1000000,
+        "chance": 4.04
+      },
+      {
+        "name": "Mirage Lamp (Ruby Moon)",
+        "price": 50000,
+        "chance": 15.13
+      },
+      {
+        "name": "Mirage Lamp (Crimson Dusk)",
+        "price": 5000,
+        "chance": 80.69
+      }
+    ]
+  },
+  {
+    "id": 38,
+    "category": "new",
+    "badge": "new",
+    "name": "Treasure Hunter",
+    "price": 5000,
+    "currency": "silver",
+    "tier": "#E8B84F",
+    "image": "/images/cases/treasurehunter.png",
+    "items": [
+      {
+        "name": "Durov Figure (T-Rex)",
+        "price": 5641999,
+        "chance": 0.00432,
+        "currency": "star",
+        "image": "images/DurovFigureT-Rex.png"
+      },
+      {
+        "name": "Durov Figure (Mummy)",
+        "price": 10000000,
+        "chance": 0.00576,
+        "currency": "star",
+        "image": "images/DurovFigureMummy.png"
+      },
+      {
+        "name": "Durov Figure (Mamont)",
+        "price": 100000000,
+        "chance": 0.00432,
+        "currency": "star",
+        "image": "images/DurovFigureMamont.png"
+      },
+      {
+        "name": "Stars",
+        "price": 100,
+        "chance": 99.99,
+        "currency": "star"
+      }
+    ]
+  },
+  {
+    "id": 48,
+    "category": "new",
+    "badge": "new",
+    "name": "Precious Peach",
+    "price": 5000000,
+    "currency": "star",
+    "tier": "#E2793D",
+    "useStarStack": true,
+    "items": [
+      {
+        "name": "Precious Peach (Smelting)",
+        "price": 15000000,
+        "chance": 0.8
+      },
+      {
+        "name": "Precious Peach (Caramel Red)",
+        "price": 15000000,
+        "chance": 0.8
+      },
+      {
+        "name": "Precious Peach (Cherry Secret)",
+        "price": 15000000,
+        "chance": 0.8
+      },
+      {
+        "name": "Precious Peach (Shocking)",
+        "price": 15000000,
+        "chance": 0.8
+      },
+      {
+        "name": "Precious Peach (Spanked)",
+        "price": 15000000,
+        "chance": 0.8
+      },
+      {
+        "name": "Precious Peach (Bubbling Blue)",
+        "price": 10747200,
+        "chance": 2.5
+      },
+      {
+        "name": "Precious Peach (Xmas Lights)",
+        "price": 10747200,
+        "chance": 2.5
+      },
+      {
+        "name": "Precious Peach (Blizzard)",
+        "price": 10747200,
+        "chance": 2.5
+      },
+      {
+        "name": "Precious Peach (Saint Nickel)",
+        "price": 10747200,
+        "chance": 2.5
+      },
+      {
+        "name": "Precious Peach (Gleam Bite)",
+        "price": 10747200,
+        "chance": 2.5
+      },
+      {
+        "name": "Precious Peach (Spoiled)",
+        "price": 10747200,
+        "chance": 2.5
+      },
+      {
+        "name": "Precious Peach (Impeached)",
+        "price": 10747200,
+        "chance": 2.5
+      },
+      {
+        "name": "Precious Peach (Angelic)",
+        "price": 10747200,
+        "chance": 2.5
+      },
+      {
+        "name": "Precious Peach (Pink Cupid)",
+        "price": 211725,
+        "chance": 2.5
+      },
+      {
+        "name": "Precious Peach (Jelly Bubble)",
+        "price": 211725,
+        "chance": 2.5
+      },
+      {
+        "name": "Precious Peach (Premium)",
+        "price": 211725,
+        "chance": 2.5
+      },
+      {
+        "name": "Precious Peach (Rich Green)",
+        "price": 211725,
+        "chance": 2.5
+      },
+      {
+        "name": "Precious Peach (Ladybug)",
+        "price": 211725,
+        "chance": 2.5
+      },
+      {
+        "name": "Precious Peach (Bumblebee)",
+        "price": 211725,
+        "chance": 2.5
+      },
+      {
+        "name": "Precious Peach (Cherry Season)",
+        "price": 211725,
+        "chance": 2.5
+      },
+      {
+        "name": "Precious Peach (Cutout)",
+        "price": 211725,
+        "chance": 2.5
+      },
+      {
+        "name": "Precious Peach (Airy Bright)",
+        "price": 211725,
+        "chance": 2.5
+      },
+      {
+        "name": "Precious Peach (Mushroom)",
+        "price": 211725,
+        "chance": 2.5
+      },
+      {
+        "name": "Precious Peach (Morningstar)",
+        "price": 211725,
+        "chance": 2.5
+      },
+      {
+        "name": "Precious Peach (Smooch)",
+        "price": 211725,
+        "chance": 2.5
+      },
+      {
+        "name": "Precious Peach (Jelly Stars)",
+        "price": 211725,
+        "chance": 2.5
+      },
+      {
+        "name": "Precious Peach (999 Karat)",
+        "price": 211725,
+        "chance": 2.5
+      },
+      {
+        "name": "Precious Peach (Yin Yang)",
+        "price": 211725,
+        "chance": 2.5
+      },
+      {
+        "name": "Precious Peach (Glass Heart)",
+        "price": 211725,
+        "chance": 2.5
+      },
+      {
+        "name": "Precious Peach (Crypto Orange)",
+        "price": 211725,
+        "chance": 2.5
+      },
+      {
+        "name": "Precious Peach (Tonfruit)",
+        "price": 211725,
+        "chance": 2.5
+      },
+      {
+        "name": "Precious Peach (Lush Green)",
+        "price": 150000,
+        "chance": 0.7
+      },
+      {
+        "name": "Precious Peach (Glossy Pink)",
+        "price": 150000,
+        "chance": 0.7
+      },
+      {
+        "name": "Precious Peach (Moss Posh)",
+        "price": 150000,
+        "chance": 0.7
+      },
+      {
+        "name": "Precious Peach (Dreamer)",
+        "price": 150000,
+        "chance": 0.7
+      },
+      {
+        "name": "Precious Peach (Terra Firma)",
+        "price": 150000,
+        "chance": 0.7
+      },
+      {
+        "name": "Precious Peach (Cozy Warmth)",
+        "price": 150000,
+        "chance": 0.7
+      },
+      {
+        "name": "Precious Peach (Golden Shine)",
+        "price": 150000,
+        "chance": 0.7
+      },
+      {
+        "name": "Precious Peach (Malachite)",
+        "price": 150000,
+        "chance": 0.7
+      },
+      {
+        "name": "Precious Peach (Bismuth)",
+        "price": 150000,
+        "chance": 0.7
+      },
+      {
+        "name": "Precious Peach (Peach Black)",
+        "price": 150000,
+        "chance": 0.7
+      },
+      {
+        "name": "Precious Peach (Iridescent)",
+        "price": 150000,
+        "chance": 0.7
+      },
+      {
+        "name": "Precious Peach (Neo-Chrome)",
+        "price": 150000,
+        "chance": 0.7
+      },
+      {
+        "name": "Precious Peach (Berry Pit)",
+        "price": 150000,
+        "chance": 0.7
+      },
+      {
+        "name": "Precious Peach (Juicy Orange)",
+        "price": 150000,
+        "chance": 0.7
+      },
+      {
+        "name": "Precious Peach (Twilight)",
+        "price": 150000,
+        "chance": 0.7
+      },
+      {
+        "name": "Precious Peach (Ripe Green)",
+        "price": 150000,
+        "chance": 0.7
+      },
+      {
+        "name": "Precious Peach (Faded Silver)",
+        "price": 150000,
+        "chance": 0.7
+      },
+      {
+        "name": "Precious Peach (Juicy Tones)",
+        "price": 150000,
+        "chance": 0.7
+      },
+      {
+        "name": "Precious Peach (Clear Sky)",
+        "price": 150000,
+        "chance": 0.7
+      },
+      {
+        "name": "Precious Peach (Soap Bubble)",
+        "price": 150000,
+        "chance": 0.7
+      },
+      {
+        "name": "Precious Peach (Heirloom)",
+        "price": 150000,
+        "chance": 0.7
+      },
+      {
+        "name": "Precious Peach (Iron Blush)",
+        "price": 150000,
+        "chance": 0.7
+      },
+      {
+        "name": "Precious Peach (Elegance)",
+        "price": 150000,
+        "chance": 0.7
+      },
+      {
+        "name": "Precious Peach (Cutie Pink)",
+        "price": 150000,
+        "chance": 0.7
+      },
+      {
+        "name": "Precious Peach (Party-Ready)",
+        "price": 150000,
+        "chance": 0.7
+      },
+      {
+        "name": "Precious Peach (Honey Gold)",
+        "price": 150000,
+        "chance": 0.7
+      },
+      {
+        "name": "Precious Peach (Bright Amber)",
+        "price": 150000,
+        "chance": 0.7
+      },
+      {
+        "name": "Precious Peach (Bright Coral)",
+        "price": 150000,
+        "chance": 0.7
+      },
+      {
+        "name": "Precious Peach (Morning Haze)",
+        "price": 150000,
+        "chance": 0.7
+      },
+      {
+        "name": "Precious Peach (Bronze)",
+        "price": 150000,
+        "chance": 0.7
+      },
+      {
+        "name": "Precious Peach (Christmas)",
+        "price": 150000,
+        "chance": 0.7
+      },
+      {
+        "name": "Precious Peach (Mardi Gras)",
+        "price": 150000,
+        "chance": 0.7
+      },
+      {
+        "name": "Precious Peach (Sunset)",
+        "price": 150000,
+        "chance": 0.7
+      },
+      {
+        "name": "Precious Peach (Purple Glow)",
+        "price": 150000,
+        "chance": 0.7
+      },
+      {
+        "name": "Precious Peach (Cold Iron)",
+        "price": 150000,
+        "chance": 0.7
+      },
+      {
+        "name": "Precious Peach (Pure Peach)",
+        "price": 150000,
+        "chance": 0.7
+      },
+      {
+        "name": "Precious Peach (Polaris)",
+        "price": 150000,
+        "chance": 0.7
+      },
+      {
+        "name": "Precious Peach (Ruby Slice)",
+        "price": 150000,
+        "chance": 0.7
+      },
+      {
+        "name": "Precious Peach (Ruby Red)",
+        "price": 150000,
+        "chance": 0.7
+      },
+      {
+        "name": "Precious Peach (Smooth Touch)",
+        "price": 150000,
+        "chance": 0.7
+      },
+      {
+        "name": "Precious Peach (Stardust)",
+        "price": 150000,
+        "chance": 0.7
+      },
+      {
+        "name": "Precious Peach (Fuzzy Lilac)",
+        "price": 150000,
+        "chance": 0.7
+      },
+      {
+        "name": "Precious Peach (Neptune)",
+        "price": 100000,
+        "chance": 0.3
+      },
+      {
+        "name": "Precious Peach (Rosegold)",
+        "price": 100000,
+        "chance": 0.3
+      },
+      {
+        "name": "Precious Peach (Soft Sunset)",
+        "price": 100000,
+        "chance": 0.3
+      },
+      {
+        "name": "Precious Peach (Ogre Green)",
+        "price": 100000,
+        "chance": 0.3
+      },
+      {
+        "name": "Precious Peach (Pyrite)",
+        "price": 100000,
+        "chance": 0.3
+      },
+      {
+        "name": "Precious Peach (Glossy Finish)",
+        "price": 100000,
+        "chance": 0.3
+      },
+      {
+        "name": "Precious Peach (Ripe Pink)",
+        "price": 100000,
+        "chance": 0.3
+      }
+    ]
+  },
+  {
+    "id": 49,
+    "category": "new",
+    "badge": "new",
+    "name": "Plush Pepe",
+    "price": 8000000,
+    "currency": "star",
+    "tier": "#4FBE8D",
+    "useStarStack": true,
+    "items": [
+      {
+        "name": "Plush Pepe (Bavaria)",
+        "price": 300000000,
+        "chance": 0.005
+      },
+      {
+        "name": "Plush Pepe (X-Ray)",
+        "price": 1000206225,
+        "chance": 0.05
+      },
+      {
+        "name": "Plush Pepe (Gucci Leap)",
+        "price": 237725750,
+        "chance": 0.2
+      },
+      {
+        "name": "Plush Pepe (Hothead)",
+        "price": 169292209,
+        "chance": 0.3
+      },
+      {
+        "name": "Plush Pepe (Kung Fu Pepe)",
+        "price": 57000000,
+        "chance": 0.4
+      },
+      {
+        "name": "Plush Pepe (Pumpkin)",
+        "price": 15000000,
+        "chance": 3
+      },
+      {
+        "name": "Plush Pepe (Toading...)",
+        "price": 11670005,
+        "chance": 4
+      },
+      {
+        "name": "Plush Pepe (Emerald Plush)",
+        "price": 6985225,
+        "chance": 6
+      },
+      {
+        "name": "Plush Pepe (Emo Boi)",
+        "price": 5036225,
+        "chance": 8
+      },
+      {
+        "name": "Plush Pepe (Aqua Plush)",
+        "price": 3625000,
+        "chance": 8
+      },
+      {
+        "name": "Plush Pepe (Leonardo)",
+        "price": 3065488,
+        "chance": 7
+      },
+      {
+        "name": "Plush Pepe (Raphael)",
+        "price": 2707450,
+        "chance": 7
+      },
+      {
+        "name": "Plush Pepe (Donatello)",
+        "price": 2387445,
+        "chance": 7
+      },
+      {
+        "name": "Plush Pepe (Midas Pepe)",
+        "price": 2017345,
+        "chance": 8
+      },
+      {
+        "name": "Plush Pepe (Ninja Mike)",
+        "price": 1765151,
+        "chance": 7
+      },
+      {
+        "name": "Plush Pepe (Amalgam)",
+        "price": 1625025,
+        "chance": 8
+      },
+      {
+        "name": "Plush Pepe (Cozy Galaxy)",
+        "price": 1485150,
+        "chance": 8
+      },
+      {
+        "name": "Plush Pepe (Hue Jester)",
+        "price": 1337250,
+        "chance": 8
+      },
+      {
+        "name": "Plush Pepe (Poison Dart)",
+        "price": 1205075,
+        "chance": 8
+      },
+      {
+        "name": "Plush Pepe",
+        "price": 828750,
+        "chance": 2
+      }
+    ]
+  },
+  {
+    "id": 50,
+    "category": "new",
+    "badge": "new",
+    "name": "Durov's Cap",
+    "price": 11000000,
+    "currency": "star",
+    "tier": "#9B86F0",
+    "useStarStack": true,
+    "items": [
+      {
+        "name": "Durov's Cap (Toxic Guy)",
+        "price": 22670240,
+        "chance": 5
+      },
+      {
+        "name": "Durov's Cap (RGB Glitch)",
+        "price": 1075025,
+        "chance": 12
+      },
+      {
+        "name": "Durov's Cap (Falcon)",
+        "price": 545725,
+        "chance": 12
+      },
+      {
+        "name": "Durov's Cap (Tron)",
+        "price": 398025,
+        "chance": 12
+      },
+      {
+        "name": "Durov's Cap (Sky High)",
+        "price": 374025,
+        "chance": 12
+      },
+      {
+        "name": "Durov's Cap (Neon)",
+        "price": 348750,
+        "chance": 12
+      },
+      {
+        "name": "Durov's Cap (Honey Bee)",
+        "price": 305750,
+        "chance": 12
+      },
+      {
+        "name": "Durov's Cap (Sunrise)",
+        "price": 237050,
+        "chance": 11.5
+      },
+      {
+        "name": "Durov's Cap (Fun Time)",
+        "price": 232775,
+        "chance": 11.5
+      }
+    ]
+  },
+  {
+    "id": 52,
+    "category": "marvel",
+    "badge": "new",
+    "name": "Marvel Heroes",
+    "image": "/images/cases/marvelheroes.png",
+    "price": 777777,
+    "currency": "star",
+    "tier": "#E62429",
+    "items": [
+      {
+        "name": "Signet Ring (Tony Stark)",
+        "price": 27000000,
+        "chance": 0.15
+      },
+      {
+        "name": "Bunny Muffin (Spiderman)",
+        "price": 14500000,
+        "chance": 0.2
+      },
+      {
+        "name": "Bunny Muffin (Hulk)",
+        "price": 9000000,
+        "chance": 0.7
+      },
+      {
+        "name": "Bunny Muffin (Wolverine)",
+        "price": 6500000,
+        "chance": 1
+      },
+      {
+        "name": "Sky Stilettos (Spidergirl)",
+        "price": 4000000,
+        "chance": 1.4
+      },
+      {
+        "name": "Toy Bear (Deadpool)",
+        "price": 2600000,
+        "chance": 2.5
+      },
+      {
+        "name": "Mini Oscar (Catwoman)",
+        "price": 1500000,
+        "chance": 3.5
+      },
+      {
+        "name": "Fresh Socks (Black Panther)",
+        "price": 1000000,
+        "chance": 5
+      },
+      {
+        "name": "Bow Tie (Spider Sense)",
+        "price": 550000,
+        "chance": 8
+      },
+      {
+        "name": "Perfume Bottle (Venom Mist)",
+        "price": 290000,
+        "chance": 12
+      },
+      {
+        "name": "Swiss Watch (Bruce Wayne)",
+        "price": 115000,
+        "chance": 18
+      },
+      {
+        "name": "Input Key (Angel)",
+        "price": 26000,
+        "chance": 25.4
+      },
+      {
+        "name": "Toy Bear (Angel)",
+        "price": 2500,
+        "chance": 21.92
+      }
+    ]
+  },
+  {
+    "id": 53,
+    "category": "new",
+    "badge": "new",
+    "name": "Durov Funny",
+    "price": 150000,
+    "currency": "star",
+    "tier": "#E8B84F",
+    "image": "images/unique/durovfunny/caseimg.png",
+    "items": [
+      {
+        "name": "Durov Funny (Socks)",
+        "price": 67000,
+        "chance": 60,
+        "currency": "star",
+        "image": "images/unique/durovfunny/DurovSocks.png"
+      },
+      {
+        "name": "Durov Funny (Victory Medal)",
+        "price": 95000,
+        "chance": 39,
+        "currency": "star",
+        "image": "images/unique/durovfunny/VictoryMedal(1st).png"
+      },
+      {
+        "name": "Durov Funny (Poplavok)",
+        "price": 5000000,
+        "chance": 1,
+        "currency": "star",
+        "image": "images/unique/durovfunny/Poplavok.png"
+      }
+    ]
+  },
+  {
+    "id": 54,
+    "category": "new",
+    "badge": "new",
+    "name": "Minions",
+    "price": 400000,
+    "currency": "star",
+    "tier": "#E8B84F",
+    "image": "/images/unique/minions/caseimg.png",
+    "items": [
+      {
+        "name": "Whip Cupcake (Minion)",
+        "price": 5000000,
+        "chance": 1,
+        "currency": "star",
+        "image": "https://cdn.changes.tg/gifts/models/Whip%20Cupcake/png/Minion.png"
+      },
+      {
+        "name": "Bow Tie (Despicable)",
+        "price": 1280000,
+        "chance": 2.5,
+        "currency": "star",
+        "image": "https://cdn.changes.tg/gifts/models/Bow%20Tie/png/Despicable.png"
+      },
+      {
+        "name": "Sleigh Bell (Stuart)",
+        "price": 300000,
+        "chance": 15,
+        "currency": "star",
+        "image": "https://cdn.changes.tg/gifts/models/Sleigh%20Bell/png/Stuart.png"
+      },
+      {
+        "name": "Hanging Star (Minion)",
+        "price": 200000,
+        "chance": 81.5,
+        "currency": "star",
+        "image": "https://cdn.changes.tg/gifts/models/Hanging%20Star/png/Minion.png"
+      }
+    ]
+  },
+  {
+    "id": 55,
+    "category": "new",
+    "badge": "new",
+    "name": "Illuminant",
+    "price": 666666,
+    "currency": "star",
+    "tier": "#E8B84F",
+    "image": "/images/unique/Illuminant/caseimg.png",
+    "items": [
+      {
+        "name": "Victory Medal (Illuminant)",
+        "price": 15000000,
+        "chance": 0.5,
+        "currency": "star",
+        "image": "/images/unique/Illuminant/VictoryMedal(Illuminant).png"
+      },
+      {
+        "name": "Record Player (Illuminant)",
+        "price": 3500000,
+        "chance": 4.5,
+        "currency": "star",
+        "image": "/images/unique/Illuminant/RecordPlayer(Illuminant).png"
+      },
+      {
+        "name": "Blink Stinky (Rapter)",
+        "price": 1200000,
+        "chance": 15,
+        "currency": "star",
+        "image": "/images/unique/Illuminant/BlinkStinky(Rapter).png"
+      },
+      {
+        "name": "Whip Cupcake (Aliens)",
+        "price": 450000,
+        "chance": 35,
+        "currency": "star",
+        "image": "/images/unique/Illuminant/WhipCupcake(Aliens).png"
+      },
+      {
+        "name": "Happy Brownie (Pyramids)",
+        "price": 350000,
+        "chance": 45,
+        "currency": "star",
+        "image": "/images/unique/Illuminant/HappyBrownie(Pyramids).png"
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "category": "special",
+    "name": "Bloody Night",
+    "price": 500000,
+    "currency": "star",
+    "tier": "#E8607A",
+    "image": "/images/cases/bloodynight.png",
+    "items": [
+      {
+        "name": "Plush Pepe (Hothead)",
+        "price": 169292209,
+        "chance": 0.014
+      },
+      {
+        "name": "Plush Pepe (Gucci Leap)",
+        "price": 47545150,
+        "chance": 0.014
+      },
+      {
+        "name": "Plush Pepe (Toading...)",
+        "price": 11670005,
+        "chance": 0.072
+      },
+      {
+        "name": "Plush Pepe (Midas Pepe)",
+        "price": 2017345,
+        "chance": 0.418
+      },
+      {
+        "name": "Plush Pepe (Cozy Galaxy)",
+        "price": 1485150,
+        "chance": 0.634
+      },
+      {
+        "name": "Plush Pepe (Emerald Plush)",
+        "price": 1397045,
+        "chance": 0.85
+      },
+      {
+        "name": "Plush Pepe (Emo Boi)",
+        "price": 1007245,
+        "chance": 1.05
+      },
+      {
+        "name": "Plush Pepe (Aqua Plush)",
+        "price": 725000,
+        "chance": 1.27
+      },
+      {
+        "name": "Plush Pepe (Amalgam)",
+        "price": 325005,
+        "chance": 19.46
+      },
+      {
+        "name": "Plush Pepe (Hue Jester)",
+        "price": 267450,
+        "chance": 35.68
+      },
+      {
+        "name": "Plush Pepe (Poison Dart)",
+        "price": 241015,
+        "chance": 40.54
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "category": "special",
+    "name": "Ninja Turtles",
+    "price": 1000000,
+    "currency": "star",
+    "tier": "#4FBE8D",
+    "image": "/images/cases/ninjaturtles.png",
+    "items": [
+      {
+        "name": "Heart Locket (Turtles)",
+        "price": 347668296,
+        "chance": 0.014
+      },
+      {
+        "name": "Plush Pepe (Leonardo)",
+        "price": 3065488,
+        "chance": 0.979
+      },
+      {
+        "name": "Plush Pepe (Raphael)",
+        "price": 2707450,
+        "chance": 1.02
+      },
+      {
+        "name": "Plush Pepe (Donatello)",
+        "price": 2387445,
+        "chance": 1.15
+      },
+      {
+        "name": "Plush Pepe (Ninja Mike)",
+        "price": 1765151,
+        "chance": 1.15
+      },
+      {
+        "name": "Happy Brownie (Raphael)",
+        "price": 150650,
+        "chance": 41
+      },
+      {
+        "name": "Mighty Arm (Pizza Pump)",
+        "price": 174635,
+        "chance": 54.69
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "category": "special",
+    "name": "Monarch",
+    "price": 1300000,
+    "currency": "star",
+    "tier": "#7B8089",
+    "image": "/images/cases/monarch.png",
+    "targetRtp": 0.97,
+    "items": [
+      {
+        "name": "Gem Signet (Spinny Boi)",
+        "price": 120000000,
+        "chance": 0.1001
+      },
+      {
+        "name": "Crystal Eagle",
+        "price": 74000000,
+        "chance": 0.5003
+      },
+      {
+        "name": "Plush Pepe (Kung Fu Pepe)",
+        "price": 57000000,
+        "chance": 1.0006
+      },
+      {
+        "name": "Toy Bear (Angel)",
+        "price": 650,
+        "chance": 19.5998
+      },
+      {
+        "name": "Input Key (Angel)",
+        "price": 105,
+        "chance": 78.8992
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "category": "special",
+    "name": "Radioactive",
+    "price": 3000000,
+    "currency": "star",
+    "tier": "#4FBE8D",
+    "image": "/images/cases/radioactive.png",
+    "items": [
+      {
+        "name": "Heart Locket (Reactor)",
+        "price": 43520640,
+        "chance": 0.115
+      },
+      {
+        "name": "Durov's Cap (Toxic Guy)",
+        "price": 22670240,
+        "chance": 0.202
+      },
+      {
+        "name": "Precious Peach (Gleam Bite)",
+        "price": 10747200,
+        "chance": 0.216
+      },
+      {
+        "name": "Genie Lamp (Lost Souls)",
+        "price": 6722080,
+        "chance": 0.547
+      },
+      {
+        "name": "Astral Shard (Uranium)",
+        "price": 2950000,
+        "chance": 1.08
+      },
+      {
+        "name": "Magic Potion (Verdant Vial)",
+        "price": 2750000,
+        "chance": 2.16
+      },
+      {
+        "name": "Perfume Bottle (Venom Mist)",
+        "price": 2785120,
+        "chance": 95.68
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "category": "special",
+    "name": "Angel",
+    "price": 3333333,
+    "currency": "star",
+    "tier": "#E8B84F",
+    "image": "/images/cases/angel.png",
+    "targetRtp": 0.97,
+    "items": [
+      {
+        "name": "Loot Bag (Priestly)",
+        "price": 150000000,
+        "chance": 0.101
+      },
+      {
+        "name": "Sleigh Bell (Holy Grenade)",
+        "price": 90000000,
+        "chance": 0.502
+      },
+      {
+        "name": "Top Hat (Celestial)",
+        "price": 1777778,
+        "chance": 16.482378
+      },
+      {
+        "name": "Ionic Dryer (Angel Blast)",
+        "price": 1000000,
+        "chance": 25.249535
+      },
+      {
+        "name": "XMAS Stocking (Heaven)",
+        "price": 111111,
+        "chance": 57.765087
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "category": "cars",
+    "name": "M5 F90",
+    "price": 55555,
+    "currency": "star",
+    "tier": "#7B8089",
+    "image": "/images/cases/m5f90.png",
+    "items": [
+      {
+        "name": "Heart Locket (Neptune)",
+        "price": 888750,
+        "chance": 0.253
+      },
+      {
+        "name": "Durov's Cap (Neon)",
+        "price": 348750,
+        "chance": 1.61
+      },
+      {
+        "name": "Precious Peach (Yin Yang)",
+        "price": 162325,
+        "chance": 4.24
+      },
+      {
+        "name": "Cupid Charm (Pepe Love)",
+        "price": 87050,
+        "chance": 6
+      },
+      {
+        "name": "Artisan Brick (Bomb Planted)",
+        "price": 63025,
+        "chance": 13.3
+      },
+      {
+        "name": "Mighty Arm (Body Builder)",
+        "price": 40750,
+        "chance": 32.1
+      },
+      {
+        "name": "Astral Shard (Crystal Punk)",
+        "price": 31250,
+        "chance": 42.5
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "category": "cars",
+    "name": "G63",
+    "price": 177777,
+    "currency": "star",
+    "tier": "#7B8089",
+    "image": "/images/cases/g63.png",
+    "items": [
+      {
+        "name": "Plush Pepe (Amalgam)",
+        "price": 1625025,
+        "chance": 0.658
+      },
+      {
+        "name": "Heart Locket (Delegam)",
+        "price": 986250,
+        "chance": 1.322
+      },
+      {
+        "name": "Heart Locket (Shield of Sun)",
+        "price": 623500,
+        "chance": 1.98
+      },
+      {
+        "name": "Heroic Helmet (Frozen Aegis)",
+        "price": 230325,
+        "chance": 5.931
+      },
+      {
+        "name": "Artisan Brick (Gold Block)",
+        "price": 157025,
+        "chance": 15.899
+      },
+      {
+        "name": "Loot Bag (Crypto Byte)",
+        "price": 113750,
+        "chance": 26.51
+      },
+      {
+        "name": "Ion Gem (Prismatic)",
+        "price": 56250,
+        "chance": 47.7
+      }
+    ]
+  },
+  {
+    "id": 11,
+    "category": "cars",
+    "name": "Porsche 911",
+    "price": 599999,
+    "currency": "star",
+    "tier": "#E8B84F",
+    "image": "/images/cases/porsche911.png",
+    "items": [
+      {
+        "name": "Plush Pepe (Gucci Leap)",
+        "price": 237725750,
+        "chance": 0.043
+      },
+      {
+        "name": "Heart Locket (Mecha Love)",
+        "price": 600000,
+        "chance": 4.27
+      },
+      {
+        "name": "Durov's Cap (Tron)",
+        "price": 398025,
+        "chance": 95.69
+      }
+    ]
+  },
+  {
+    "id": 12,
+    "category": "cars",
+    "name": "URUS",
+    "price": 1666666,
+    "currency": "star",
+    "tier": "#9B86F0",
+    "image": "/images/cases/urus.png",
+    "items": [
+      {
+        "name": "Plush Pepe (X-Ray)",
+        "price": 1000206225,
+        "chance": 0.072
+      },
+      {
+        "name": "Heart",
+        "price": 15,
+        "chance": 25
+      },
+      {
+        "name": "Plush Pepe (Hue Jester)",
+        "price": 1337250,
+        "chance": 74.93
+      }
+    ]
+  },
+  {
+    "id": 13,
+    "category": "cars",
+    "name": "Cyber",
+    "price": 13444222,
+    "currency": "star",
+    "tier": "#4FB8C4",
+    "image": "/images/cases/cyber.png",
+    "targetRtp": 0.97,
+    "items": [
+      {
+        "name": "Plush Pepe (Bavaria)",
+        "price": 300000000,
+        "chance": 0.10144
+      },
+      {
+        "name": "Durov's Figurine (Ilon)",
+        "price": 150000000,
+        "chance": 0.30432
+      },
+      {
+        "name": "Pool Float (Nessie)",
+        "price": 74000000,
+        "chance": 0.330002
+      },
+      {
+        "name": "Happy Brownie (Toilet Bot)",
+        "price": 52228677,
+        "chance": 0.413005
+      },
+      {
+        "name": "Mood Pack (Bank Vault)",
+        "price": 3124789,
+        "chance": 3.50005
+      },
+      {
+        "name": "Toy Bear (Blueprint)",
+        "price": 1536235,
+        "chance": 95.351183
+      }
+    ]
+  },
+  {
+    "id": 14,
+    "category": "nft",
+    "name": "Frozen Heart",
+    "price": 4500,
+    "currency": "star",
+    "tier": "#4FB8C4",
+    "image": "/images/cases/frozenheart.png",
+    "items": [
+      {
+        "name": "Precious Peach (Bubbling Blue)",
+        "price": 202750,
+        "chance": 0.533
+      },
+      {
+        "name": "Astral Shard (Aquarium)",
+        "price": 28950,
+        "chance": 1.45
+      },
+      {
+        "name": "Kissed Frog (Ectofrog)",
+        "price": 10500,
+        "chance": 3.61
+      },
+      {
+        "name": "Mad Pumpkin (Frostbite)",
+        "price": 6025,
+        "chance": 8.97
+      },
+      {
+        "name": "Love Potion (Ice Queen)",
+        "price": 2550,
+        "chance": 15.28
+      },
+      {
+        "name": "Cupid Charm (Crystal Clear)",
+        "price": 3375,
+        "chance": 23.45
+      },
+      {
+        "name": "Eternal Candle (Bubble Bath)",
+        "price": 1775,
+        "chance": 46.71
+      }
+    ]
+  },
+  {
+    "id": 15,
+    "category": "nft",
+    "name": "Bubble Gum",
+    "price": 12000,
+    "currency": "star",
+    "tier": "#E8548A",
+    "image": "/images/cases/bubblegum.png",
+    "items": [
+      {
+        "name": "Durov's Cap (Sky High)",
+        "price": 374025,
+        "chance": 0.252
+      },
+      {
+        "name": "Heroic Helmet (Punk Skull)",
+        "price": 261750,
+        "chance": 0.312
+      },
+      {
+        "name": "Gem Signet (8 Bit Diamond)",
+        "price": 105275,
+        "chance": 0.993
+      },
+      {
+        "name": "Loot Bag (City Life)",
+        "price": 74750,
+        "chance": 1.5
+      },
+      {
+        "name": "Astral Shard (Nectarite)",
+        "price": 37050,
+        "chance": 2.93
+      },
+      {
+        "name": "Bonded Ring (Rainbow)",
+        "price": 21075,
+        "chance": 4.94
+      },
+      {
+        "name": "Electric Skull (Half Alive)",
+        "price": 13750,
+        "chance": 7.8
+      },
+      {
+        "name": "Toy Bear (Fazbear)",
+        "price": 8350,
+        "chance": 17.07
+      },
+      {
+        "name": "Low Rider (Neon Nitro)",
+        "price": 6025,
+        "chance": 26.02
+      },
+      {
+        "name": "Fresh Socks (Billie Jean)",
+        "price": 4465,
+        "chance": 38.18
+      }
+    ]
+  },
+  {
+    "id": 16,
+    "category": "nft",
+    "name": "Cats",
+    "price": 40000,
+    "currency": "star",
+    "tier": "#E8548A",
+    "image": "/images/cases/cats.png",
+    "items": [
+      {
+        "name": "Plush Pepe (Poison Dart)",
+        "price": 1205075,
+        "chance": 0.092
+      },
+      {
+        "name": "Heart Locket (Fairy Dust)",
+        "price": 637025,
+        "chance": 0.382
+      },
+      {
+        "name": "Durov's Cap (Fun Time)",
+        "price": 232775,
+        "chance": 0.856
+      },
+      {
+        "name": "Artisan Brick (Cash Roll)",
+        "price": 102050,
+        "chance": 1.8
+      },
+      {
+        "name": "Genie Lamp (Cat Spirit)",
+        "price": 82050,
+        "chance": 2.57
+      },
+      {
+        "name": "Nail Bracelet (Moon Cat)",
+        "price": 74725,
+        "chance": 4.65
+      },
+      {
+        "name": "Scared Cat (Obelisk)",
+        "price": 61125,
+        "chance": 7.06
+      },
+      {
+        "name": "Nail Bracelet (Cat Person)",
+        "price": 52500,
+        "chance": 11.08
+      },
+      {
+        "name": "Resistance Dog",
+        "price": 36250,
+        "chance": 12.28
+      },
+      {
+        "name": "Bonded Ring (Cat Bed)",
+        "price": 22725,
+        "chance": 23.34
+      },
+      {
+        "name": "Gem Signet (Old Bronze)",
+        "price": 18250,
+        "chance": 35.89
+      }
+    ]
+  },
+  {
+    "id": 17,
+    "category": "nft",
+    "name": "Glitch",
+    "price": 135000,
+    "currency": "star",
+    "tier": "#4FBE8D",
+    "image": "/images/cases/glitch.png",
+    "items": [
+      {
+        "name": "Heart Locket (Turtles)",
+        "price": 12330325,
+        "chance": 0.058
+      },
+      {
+        "name": "Plush Pepe (Emo Boi)",
+        "price": 5036225,
+        "chance": 0.173
+      },
+      {
+        "name": "Heart Locket (Nightclub)",
+        "price": 607050,
+        "chance": 1.17
+      },
+      {
+        "name": "Durov's Cap (Shadow)",
+        "price": 225000,
+        "chance": 2.93
+      },
+      {
+        "name": "Precious Peach (Peach Black)",
+        "price": 110725,
+        "chance": 20.66
+      },
+      {
+        "name": "Loot Bag (Black Purrse)",
+        "price": 112050,
+        "chance": 20.66
+      },
+      {
+        "name": "Heroic Helmet (Praetorian)",
+        "price": 74025,
+        "chance": 23.34
+      },
+      {
+        "name": "Artisan Brick (Concrete)",
+        "price": 41250,
+        "chance": 31.01
+      }
+    ]
+  },
+  {
+    "id": 18,
+    "category": "nft",
+    "name": "Dream",
+    "price": 250000,
+    "currency": "star",
+    "tier": "#E8B84F",
+    "image": "/images/cases/dream.png",
+    "items": [
+      {
+        "name": "Plush Pepe (Aqua Plush)",
+        "price": 3625000,
+        "chance": 1.093
+      },
+      {
+        "name": "Durov's Cap (RGB Glitch)",
+        "price": 1075025,
+        "chance": 2.176
+      },
+      {
+        "name": "Artisan Brick (USBrick)",
+        "price": 360500,
+        "chance": 5.137
+      },
+      {
+        "name": "Durov's Cap (Sunrise)",
+        "price": 237050,
+        "chance": 10.856
+      },
+      {
+        "name": "Mighty Arm (Gladiator)",
+        "price": 133200,
+        "chance": 36.219
+      },
+      {
+        "name": "Toy Bear (Dark Knight)",
+        "price": 30325,
+        "chance": 44.519
+      }
+    ]
+  },
+  {
+    "id": 19,
+    "category": "retro",
+    "name": "Beggar",
+    "price": 220,
+    "currency": "star",
+    "tier": "#9B86F0",
+    "image": "/images/cases/beggar.png",
+    "items": [
+      {
+        "name": "Love Potion",
+        "price": 2075,
+        "chance": 0.229
+      },
+      {
+        "name": "Evil Eye",
+        "price": 925,
+        "chance": 1.14
+      },
+      {
+        "name": "Witch Hat",
+        "price": 725,
+        "chance": 2.84
+      },
+      {
+        "name": "Holiday Drink",
+        "price": 450,
+        "chance": 5.68
+      },
+      {
+        "name": "Tama Gadget",
+        "price": 450,
+        "chance": 6.82
+      },
+      {
+        "name": "Lunar Snake",
+        "price": 350,
+        "chance": 8.44
+      },
+      {
+        "name": "Lol Pop",
+        "price": 325,
+        "chance": 8.99
+      },
+      {
+        "name": "Signet Ring",
+        "price": 100,
+        "chance": 30.85
+      },
+      {
+        "name": "Diamond Ring",
+        "price": 100,
+        "chance": 35.01
+      }
+    ]
+  },
+  {
+    "id": 20,
+    "category": "retro",
+    "name": "Plodder",
+    "price": 444,
+    "currency": "star",
+    "tier": "#4FB8C4",
+    "image": "/images/cases/plodder.png",
+    "items": [
+      {
+        "name": "Perfume Bottle",
+        "price": 17350,
+        "chance": 0.084
+      },
+      {
+        "name": "Kissed Frog",
+        "price": 8625,
+        "chance": 0.431
+      },
+      {
+        "name": "Eternal Rose",
+        "price": 3325,
+        "chance": 2.16
+      },
+      {
+        "name": "Hanging Star",
+        "price": 1225,
+        "chance": 2.84
+      },
+      {
+        "name": "Sakura Flower",
+        "price": 1075,
+        "chance": 4.22
+      },
+      {
+        "name": "Hex Pot",
+        "price": 700,
+        "chance": 4.92
+      },
+      {
+        "name": "Ginger Cookie",
+        "price": 450,
+        "chance": 5.6
+      },
+      {
+        "name": "Pet Snake",
+        "price": 450,
+        "chance": 5.6
+      },
+      {
+        "name": "Xmas Stocking",
+        "price": 350,
+        "chance": 14.05
+      },
+      {
+        "name": "Snake Box",
+        "price": 325,
+        "chance": 17.57
+      },
+      {
+        "name": "Signet Ring",
+        "price": 100,
+        "chance": 42.52
+      }
+    ]
+  },
+  {
+    "id": 21,
+    "category": "retro",
+    "name": "Office Clerk",
+    "price": 689,
+    "currency": "star",
+    "tier": "#E8B84F",
+    "image": "/images/cases/officeclerk.png",
+    "items": [
+      {
+        "name": "Mini Oscar",
+        "price": 30250,
+        "chance": 0.067
+      },
+      {
+        "name": "Loot Bag",
+        "price": 19375,
+        "chance": 0.067
+      },
+      {
+        "name": "Scared Cat",
+        "price": 10500,
+        "chance": 0.348
+      },
+      {
+        "name": "Voodoo Doll",
+        "price": 3725,
+        "chance": 2.57
+      },
+      {
+        "name": "Trapped Heart",
+        "price": 2075,
+        "chance": 3.2
+      },
+      {
+        "name": "Valentine Box",
+        "price": 1175,
+        "chance": 3.2
+      },
+      {
+        "name": "Jolly Chimp",
+        "price": 900,
+        "chance": 5.16
+      },
+      {
+        "name": "Light Sword",
+        "price": 725,
+        "chance": 6.28
+      },
+      {
+        "name": "Star Notepad",
+        "price": 600,
+        "chance": 14.08
+      },
+      {
+        "name": "Hypno Lollipop",
+        "price": 475,
+        "chance": 14.08
+      },
+      {
+        "name": "Lol Pop",
+        "price": 325,
+        "chance": 50.95
+      }
+    ]
+  },
+  {
+    "id": 22,
+    "category": "retro",
+    "name": "Manager",
+    "price": 835,
+    "currency": "star",
+    "tier": "#E8B84F",
+    "image": "/images/cases/manager.png",
+    "items": [
+      {
+        "name": "Bonded Ring (Pixel Loot)",
+        "price": 19250,
+        "chance": 0.219
+      },
+      {
+        "name": "Jester Hat (Pepe Hop)",
+        "price": 14825,
+        "chance": 0.436
+      },
+      {
+        "name": "Hanging Star (This Is Fine)",
+        "price": 8150,
+        "chance": 0.978
+      },
+      {
+        "name": "Easter Egg (Boiled Pepe)",
+        "price": 3025,
+        "chance": 1.63
+      },
+      {
+        "name": "Ginger Cookie (Headless)",
+        "price": 2350,
+        "chance": 2.62
+      },
+      {
+        "name": "Easter Egg (Creeper)",
+        "price": 1425,
+        "chance": 4.59
+      },
+      {
+        "name": "Jolly Chimp (Retro Cartoon)",
+        "price": 1150,
+        "chance": 5.91
+      },
+      {
+        "name": "Jack in the box (Aliens)",
+        "price": 675,
+        "chance": 22.31
+      },
+      {
+        "name": "Clover Pin (Corrupted)",
+        "price": 475,
+        "chance": 27.87
+      },
+      {
+        "name": "Snake Box",
+        "price": 325,
+        "chance": 33.44
+      }
+    ]
+  },
+  {
+    "id": 23,
+    "category": "retro",
+    "name": "Oligarch",
+    "price": 926,
+    "currency": "star",
+    "tier": "#E8B84F",
+    "image": "/images/cases/oligarch.png",
+    "items": [
+      {
+        "name": "Heroic Helmet",
+        "price": 48625,
+        "chance": 0.029
+      },
+      {
+        "name": "Gem Signet",
+        "price": 14775,
+        "chance": 0.187
+      },
+      {
+        "name": "Neko Helmet",
+        "price": 5750,
+        "chance": 0.907
+      },
+      {
+        "name": "Ionic Dryer",
+        "price": 3850,
+        "chance": 1.14
+      },
+      {
+        "name": "Mad Pumpkin",
+        "price": 3500,
+        "chance": 2.06
+      },
+      {
+        "name": "Evil Eye",
+        "price": 925,
+        "chance": 24.8
+      },
+      {
+        "name": "Jelly Bunny",
+        "price": 800,
+        "chance": 29.53
+      },
+      {
+        "name": "Lush Bouquet",
+        "price": 650,
+        "chance": 41.35
+      }
+    ]
+  },
+  {
+    "id": 24,
+    "category": "retro",
+    "name": "Gold",
+    "price": 1999,
+    "currency": "star",
+    "tier": "#E8B84F",
+    "image": "/images/cases/gold.png",
+    "targetRtp": 0.97,
+    "items": [
+      {
+        "name": "Artisan Brick (Gold Bar)",
+        "price": 76725,
+        "chance": 0.147
+      },
+      {
+        "name": "Magic Potion (Gold Medal)",
+        "price": 27025,
+        "chance": 0.295
+      },
+      {
+        "name": "Swiss Watch (Day Trader)",
+        "price": 15050,
+        "chance": 1.25
+      },
+      {
+        "name": "Low Rider (Gold Rush)",
+        "price": 11025,
+        "chance": 1.68
+      },
+      {
+        "name": "Toy Bear (Golden Cub)",
+        "price": 7850,
+        "chance": 2.05
+      },
+      {
+        "name": "Ionic Dryer (Gold Rush)",
+        "price": 7075,
+        "chance": 4.17
+      },
+      {
+        "name": "Love Candle (Golden Glow)",
+        "price": 2925,
+        "chance": 12.39
+      },
+      {
+        "name": "Bunny Muffin (Gold)",
+        "price": 900,
+        "chance": 35.57
+      },
+      {
+        "name": "Lol Pop (Gold Star)",
+        "price": 625,
+        "chance": 42.45
+      }
+    ]
+  },
+  {
+    "id": 25,
+    "category": "retro",
+    "name": "Director",
+    "price": 926,
+    "currency": "star",
+    "tier": "#4FBE8D",
+    "image": "/images/cases/director.png",
+    "items": [
+      {
+        "name": "Astral Shard",
+        "price": 21100,
+        "chance": 0.124
+      },
+      {
+        "name": "Bonded Ring",
+        "price": 12975,
+        "chance": 0.31
+      },
+      {
+        "name": "Toy Bear",
+        "price": 4250,
+        "chance": 1.76
+      },
+      {
+        "name": "Cupid Charm",
+        "price": 2875,
+        "chance": 2.95
+      },
+      {
+        "name": "Record Player",
+        "price": 2200,
+        "chance": 4.15
+      },
+      {
+        "name": "Berry Box",
+        "price": 875,
+        "chance": 18.29
+      },
+      {
+        "name": "Spy Agaric",
+        "price": 725,
+        "chance": 32.28
+      },
+      {
+        "name": "Party Sparkler",
+        "price": 500,
+        "chance": 40.14
+      }
+    ]
+  },
+  {
+    "id": 26,
+    "category": "retro",
+    "name": "Dark",
+    "price": 4999,
+    "currency": "star",
+    "tier": "#4FB8C4",
+    "image": "/images/cases/dark.png",
+    "items": [
+      {
+        "name": "Loot Bag (Black Purrse)",
+        "price": 112050,
+        "chance": 0.383
+      },
+      {
+        "name": "Heroic Helmet (Black Thorn)",
+        "price": 74075,
+        "chance": 0.513
+      },
+      {
+        "name": "Gem Signet (Black Lotus)",
+        "price": 34225,
+        "chance": 0.904
+      },
+      {
+        "name": "Toy Bear (Ursa Major)",
+        "price": 22625,
+        "chance": 1.6
+      },
+      {
+        "name": "Swiss Watch (Memory Flash)",
+        "price": 11775,
+        "chance": 3.15
+      },
+      {
+        "name": "Signet Ring (Obsidian)",
+        "price": 7975,
+        "chance": 5.43
+      },
+      {
+        "name": "Record Player (Dark Noir)",
+        "price": 5825,
+        "chance": 7.26
+      },
+      {
+        "name": "Mad Pumpkin (Daredevil)",
+        "price": 4600,
+        "chance": 9.23
+      },
+      {
+        "name": "Bow Tie (Dark Lord)",
+        "price": 3925,
+        "chance": 12.31
+      },
+      {
+        "name": "Hanging Star (Black Hole)",
+        "price": 3125,
+        "chance": 20.52
+      },
+      {
+        "name": "Evil Eye (8 Ball)",
+        "price": 1725,
+        "chance": 38.7
+      }
+    ]
+  },
+  {
+    "id": 27,
+    "category": "luxury",
+    "name": "Palm",
+    "price": 13999,
+    "currency": "star",
+    "tier": "#4FB8C4",
+    "image": "/images/cases/palm.png",
+    "items": [
+      {
+        "name": "Precious Peach (Rich Green)",
+        "price": 211725,
+        "chance": 0.294
+      },
+      {
+        "name": "Astral Shard (Eve's Apple)",
+        "price": 117250,
+        "chance": 0.587
+      },
+      {
+        "name": "Sakura Flower (Flowey)",
+        "price": 83225,
+        "chance": 2.36
+      },
+      {
+        "name": "Bonded Ring (Duckling)",
+        "price": 31825,
+        "chance": 5.21
+      },
+      {
+        "name": "Gem Signet (Elven Shade)",
+        "price": 21750,
+        "chance": 9.97
+      },
+      {
+        "name": "Kissed Frog (Lava Leap)",
+        "price": 18975,
+        "chance": 11
+      },
+      {
+        "name": "Sakura Flower (Sunflower)",
+        "price": 12275,
+        "chance": 13.02
+      },
+      {
+        "name": "Love Potion (Banana)",
+        "price": 8225,
+        "chance": 16.01
+      },
+      {
+        "name": "Cupid Charm (Dryad Heart)",
+        "price": 5275,
+        "chance": 18.02
+      },
+      {
+        "name": "Crystal Ball (Dryad Circle)",
+        "price": 3125,
+        "chance": 23.53
+      }
+    ]
+  },
+  {
+    "id": 28,
+    "category": "luxury",
+    "name": "Burj",
+    "price": 37999,
+    "currency": "star",
+    "tier": "#E8B84F",
+    "image": "/images/cases/burj.png",
+    "items": [
+      {
+        "name": "Plush Pepe (Hue Jester)",
+        "price": 1337250,
+        "chance": 0.333
+      },
+      {
+        "name": "Durov's Cap (Honey Bee)",
+        "price": 305750,
+        "chance": 0.659
+      },
+      {
+        "name": "Mighty Arm (Crystal Fist)",
+        "price": 132175,
+        "chance": 2.23
+      },
+      {
+        "name": "Loot Bag (Conductor)",
+        "price": 84225,
+        "chance": 4.54
+      },
+      {
+        "name": "Ion Gem (Prismatic)",
+        "price": 56250,
+        "chance": 5.62
+      },
+      {
+        "name": "Genie Lamp (Lava Lamp)",
+        "price": 42875,
+        "chance": 11.41
+      },
+      {
+        "name": "Astral Shard (Bogartite)",
+        "price": 29225,
+        "chance": 14.44
+      },
+      {
+        "name": "Diamond Ring (Black Hole)",
+        "price": 23250,
+        "chance": 24.08
+      },
+      {
+        "name": "Gem Signet (Amethyst)",
+        "price": 17225,
+        "chance": 36.69
+      }
+    ]
+  },
+  {
+    "id": 29,
+    "category": "luxury",
+    "name": "Luxury",
+    "price": 119999,
+    "currency": "star",
+    "tier": "#9B86F0",
+    "image": "/images/cases/luxury.png",
+    "items": [
+      {
+        "name": "Plush Pepe (Emerald Plush)",
+        "price": 6985225,
+        "chance": 0.166
+      },
+      {
+        "name": "Heart Locket (Cirque)",
+        "price": 1135075,
+        "chance": 0.333
+      },
+      {
+        "name": "Durov's Cap (Falcon)",
+        "price": 545725,
+        "chance": 1.48
+      },
+      {
+        "name": "Precious Peach (Angelic)",
+        "price": 245050,
+        "chance": 4.54
+      },
+      {
+        "name": "Nail Bracelet (Interstellar)",
+        "price": 197425,
+        "chance": 7.56
+      },
+      {
+        "name": "Heroic Helmet (Cyberpunk)",
+        "price": 147250,
+        "chance": 10.66
+      },
+      {
+        "name": "Artisan Brick (Fight Club)",
+        "price": 112400,
+        "chance": 7.82
+      },
+      {
+        "name": "Mini Oscar (Fiery-Hot)",
+        "price": 87550,
+        "chance": 16.19
+      },
+      {
+        "name": "Electric Skull (Terminator)",
+        "price": 70225,
+        "chance": 22.48
+      },
+      {
+        "name": "Gem Signet (Death Star)",
+        "price": 49575,
+        "chance": 28.77
+      }
+    ]
+  },
+  {
+    "id": 30,
+    "category": "silver",
+    "name": "Zombie",
+    "price": 100000,
+    "currency": "silver",
+    "tier": "#4FBE8D",
+    "image": "/images/cases/zombie.png",
+    "items": [
+      {
+        "name": "Electric Skull (Zombie)",
+        "price": 540000,
+        "chance": 30,
+        "currency": "star"
+      },
+      {
+        "name": "Evil Eye (Monster Mash)",
+        "price": 700000,
+        "chance": 25,
+        "currency": "star"
+      },
+      {
+        "name": "Jack-in-the-Box (Haunted House)",
+        "price": 1110000,
+        "chance": 20,
+        "currency": "star"
+      },
+      {
+        "name": "Sharp Tongue (Zombie Bite)",
+        "price": 1360000,
+        "chance": 12,
+        "currency": "star"
+      },
+      {
+        "name": "Mad Pumpkin (Red Demon)",
+        "price": 1650000,
+        "chance": 10,
+        "currency": "star"
+      },
+      {
+        "name": "Trapped Heart (Undead Beat)",
+        "price": 2000000,
+        "chance": 2,
+        "currency": "star"
+      },
+      {
+        "name": "Scared Cat (Zombie)",
+        "price": 5000000,
+        "chance": 0.7,
+        "currency": "star"
+      },
+      {
+        "name": "Voodoo Doll (Dark Side)",
+        "price": 12000000,
+        "chance": 0.2,
+        "currency": "star"
+      },
+      {
+        "name": "Skull Flower (Ghost Rider)",
+        "price": 30000000,
+        "chance": 0.1,
+        "currency": "star"
+      }
+    ]
+  },
+  {
+    "id": 31,
+    "category": "silver",
+    "name": "Pinkie",
+    "price": 250000,
+    "currency": "silver",
+    "tier": "#E8548A",
+    "image": "/images/cases/pinkie.png",
+    "items": [
+      {
+        "name": "Pretty Posy (Sakura)",
+        "price": 1750000,
+        "chance": 30,
+        "currency": "star"
+      },
+      {
+        "name": "Sky Stilettos (Glossy)",
+        "price": 2100000,
+        "chance": 25,
+        "currency": "star"
+      },
+      {
+        "name": "Sakura Flower (Sakura)",
+        "price": 2400000,
+        "chance": 20,
+        "currency": "star"
+      },
+      {
+        "name": "Heart Locket (Sakura)",
+        "price": 2650000,
+        "chance": 12,
+        "currency": "star"
+      },
+      {
+        "name": "Cupid Charm (Blossom)",
+        "price": 2795000,
+        "chance": 10,
+        "currency": "star"
+      },
+      {
+        "name": "Love Candle (Rose Garden)",
+        "price": 3200000,
+        "chance": 2,
+        "currency": "star"
+      },
+      {
+        "name": "Nail Bracelet (Pink Needle)",
+        "price": 15000000,
+        "chance": 0.7,
+        "currency": "star"
+      },
+      {
+        "name": "Love Potion (Fairy Pollen)",
+        "price": 25000000,
+        "chance": 0.2,
+        "currency": "star"
+      },
+      {
+        "name": "Lush Bouquet (Million Roses)",
+        "price": 80000000,
+        "chance": 0.1,
+        "currency": "star"
+      }
+    ]
+  },
+  {
+    "id": 32,
+    "category": "silver",
+    "name": "Food",
+    "price": 15000,
+    "currency": "silver",
+    "tier": "#E8B84F",
+    "image": "/images/cases/food.png",
+    "items": [
+      {
+        "name": "Homemade Cake (Birthday)",
+        "price": 80000,
+        "chance": 30,
+        "currency": "star"
+      },
+      {
+        "name": "Ginger Cookie (Santa Claus)",
+        "price": 115000,
+        "chance": 25,
+        "currency": "star"
+      },
+      {
+        "name": "Instant Ramen (Classic Ramen)",
+        "price": 140000,
+        "chance": 20,
+        "currency": "star"
+      },
+      {
+        "name": "Bunny Muffin (Chocolate)",
+        "price": 150000,
+        "chance": 12,
+        "currency": "star"
+      },
+      {
+        "name": "Whip Cupcake (Bitcoin)",
+        "price": 185000,
+        "chance": 10,
+        "currency": "star"
+      },
+      {
+        "name": "Mousse Cake (Cheesecake)",
+        "price": 220000,
+        "chance": 2,
+        "currency": "star"
+      },
+      {
+        "name": "Easter Egg (Chocolate)",
+        "price": 800000,
+        "chance": 0.7,
+        "currency": "star"
+      },
+      {
+        "name": "Lol Pop (Watermelon)",
+        "price": 3000000,
+        "chance": 0.2,
+        "currency": "star"
+      },
+      {
+        "name": "Swiss Watch (Day Trader)",
+        "price": 15000000,
+        "chance": 0.1,
+        "currency": "star"
+      }
+    ]
+  },
+  {
+    "id": 33,
+    "category": "silver",
+    "name": "Gravity",
+    "price": 50000,
+    "currency": "silver",
+    "tier": "#4FB8C4",
+    "image": "/images/cases/gravity.png",
+    "items": [
+      {
+        "name": "Stellar Rocket (To The Moon)",
+        "price": 210000,
+        "chance": 30,
+        "currency": "star"
+      },
+      {
+        "name": "Astral Shard (Galactite)",
+        "price": 320000,
+        "chance": 25,
+        "currency": "star"
+      },
+      {
+        "name": "Moon Pendant (Lunar Orbit)",
+        "price": 385000,
+        "chance": 20,
+        "currency": "star"
+      },
+      {
+        "name": "Snow Globe (Winter)",
+        "price": 450000,
+        "chance": 12,
+        "currency": "star"
+      },
+      {
+        "name": "Crystal Ball (Nebula)",
+        "price": 520000,
+        "chance": 10,
+        "currency": "star"
+      },
+      {
+        "name": "Lunar Snake (Lunar Year)",
+        "price": 700000,
+        "chance": 2,
+        "currency": "star"
+      },
+      {
+        "name": "Sleigh Bell (Stellar Map)",
+        "price": 3000000,
+        "chance": 0.7,
+        "currency": "star"
+      },
+      {
+        "name": "Durov's Cap (Nightshade)",
+        "price": 15000000,
+        "chance": 0.2,
+        "currency": "star"
+      },
+      {
+        "name": "Big Year (Sputnik-1)",
+        "price": 50000000,
+        "chance": 0.1,
+        "currency": "star"
+      }
+    ]
+  },
+  {
+    "id": 34,
+    "category": "silver",
+    "name": "Star Wars",
+    "price": 25000,
+    "currency": "silver",
+    "tier": "#7B8089",
+    "image": "/images/cases/starwars.png",
+    "items": [
+      {
+        "name": "Light Sword (Jedi Luke)",
+        "price": 15000,
+        "chance": 5,
+        "currency": "star"
+      },
+      {
+        "name": "Astral Shard (Galactite)",
+        "price": 25000,
+        "chance": 33.92,
+        "currency": "star"
+      },
+      {
+        "name": "Stellar Rocket (Normandy)",
+        "price": 35000,
+        "chance": 27.14,
+        "currency": "star"
+      },
+      {
+        "name": "Electric Skull (Starman)",
+        "price": 50000,
+        "chance": 16.29,
+        "currency": "star"
+      },
+      {
+        "name": "Sleigh Bell (Darth Vader)",
+        "price": 52500,
+        "chance": 13.57,
+        "currency": "star"
+      },
+      {
+        "name": "Durov's Cap (Shadow)",
+        "price": 300000,
+        "chance": 2.04,
+        "currency": "star"
+      },
+      {
+        "name": "Perfume Bottle (Ebony Rose)",
+        "price": 2000000,
+        "chance": 1.36,
+        "currency": "star"
+      },
+      {
+        "name": "Spy Agaric (Nighteye)",
+        "price": 16000000,
+        "chance": 0.543,
+        "currency": "star"
+      },
+      {
+        "name": "Pool Float (Nessie)",
+        "price": 74000000,
+        "chance": 0.136,
+        "currency": "star"
+      }
+    ]
+  },
+  {
+    "id": 35,
+    "category": "silver",
+    "name": "Durov",
+    "price": 15000,
+    "currency": "silver",
+    "tier": "#9B86F0",
+    "image": "/images/cases/durov.png",
+    "items": [
+      {
+        "name": "Durov's Cap (Classic)",
+        "price": 45000,
+        "chance": 30,
+        "currency": "star"
+      },
+      {
+        "name": "Durov's Glasses (Neo)",
+        "price": 75000,
+        "chance": 25,
+        "currency": "star"
+      },
+      {
+        "name": "Love Potion (Durov Duck)",
+        "price": 105000,
+        "chance": 20,
+        "currency": "star"
+      },
+      {
+        "name": "Desk Calendar (Durov Day)",
+        "price": 130000,
+        "chance": 12,
+        "currency": "star"
+      },
+      {
+        "name": "Swag Bag (Swag Droid)",
+        "price": 148000,
+        "chance": 10,
+        "currency": "star"
+      },
+      {
+        "name": "Big Year (Pavel Durov)",
+        "price": 200000,
+        "chance": 2,
+        "currency": "star"
+      },
+      {
+        "name": "Snoop Dogg (Doggfather)",
+        "price": 800000,
+        "chance": 0.7,
+        "currency": "star"
+      },
+      {
+        "name": "Plush Pepe (Midas Pepe)",
+        "price": 5000000,
+        "chance": 0.2,
+        "currency": "star"
+      },
+      {
+        "name": "Gem Signet (Molten Core)",
+        "price": 25000000,
+        "chance": 0.1,
+        "currency": "star"
+      }
+    ]
+  },
+  {
+    "id": 36,
+    "category": "silver",
+    "name": "Redo",
+    "price": 1000000,
+    "currency": "silver",
+    "tier": "#E2793D",
+    "image": "/images/cases/redo.png",
+    "items": [
+      {
+        "name": "Resistance Dog (Lightpaw)",
+        "price": 2500000,
+        "chance": 30,
+        "currency": "star"
+      },
+      {
+        "name": "Liberty Figure (Columbia)",
+        "price": 4500000,
+        "chance": 25,
+        "currency": "star"
+      },
+      {
+        "name": "Durov's Glasses (Thug Life)",
+        "price": 6500000,
+        "chance": 20,
+        "currency": "star"
+      },
+      {
+        "name": "Loot Bag (Crypto Punk)",
+        "price": 8500000,
+        "chance": 12,
+        "currency": "star"
+      },
+      {
+        "name": "Swag Bag (Snoop Life)",
+        "price": 9950000,
+        "chance": 10,
+        "currency": "star"
+      },
+      {
+        "name": "Heart Locket (Turtles)",
+        "price": 15000000,
+        "chance": 2,
+        "currency": "star"
+      },
+      {
+        "name": "Plush Pepe (Hothead)",
+        "price": 100000000,
+        "chance": 0.7,
+        "currency": "star"
+      },
+      {
+        "name": "Gem Signet (Spinny Boi)",
+        "price": 120000000,
+        "chance": 0.2,
+        "currency": "star"
+      },
+      {
+        "name": "Resistance Dog (Loki)",
+        "price": 1000000000,
+        "chance": 0.1,
+        "currency": "star"
+      }
+    ]
+  },
+  {
+    "id": 37,
+    "category": "silver",
+    "name": "Pepe",
+    "price": 5000000,
+    "currency": "silver",
+    "tier": "#4FBE8D",
+    "image": "/images/cases/pepe.png",
+    "items": [
+      {
+        "name": "Plush Pepe (Midas Pepe)",
+        "price": 22500000,
+        "chance": 30,
+        "currency": "star"
+      },
+      {
+        "name": "Kissed Frog (Happy Pepe)",
+        "price": 32000000,
+        "chance": 25,
+        "currency": "star"
+      },
+      {
+        "name": "Spy Agaric (Pepe Mania)",
+        "price": 45500000,
+        "chance": 20,
+        "currency": "star"
+      },
+      {
+        "name": "Mood Pack (Pepe Unleashed)",
+        "price": 55000000,
+        "chance": 12,
+        "currency": "star"
+      },
+      {
+        "name": "Loot Bag (Pepe Bag)",
+        "price": 85000000,
+        "chance": 10,
+        "currency": "star"
+      },
+      {
+        "name": "Jester Hat (Pepe Hop)",
+        "price": 150000000,
+        "chance": 2,
+        "currency": "star"
+      },
+      {
+        "name": "Sharp Tongue (Pepelicious)",
+        "price": 450000000,
+        "chance": 0.7,
+        "currency": "star"
+      },
+      {
+        "name": "Durov's Glasses (Pepe Dream)",
+        "price": 185000000,
+        "chance": 0.2,
+        "currency": "star"
+      },
+      {
+        "name": "Nail Bracelet (Pepe Band)",
+        "price": 485000000,
+        "chance": 0.1,
+        "currency": "star"
+      }
+    ]
+  }
+]

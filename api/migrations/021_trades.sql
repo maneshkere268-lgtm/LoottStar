@@ -1,0 +1,65 @@
+CREATE TABLE trades (
+    trade_id UUID PRIMARY KEY,
+    from_user_id TEXT NOT NULL REFERENCES app_users (telegram_id),
+    from_username TEXT NOT NULL DEFAULT '',
+    to_user_id TEXT NOT NULL REFERENCES app_users (telegram_id),
+    to_username TEXT NOT NULL DEFAULT '',
+    from_items JSONB NOT NULL DEFAULT '[]'::jsonb CHECK (jsonb_typeof(from_items) = 'array'),
+    from_stars BIGINT NOT NULL DEFAULT 0 CHECK (from_stars >= 0),
+    to_items JSONB NOT NULL DEFAULT '[]'::jsonb CHECK (jsonb_typeof(to_items) = 'array'),
+    to_stars BIGINT NOT NULL DEFAULT 0 CHECK (to_stars >= 0),
+    escrow_from BOOLEAN NOT NULL DEFAULT TRUE,
+    escrow_to BOOLEAN NOT NULL DEFAULT FALSE,
+    accepted_from BOOLEAN NOT NULL DEFAULT FALSE,
+    accepted_to BOOLEAN NOT NULL DEFAULT FALSE,
+    refunded_from BOOLEAN NOT NULL DEFAULT FALSE,
+    refunded_to BOOLEAN NOT NULL DEFAULT FALSE,
+    status TEXT NOT NULL CHECK (status IN ('pending', 'completed', 'rejected', 'expired')),
+    created_at BIGINT NOT NULL,
+    expires_at BIGINT NOT NULL,
+    updated_at BIGINT NOT NULL,
+    from_stars_fee BIGINT NOT NULL DEFAULT 0 CHECK (from_stars_fee >= 0),
+    to_stars_fee BIGINT NOT NULL DEFAULT 0 CHECK (to_stars_fee >= 0),
+    CHECK (from_user_id <> to_user_id)
+);
+
+CREATE INDEX trades_from_pending_idx ON trades (from_user_id, created_at DESC) WHERE status = 'pending';
+CREATE INDEX trades_to_pending_idx ON trades (to_user_id, created_at DESC) WHERE status = 'pending';
+
+ALTER TABLE game_operations
+    DROP CONSTRAINT game_operations_operation_check,
+    ADD CONSTRAINT game_operations_operation_check
+        CHECK (operation IN (
+            'case_open',
+            'item_sell',
+            'mines_start',
+            'mines_reveal',
+            'mines_cashout',
+            'slots_spin',
+            'plinko_drop',
+            'crash_start',
+            'crash_cashout',
+            'item_upgrade',
+            'bags_play',
+            'fishing_start',
+            'fishing_continue',
+            'fishing_cashout',
+            'item_craft',
+            'item_save',
+            'promo_redeem',
+            'daily_task_claim',
+            'staking_activate',
+            'staking_stop',
+            'staking_top_up',
+            'staking_claim',
+            'phone_roll',
+            'phone_resolve',
+            'phone_sell',
+            'phone_install',
+            'trade_create',
+            'trade_counter',
+            'trade_accept',
+            'trade_complete',
+            'trade_reject',
+            'trade_expire'
+        ));
